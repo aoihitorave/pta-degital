@@ -1,53 +1,566 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="PTAの年度引き継ぎを成立させる組織アカウント設計とフォルダ構造の指針。">
-  <title></title>
-  <link rel="stylesheet" href="../assets/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>引き継ぎ設計ガイド｜PTA・地域活動 デジタル活用統合ガイド</title>
+<meta name="description" content="PTA・地域活動における年度交代を、個人の善意ではなく仕組みで成立させる設計ガイド。共通アカウント方式・4種の必須文書・4月2週間プロトコル・ナレッジベース構築を網羅。">
+<meta property="og:title" content="引き継ぎ設計ガイド｜PTAデジタル活用統合ガイド">
+<meta property="og:description" content="個人依存をやめ、仕組みで引き継ぐ。共通アカウント・必須文書・年間スケジュール完全版。">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
 </head>
-<body data-page-id="gov-handover">
+<body data-page-id="gov-handover" data-progress>
 
-<div data-breadcrumb></div>
+<main class="container">
 
-<header class="hero">
-  <span class="hero-badge">COMING SOON · GOVERNANCE</span>
-  <h1>🔁 <span class="accent">年度引き継ぎ設計</span></h1>
-  <p class="lead">「個人の頑張り」に依存しないデジタル基盤を、最初に組織アーキテクチャとして設計する指針です。</p>
-</header>
+  <header class="hero">
+    <span class="badge badge-governance">GOVERNANCE · 完全版</span>
+    <h1>引き継ぎ設計ガイド</h1>
+    <p class="lead">
+      PTAの最大構造課題は「毎年メンバーが入れ替わる」点にあります。
+      本ガイドは、引き継ぎを<strong>個人の熱意ではなく仕組み</strong>で成立させる設計図を提供します。
+      「前任者がいないと何も分からない」状態を構造的に解消することが目的です。
+    </p>
+    <div class="meta-row">
+      <span>📖 想定読了時間: 30分</span>
+      <span>🎯 対象: 会長・副会長・引き継ぎ担当</span>
+      <span>🔄 最終更新: 2026年5月</span>
+    </div>
+  </header>
 
-<main>
-  <section class="block">
-    <h2><span class="num">📝</span>このページで書く予定の内容</h2>
-    <ul>
-      <li>「会長個人のGmail運用」が必ず破綻する理由</li>
-      <li>組織共有Gmailアカウントの設計と運用</li>
-      <li>パスワードマネージャー（Bitwarden等）の併用</li>
-      <li>2段階認証の引き継ぎ設計</li>
-      <li>標準フォルダ構造（年度・カテゴリ別）の規定</li>
-      <li>外部サービス（LINE WORKS・Canva・Notion）のアカウント引き継ぎ</li>
-      <li>退任者のアクセス権棚卸しチェックリスト</li>
-      <li>新旧役員合同会議のアジェンダ</li>
-      <li>引き継ぎノートの蓄積手段</li>
+  <!-- 0. 読み方 -->
+  <section id="how-to-read" class="section">
+    <h2>0. このページの読み方</h2>
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <h3>🆕 新任会長（最初の3日）</h3>
+        <p><a href="#two-week-protocol">第6章「4月の2週間プロトコル」</a>を最優先。アカウント・データ・連絡網の継承を最初に完了させてください。</p>
+      </div>
+      <div class="card">
+        <h3>🔄 現職会長（年度後半）</h3>
+        <p><a href="#annual-schedule">第5章「年間スケジュール」</a>と<a href="#documents">第4章「4種の必須文書」</a>を中心に。1月から準備すれば4月が楽になります。</p>
+      </div>
+      <div class="card">
+        <h3>🏗 抜本的改革を考える方</h3>
+        <p>全章。特に<a href="#principles">第2章「設計原則」</a>と<a href="#common-account">第3章「共通アカウント方式」</a>が、組織制度の見直しに直結します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. 失敗の構造分析 -->
+  <section id="failure-analysis" class="section">
+    <h2>1. 引き継ぎ失敗の構造分析</h2>
+    <p>「引き継ぎ資料を作れば解決」という前提自体が誤りです。失敗には構造的原因があります。</p>
+
+    <h3>1-1. 失敗の3類型</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr><th>類型</th><th>症状</th><th>真因</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>① アクセス断絶</td>
+          <td>「前会長のGmailにしかデータが無い」「パスワードが分からない」</td>
+          <td>個人アカウント運用</td>
+        </tr>
+        <tr>
+          <td>② 暗黙知の喪失</td>
+          <td>「なぜこの業者を使っているのか不明」「去年の判断理由が不明」</td>
+          <td>意思決定の記録不足</td>
+        </tr>
+        <tr>
+          <td>③ 過剰依存</td>
+          <td>「分からないと前任者にLINEで聞く」が3年続く</td>
+          <td>属人化を許容する文化</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box info-box-warn">
+      <h3>⚠️ 「丁寧な引き継ぎ書」では解決しない</h3>
+      <p>厚さ100ページの引き継ぎ書を作っても、新任が読まなければ無効です。引き継ぎは<strong>「文書化」より「アクセス可能性」</strong>を優先すべきで、必要なときに必要な情報に到達できる仕組みのほうが、網羅的だが死蔵される文書より価値が高くなります。</p>
+    </div>
+
+    <h3>1-2. 「引き継ぎ書を作る」アンチパターン</h3>
+    <p>毎年4月にWord/PDFで引き継ぎ書を作成する慣行は、以下の理由で機能不全に陥りやすくなります。事実: 多くのPTAで「引き継ぎ書はあるが誰も読んでいない」という現象が報告されています（出典: 全国PTA連合会の役員アンケート系資料、ptas.site等）。推測: 構造的原因は (a) 文書が静的で更新されない、(b) 検索性がなく必要な箇所に到達できない、(c) 文脈（なぜそうなったか）が抜ける、の3点と思われます。</p>
+    <p>本ガイドが提案する代替案は、第7章で詳述する<strong>「Notion/Drive上のナレッジベース」を年中更新する方式</strong>です。</p>
+  </section>
+
+  <!-- 2. 設計原則 -->
+  <section id="principles" class="section">
+    <h2>2. 設計原則3つ</h2>
+    <p>引き継ぎ設計は、以下3原則を満たすかどうかで評価します。</p>
+
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <h3>原則1: 個人非依存</h3>
+        <p>すべてのデータ・アカウント・ノウハウは、特定個人に依存しない場所に置く。「Aさんに聞かないと分からない」状態が一つでもあれば、設計失敗。</p>
+      </div>
+      <div class="card">
+        <h3>原則2: 即時アクセス</h3>
+        <p>引き継ぎは「年度末の儀式」ではなく「日常運用そのもの」。今日入った新任が今日アクセスできること。</p>
+      </div>
+      <div class="card">
+        <h3>原則3: 失敗の蓄積</h3>
+        <p>「うまくいったこと」より「失敗・後悔」を優先的に記録する。次年度が同じ失敗を繰り返さないことが、引き継ぎの本質的価値。</p>
+      </div>
+    </div>
+
+    <h3>2-1. 原則の優先順位</h3>
+    <p>3原則は対等ではなく、<strong>原則1（個人非依存）が最優先</strong>です。理由は、原則2・3は原則1が満たされて初めて機能するためです。個人Googleアカウント上のNotionをいくら充実させても、退任時にアクセスを失えば全て無価値になります。</p>
+  </section>
+
+  <!-- 3. 共通アカウント方式 -->
+  <section id="common-account" class="section">
+    <h2>3. 共通アカウント方式（個人アカウント禁止）</h2>
+    <p>原則1を実装する具体策が、PTA共通のアカウントを作成し全業務を集約する方式です。</p>
+
+    <h3>3-1. 共通アカウント構成例</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr><th>用途</th><th>アカウント名（例）</th><th>パスワード管理</th><th>備考</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google Workspace（メイン）</td>
+          <td>maru-pta@gmail.com</td>
+          <td>1Password等の共有金庫</td>
+          <td>Drive/Forms/Docs/Sheets/Meet全て集約</td>
+        </tr>
+        <tr>
+          <td>LINE WORKS</td>
+          <td>非営利特別プランで取得</td>
+          <td>同上</td>
+          <td>管理者は会長＋副会長の2名</td>
+        </tr>
+        <tr>
+          <td>Canva</td>
+          <td>共通Gmailで作成</td>
+          <td>同上</td>
+          <td>無料プランで十分</td>
+        </tr>
+        <tr>
+          <td>Notion</td>
+          <td>共通Gmailで作成</td>
+          <td>同上</td>
+          <td>ナレッジベース（第7章）</td>
+        </tr>
+        <tr>
+          <td>銀行・決済</td>
+          <td>団体名義口座</td>
+          <td>会長・会計の物理鍵管理</td>
+          <td>個人口座経由は厳禁</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>3-2. 共通アカウント運用の3ルール</h3>
+    <ol class="numbered-list">
+      <li><strong>パスワードは2人以上で共有</strong>（会長・副会長・書記の3名推奨）。1人だけが知る状態は単一障害点になる</li>
+      <li><strong>二段階認証の電話番号は会長個人ではなく団体用SIM/Google Voice等</strong>に紐付ける（コスト的に難しければ会長＋副会長の2名で受信できる体制）</li>
+      <li><strong>パスワードマネージャーは1Password Families/Bitwarden等の共有金庫機能</strong>を使う。LINEやメールでの平文共有は禁止</li>
+    </ol>
+
+    <div class="info-box info-box-tip">
+      <h3>💡 「個人アカウントで始めてしまった」場合の移行手順</h3>
+      <p>多くのPTAは個人Gmailで運用が始まっています。以下の順で1〜2か月かけて移行してください。</p>
+      <ol class="numbered-list">
+        <li>共通Gmailアカウントを取得</li>
+        <li>新規データはすべて共通アカウントで作成（既存データには触れない）</li>
+        <li>個人アカウント上のDriveフォルダを共通アカウントへ「オーナー権限移譲」</li>
+        <li>移譲完了後、個人アカウント側からファイルを削除</li>
+        <li>外部サービス（LINE WORKS、Canva等）のオーナーも順次共通アカウントへ移行</li>
+      </ol>
+      <p>詳細な権限設計は<a href="./security.html#access-control">セキュリティガイド第6章</a>を参照してください。</p>
+    </div>
+
+    <h3>3-3. 二段階認証の落とし穴</h3>
+    <div class="info-box info-box-warn">
+      <p>共通アカウントで二段階認証を有効化する際、認証コード受信先を個人スマホにすると、その人が退任した瞬間にログイン不能になります。<strong>Google Authenticator等のTOTPコードを複数役員で共有する</strong>か、<strong>バックアップコードを物理金庫に保管</strong>するなどの冗長化が必須です。</p>
+    </div>
+  </section>
+
+  <!-- 4. 4種の必須文書 -->
+  <section id="documents" class="section">
+    <h2>4. 引き継ぎに必須の4種の文書</h2>
+    <p>「引き継ぎ書」を1冊にまとめるのではなく、性質の異なる4文書として分離管理します。混在させると更新されなくなるためです。</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr><th>文書</th><th>性質</th><th>更新頻度</th><th>形式</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>① 組織カルテ</td>
+          <td>静的・基本情報</td>
+          <td>年1回</td>
+          <td>Google Docs（PDF出力）</td>
+        </tr>
+        <tr>
+          <td>② 運用マニュアル</td>
+          <td>手順・How To</td>
+          <td>随時</td>
+          <td>Notion or Google Sites</td>
+        </tr>
+        <tr>
+          <td>③ 意思決定ログ</td>
+          <td>判断の記録</td>
+          <td>会議のたび</td>
+          <td>Google Docs（時系列追記）</td>
+        </tr>
+        <tr>
+          <td>④ 失敗・改善ノート</td>
+          <td>振り返り</td>
+          <td>イベント後</td>
+          <td>Notion</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4-1. 組織カルテ（テンプレ）</h3>
+    <details class="accordion">
+      <summary>📄 組織カルテのテンプレートを展開</summary>
+      <div class="accordion-body">
+<div class="code-block">
+<pre>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+◯◯小学校PTA 組織カルテ（2026年度版）
+
+【基本情報】
+- 設立年: 19XX年
+- 会員数: 約XXX世帯
+- 年会費: XXXX円/世帯
+- 会計年度: 4月〜翌3月
+
+【役員構成】
+- 会長 1名 / 副会長 2名 / 書記 2名 / 会計 2名 / 監査 2名
+- 委員会: 広報 / 行事 / ベルマーク / 校外 等
+
+【外部関係先】
+- 学校（窓口: 教頭先生）
+- 区P連合会
+- 印刷業者: ◯◯印刷（毎年広報誌発注、見積もりXX万円）
+- 銀行: ◯◯銀行 ◯◯支店（団体口座 XXXXXXX）
+
+【保有アカウント・サービス】
+- Google Workspace: maru-pta@gmail.com
+- LINE WORKS: 非営利プラン契約中
+- Canva: 共通アカウント
+- 印刷会社オンライン入稿: ◯◯印刷会員
+
+【重要な約束事項】
+- 学校との合意事項XXX
+- 区P連との分担XXX
+- 慣例的に避けている事項XXX（理由: 過去のトラブル）
+
+【最終更新】: 2026年X月X日 / 更新者: 会長
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿</pre>
+</div>
+      </div>
+    </details>
+
+    <h3>4-2. 意思決定ログ（最重要）</h3>
+    <p>4文書のうち、最も価値が高いが最も忘れられがちなのが意思決定ログです。「なぜそう決めたか」を記録することで、次年度の不要な再議論と誤判断を防げます。</p>
+
+    <div class="code-block">
+<pre>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+意思決定ログ（時系列）
+
+2026-04-15 / 議題: 入会同意書のデジタル化
+- 決定: Google Formsで取得、印刷物併用
+- 理由: 高齢会員・スマホ非保有層への配慮
+- 反対意見: 完全デジタル化を望む声あり
+- 再検討時期: 2027年4月（スマホ普及率を再評価）
+- 関連資料: Drive/01_規程/同意書改定2026.pdf
+
+2026-05-10 / 議題: 印刷業者の継続/変更
+- 決定: ◯◯印刷を継続
+- 理由: 学校所在地への直接納品対応、過去10年間トラブルなし
+- 比較した代替: △△印刷（25%安いが校門配送なし）
+- 再検討時期: 2028年（3年スパン）
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿</pre>
+    </div>
+
+    <div class="info-box info-box-tip">
+      <h3>💡 「再検討時期」フィールドが鍵</h3>
+      <p>すべての決定に「いつ見直すか」を書いておくことで、次年度に「とりあえず慣例で続ける」という不作為を防止できます。再検討時期が来たら、当時の理由を読んで再判断します。</p>
+    </div>
+  </section>
+
+  <!-- 5. 年間スケジュール -->
+  <section id="annual-schedule" class="section">
+    <h2>5. 引き継ぎの年間スケジュール</h2>
+    <p>引き継ぎは「3月の総会後にまとめて」ではなく、年間を通じて行います。</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr><th>時期</th><th>引き継ぎ関連タスク</th><th>担当</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>4月（就任直後）</td><td>第6章の2週間プロトコル実施、組織カルテ更新</td><td>新会長</td></tr>
+        <tr><td>5〜6月</td><td>運用マニュアル不足箇所の洗い出し、追記</td><td>各担当役員</td></tr>
+        <tr><td>各イベント直後</td><td>失敗・改善ノートの記入（24時間以内ルール）</td><td>イベント担当</td></tr>
+        <tr><td>10月（中間点検）</td><td>意思決定ログの再検討期限項目の確認</td><td>会長</td></tr>
+        <tr><td>1月</td><td>次期役員候補への声がけ、見学受け入れ開始</td><td>会長・副会長</td></tr>
+        <tr><td>2月</td><td>共通アカウントの棚卸し、不要アクセス権限削除</td><td>会長</td></tr>
+        <tr><td>3月（総会前）</td><td>組織カルテ最終版作成、新役員顔合わせ</td><td>会長</td></tr>
+        <tr><td>3月末</td><td>パスワード変更準備（4月に実施）、引き継ぎ会議</td><td>会長・新会長</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box info-box-warn">
+      <h3>⚠️ 「3月にまとめて」が機能しない理由</h3>
+      <p>記憶は1年経つと色褪せます。「なぜそう決めたか」「何が想定外だったか」は、その出来事から1週間以内に記録しないと再現不能になります。年間を通じた継続的記録が、3月の集中作業より価値が高くなります。</p>
+    </div>
+  </section>
+
+  <!-- 6. 4月の2週間プロトコル -->
+  <section id="two-week-protocol" class="section">
+    <h2>6. 4月の2週間プロトコル</h2>
+    <p>新会長就任後の最初の14日間を、以下のプロトコルで進めます。本章は新会長が紙に印刷して持ち歩ける構成にしています。</p>
+
+    <h3>6-1. Day 1〜3: アクセス継承</h3>
+    <ul class="checklist">
+      <li>□ 共通Googleアカウントのパスワード変更</li>
+      <li>□ 二段階認証の受信先を新会長に変更（または冗長化）</li>
+      <li>□ 1Password等の共有金庫の招待受領、ログイン確認</li>
+      <li>□ Google Driveの全フォルダにアクセス可能か確認</li>
+      <li>□ LINE WORKS管理者権限の移譲</li>
+      <li>□ 銀行口座のキャッシュカード・通帳の物理引き継ぎ</li>
+      <li>□ 学校（教頭・校長）への新会長挨拶</li>
+    </ul>
+
+    <h3>6-2. Day 4〜7: データ確認</h3>
+    <ul class="checklist">
+      <li>□ 組織カルテを通読</li>
+      <li>□ 意思決定ログのうち「再検討時期: 2026年4月」項目を抽出</li>
+      <li>□ 前年度の失敗・改善ノートを通読</li>
+      <li>□ 年間スケジュールを役員Googleカレンダーへ反映</li>
+      <li>□ 直近3か月の必須タスクを洗い出し</li>
+    </ul>
+
+    <h3>6-3. Day 8〜14: 体制構築</h3>
+    <ul class="checklist">
+      <li>□ 副会長・書記・会計とのキックオフ会議（Google Meet可）</li>
+      <li>□ 役割分担スプレッドシートの更新</li>
+      <li>□ Googleグループのメンバー入替（退任者削除）</li>
+      <li>□ Drive共有設定の年次レビュー</li>
+      <li>□ 個人情報の棚卸し（→ <a href="./security.html#inventory">セキュリティガイド第3章</a>）</li>
+      <li>□ 第1回理事会の議題作成</li>
+    </ul>
+
+    <h3>6-4. プロトコル成功の判定基準</h3>
+    <p>14日経過時点で、以下が全てYESなら成功と判定します。</p>
+    <ul class="checklist">
+      <li>□ 前会長への質問なしに、明日のタスクが実行できる</li>
+      <li>□ 全アカウントに新会長の権限でログイン可能</li>
+      <li>□ 過去1年の意思決定の経緯を、ログを読めば理解できる</li>
+      <li>□ 銀行口座の入出金が確認できる</li>
     </ul>
   </section>
 
-  <section class="block">
-    <h2><span class="num">💡</span>いまできる代替策</h2>
+  <!-- 7. ナレッジベース -->
+  <section id="knowledge-base" class="section">
+    <h2>7. ナレッジベース構築</h2>
+    <p>第4章の4種の文書を、検索可能な単一の場所にまとめたものがナレッジベースです。</p>
+
+    <h3>7-1. プラットフォーム選定</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr><th>選択肢</th><th>長所</th><th>短所</th><th>推奨度</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Notion</td>
+          <td>検索強、リレーション、テンプレート豊富</td>
+          <td>役員のITリテラシー要求、無料プランの制限</td>
+          <td>◎ IT慣れたPTA</td>
+        </tr>
+        <tr>
+          <td>Google Sites</td>
+          <td>Workspace統合、UI簡単、完全無料</td>
+          <td>検索弱、構造化機能少</td>
+          <td>○ 万人向け</td>
+        </tr>
+        <tr>
+          <td>Google Drive（フォルダのみ）</td>
+          <td>導入ゼロコスト</td>
+          <td>横断検索の文脈把握が困難</td>
+          <td>△ 過渡期のみ</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="caption">推測: 上記推奨度は本ガイド独自評価です。組織のITリテラシー分布により最適解は変わります。</p>
+
+    <h3>7-2. Notion採用時の推奨構造</h3>
+    <div class="code-block">
+<pre>📁 ◯◯小学校PTA ナレッジベース
+├─ 🏠 ホーム（最終更新ページ一覧）
+├─ 📘 組織カルテ
+├─ 📗 運用マニュアル
+│  ├─ アカウント管理
+│  ├─ 会計処理
+│  ├─ 広報誌発行
+│  ├─ イベント運営
+│  └─ 個人情報取扱
+├─ 📕 意思決定ログ（DB形式）
+│  プロパティ: 日付/議題/決定/理由/再検討時期/関連リンク
+├─ 📙 失敗・改善ノート（DB形式）
+│  プロパティ: 発生日/事象/原因/対策/再発防止
+├─ 📅 年間スケジュール（DB形式）
+└─ 🔗 外部リンク集
+   ├─ 区P連サイト
+   ├─ 個人情報保護委員会
+   └─ 本ガイド</pre>
+    </div>
+
+    <h3>7-3. 「失敗・改善ノート」の書き方</h3>
+    <div class="code-block">
+<pre>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+発生日: 2026-10-18（秋祭り当日）
+事象: 受付で参加者リストの順序がバラバラで5分遅延
+原因: 申込フォーム回答が時系列順だった
+対策: 当日朝にスプレッドシートで五十音ソート印刷
+再発防止: 運用マニュアル「秋祭り」に追記済
+担当: 受付チーム
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿</pre>
+    </div>
+
+    <div class="info-box info-box-tip">
+      <h3>💡 24時間ルール</h3>
+      <p>失敗・改善ノートは<strong>事象発生から24時間以内</strong>に記入してください。1週間後には記憶が美化・改変され、原因分析の精度が落ちます。スマホからNotionアプリで音声入力でも構いません。</p>
+    </div>
+  </section>
+
+  <!-- 8. 失敗の継続学習 -->
+  <section id="continuous-learning" class="section">
+    <h2>8. 失敗から学ぶ仕組み</h2>
+    <p>引き継ぎが「うまくいったこと」中心になると、失敗が暗黙化されて継承されません。失敗の継承を組織文化として埋め込みます。</p>
+
+    <h3>8-1. 「振り返り会議」の必須5項目</h3>
+    <p>各イベント後・各四半期末・年度末に開催する振り返り会議では、以下5項目を必ず議論し記録します。</p>
+    <ol class="numbered-list">
+      <li><strong>事前想定と現実のギャップ</strong>: 何が想定外だったか</li>
+      <li><strong>ヒヤリハット</strong>: 大事に至らなかったが危なかった事象</li>
+      <li><strong>後悔</strong>: 「ああすればよかった」と感じた判断</li>
+      <li><strong>負担の偏り</strong>: 特定個人に集中した作業</li>
+      <li><strong>次年度への申し送り</strong>: 来年同じ立場の人に伝えたいこと</li>
+    </ol>
+
+    <h3>8-2. 心理的安全性の確保</h3>
+    <p>「失敗を記録する」文化は、犯人探しになると瞬時に崩壊します。記録時のルールを以下のように明文化することが重要です。</p>
     <ul>
-      <li><a href="../scenarios/handover.html">役員引き継ぎシナリオ</a>（準備中）：実行手順</li>
-      <li><a href="../tools/notion.html">Notion</a>（準備中）：引き継ぎノートの構築</li>
+      <li>事象は記録するが、個人名は記載しない（役職名で記述）</li>
+      <li>「誰が悪いか」ではなく「仕組みのどこが弱かったか」を記述</li>
+      <li>失敗を報告した人を称賛する（次の人が報告しやすくなる）</li>
+      <li>振り返り会議の冒頭で会長が自身の失敗を最初に共有する</li>
+    </ul>
+
+    <div class="info-box info-box-warn">
+      <h3>⚠️ アンチパターン例</h3>
+      <p>振り返り会議が「◯◯さんがミスしました」報告会になると、翌年から誰も失敗を報告しなくなります。3年経つと「うちのPTAは何も失敗していない」という虚構の記録だけが残り、新任会長は同じ失敗を踏みます。詳細は<a href="./antipatterns.html">失敗事例集</a>へ。</p>
+    </div>
+  </section>
+
+  <!-- 9. チェックリスト&FAQ -->
+  <section id="checklist" class="section">
+    <h2>9. 自己診断チェックリスト＆FAQ</h2>
+
+    <h3>9-1. 組織の引き継ぎ成熟度自己診断（20項目）</h3>
+    <p>YESの数で診断します。15以上=成熟、10〜14=標準、9以下=要改善。</p>
+
+    <details class="accordion">
+      <summary>📋 自己診断20項目を展開</summary>
+      <div class="accordion-body">
+        <h3>アカウント・データ（7項目）</h3>
+        <ul class="checklist">
+          <li>□ PTA共通アカウントが存在する</li>
+          <li>□ 個人Gmailで業務をしていない</li>
+          <li>□ パスワードは2人以上で共有されている</li>
+          <li>□ 二段階認証が冗長化されている</li>
+          <li>□ 役員交代時のアクセス移管手順が文書化されている</li>
+          <li>□ Driveは個人ではなくGoogleグループで権限管理</li>
+          <li>□ 過去3年分のデータが共通アカウント上にある</li>
+        </ul>
+        <h3>文書（6項目）</h3>
+        <ul class="checklist">
+          <li>□ 組織カルテが存在し、年1回以上更新されている</li>
+          <li>□ 運用マニュアルが存在する</li>
+          <li>□ 意思決定ログを記録している</li>
+          <li>□ 失敗・改善ノートを記録している</li>
+          <li>□ 4文書が単一プラットフォームに集約されている</li>
+          <li>□ 文書は新任が独力で読める粒度</li>
+        </ul>
+        <h3>運用（7項目）</h3>
+        <ul class="checklist">
+          <li>□ 引き継ぎは年間通じて行われている（3月集中ではない）</li>
+          <li>□ 4月の2週間プロトコルが定着している</li>
+          <li>□ 振り返り会議でヒヤリハットを記録</li>
+          <li>□ 心理的安全性のルールが明文化</li>
+          <li>□ 「再検討時期」が来た決定を見直している</li>
+          <li>□ 前任者への質問が月1回以下で済む</li>
+          <li>□ 新任が就任2週間で独立稼働できる</li>
+        </ul>
+      </div>
+    </details>
+
+    <h3>9-2. FAQ</h3>
+    <details class="accordion">
+      <summary>Q1. 全部やるのは無理。最低限どれだけやれば？</summary>
+      <div class="accordion-body">
+        <p>3つの最小実装を推奨します。(1) 共通Gmailアカウント1つ作成、(2) Google Drive上に「年度別フォルダ」と「永続フォルダ（カルテ・マニュアル）」の2階層、(3) Google Docs1ファイルで意思決定ログを時系列追記。これだけでも、3年後には大きな差が生まれます。</p>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>Q2. Notion使うほど大規模じゃない</summary>
+      <div class="accordion-body">
+        <p>Google Sitesで十分です。Workspace内で完結し、追加ツール学習が不要、検索もWorkspace全体で効きます。Notionが必要になるのは、会員数500世帯超、または役員10名超でリレーション管理が必要になった段階以降と推測されます。</p>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>Q3. 個人Gmailで何年も運用してきた。今さら共通アカウントに移行できる？</summary>
+      <div class="accordion-body">
+        <p>可能です。第3章のコラムに記載した5ステップ移行を、1〜2か月かけて実施してください。ポイントは「既存データを一気に移さない」こと。新規データから共通アカウントに切り替え、既存データは時間をかけてオーナー権限移譲する形を取れば、現役員の負担を最小化できます。</p>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>Q4. 前会長が急に退任。アクセスを失った。どうすれば？</summary>
+      <div class="accordion-body">
+        <p>緊急度に応じて対応が分かれます。(a) 個人Gmailの場合: 本人に連絡してオーナー権限移譲を依頼。(b) 連絡不能の場合: Googleの「アカウント所有者死亡時」手続きや、各サービスのカスタマーサポートに事情を説明。(c) いずれも困難な場合: 失われたデータは諦め、共通アカウント方式で一から再構築するほうが結果的に早い場合があります。再発防止として本ガイドの仕組みを導入してください。</p>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>Q5. 引き継ぎ書（紙ベース）は不要？</summary>
+      <div class="accordion-body">
+        <p>不要ではありません。組織カルテのPDF版を物理印刷して鍵付き保管庫に1部保管するのは、クラウド全断時のバックアップとして有効です。ただし、「印刷物が一次資料」となる運用は、更新されない死蔵文書を生むため避けてください。一次資料はクラウド、バックアップとして紙、という位置付けが適切です。</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- 10. まとめ -->
+  <section id="summary" class="section">
+    <h2>10. 本ガイドの要点</h2>
+    <div class="info-box info-box-tip">
+      <ol class="numbered-list">
+        <li>引き継ぎは「文書化」より「アクセス可能性」が本質</li>
+        <li>個人アカウント運用が最大の構造的脆弱性</li>
+        <li>4種の文書を分離し、それぞれ適切な更新頻度で管理</li>
+        <li>4月の2週間プロトコルで新任の独立稼働を担保</li>
+        <li>失敗の記録こそが、引き継ぎの最高価値</li>
+      </ol>
+    </div>
+
+    <h3>関連リンク</h3>
+    <ul>
+      <li><a href="./security.html">個人情報保護・セキュリティ完全ガイド</a></li>
+      <li><a href="./antipatterns.html">失敗事例集</a></li>
+      <li><a href="../scenarios/handover.html">役員引き継ぎ シナリオガイド</a></li>
+      <li><a href="../tools/notion.html">Notion活用ガイド</a></li>
     </ul>
   </section>
 
-  <section class="block">
-    <h2><span class="num">📮</span>先行公開リクエスト</h2>
-    <p>本ページは会長・本部役員にとっての必読ページとして、優先度を高く設定しています。</p>
-  </section>
 </main>
 
-<div data-related></div>
 <script src="../assets/nav.js"></script>
 </body>
 </html>
