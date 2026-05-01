@@ -1,57 +1,523 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="PTAにおける個人情報保護とクラウド利用時の安全運用ガイド。">
-  <title></title>
-  <link rel="stylesheet" href="../assets/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個人情報保護・セキュリティ完全ガイド｜PTA・地域活動 デジタル活用統合ガイド</title>
+<meta name="description" content="PTA・地域活動でクラウドツールを使う際の個人情報保護・セキュリティの判断基準を、個人情報保護法に基づき体系化した完全ガイド。同意文例・権限設計・漏洩時対応・チェックリストを掲載。">
+<meta property="og:title" content="個人情報保護・セキュリティ完全ガイド｜PTAデジタル活用統合ガイド">
+<meta property="og:description" content="法的根拠に基づく判断基準・同意文例・権限設計・漏洩時対応を網羅。">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
 </head>
-<body data-page-id="gov-security">
+<body data-page-id="gov-security" data-progress>
 
-<div data-breadcrumb></div>
+<main class="container">
 
-<header class="hero">
-  <span class="hero-badge">COMING SOON · GOVERNANCE</span>
-  <h1>🔒 <span class="accent">個人情報保護</span> ガイド</h1>
-  <p class="lead">2017年の個人情報保護法改正により、ほぼすべてのPTAが「個人情報取扱事業者」に該当します。</p>
-</header>
+  <header class="hero">
+    <span class="badge badge-governance">GOVERNANCE · 完全版</span>
+    <h1>個人情報保護・セキュリティ完全ガイド</h1>
+    <p class="lead">
+      PTA・地域活動は、法律上「個人情報取扱事業者」に該当します（2017年改正で5,000件要件は撤廃済）。
+      本ガイドは、ツールの使い方ではなく<strong>「どう判断するか」</strong>の基準を、
+      個人情報保護法・個人情報保護委員会の公表資料に基づき提示します。
+    </p>
+    <div class="meta-row">
+      <span>📖 想定読了時間: 25分</span>
+      <span>🎯 対象: 全役員・特に会長/個人情報担当</span>
+      <span>🔄 最終更新: 2026年5月</span>
+    </div>
+  </header>
 
-<main>
-  <section class="block">
-    <h2><span class="num">📝</span>このページで書く予定の内容</h2>
-    <ul>
-      <li>PTAが負う法的義務の整理（個人情報取扱事業者として）</li>
-      <li>取得・利用・共有・保管の各段階での実務指針</li>
-      <li>クラウドサービス利用時の論点（Googleドライブ等）</li>
-      <li>アクセス権の最小化と退任者のアクセス権剥奪</li>
-      <li>共有設定の正解と誤り（事例ベース）</li>
-      <li>写真・肖像権の取り扱いと同意書テンプレ</li>
-      <li>退会者データの保管期間と削除義務</li>
-      <li>漏えい発生時の初動対応</li>
-      <li>個人情報取扱同意書のひな形</li>
-    </ul>
-    <div class="box warn">
-      <span class="label">⚠️ 重要な留保</span>
-      本ページは法的助言ではなく、公的ガイドラインに基づく一般的な運用指針です。具体的な判断は、個人情報保護委員会のガイドライン、所管自治体・所属PTA連合会の指針、必要に応じて法律専門家の助言に従ってください。
+  <!-- 0. 読み方 -->
+  <section id="how-to-read" class="section">
+    <h2>0. このページの読み方</h2>
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <h3>🚨 5分版（緊急）</h3>
+        <p>漏洩を疑う状況にある方は<a href="#incident">第8章「インシデント対応」</a>へ直行してください。報告期限は<strong>速報3〜5日以内</strong>です。</p>
+      </div>
+      <div class="card">
+        <h3>⏱ 15分版（実務）</h3>
+        <p>新任役員は<a href="#categories">第2章</a>→<a href="#consent">第5章</a>→<a href="#access-control">第6章</a>→<a href="#checklist">第9章チェックリスト</a>の順に。</p>
+      </div>
+      <div class="card">
+        <h3>📚 全読版（25分）</h3>
+        <p>会長・個人情報担当は全章。第4章のクラウド判断基準は理事会で共有資料として活用できます。</p>
+      </div>
     </div>
   </section>
 
-  <section class="block">
-    <h2><span class="num">💡</span>いまできる代替策</h2>
+  <!-- 1. なぜ今、必要か -->
+  <section id="why-now" class="section">
+    <h2>1. なぜ今、PTAに個人情報保護が必要か</h2>
+
+    <div class="info-box info-box-warn">
+      <h3>⚠️ 2026年現在の前提事実</h3>
+      <ul>
+        <li><strong>件数要件は存在しない</strong>: 2017年改正で「5,000件以下は適用外」が撤廃。<strong>1件でも</strong>個人情報を扱えば事業者扱いです。</li>
+        <li><strong>PTAは学校とは別組織</strong>: 学校が保有する児童名簿をPTAに渡す行為は、保護者同意なき場合<strong>第三者提供違反</strong>です（2024年に静岡市で約9,200人分の違反事例）。</li>
+        <li><strong>漏洩時は報告義務</strong>: 一定要件で個人情報保護委員会への報告と本人通知が法定義務（2022年4月施行）。</li>
+      </ul>
+      <p class="source">出典: 個人情報保護委員会「漏えい等報告・本人への通知の義務化について」（ppc.go.jp）</p>
+    </div>
+
+    <h3>1-1. PTAで起きている典型的な3つの問題</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr><th>問題類型</th><th>具体例</th><th>違反する条項（推測含む）</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>① 同意なき名簿取得</td>
+          <td>学校から児童名簿を引き継いで名簿作成</td>
+          <td>第三者提供違反（法27条）</td>
+        </tr>
+        <tr>
+          <td>② 利用目的逸脱</td>
+          <td>役員選出用に集めた名簿を広報誌配布に流用</td>
+          <td>目的外利用（法18条）</td>
+        </tr>
+        <tr>
+          <td>③ 安全管理措置不備</td>
+          <td>個人LINEで名簿PDFを送信、退任後も削除されず</td>
+          <td>安全管理措置義務違反（法23条）</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="caption">事実: 法令名・条文番号は2026年4月時点の個人情報保護法。｜ 推測: ①〜③の発生頻度は公開統計が存在しないため、PTA関連報道・全国PTA連合会資料からの推定。</p>
+  </section>
+
+  <!-- 2. 3分類 -->
+  <section id="categories" class="section">
+    <h2>2. 個人情報の3分類を理解する</h2>
+    <p>「個人情報」「個人データ」「要配慮個人情報」は同一概念ではありません。扱いの厳しさが異なります。</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr><th>区分</th><th>定義（簡略）</th><th>PTAでの具体例</th><th>取扱い厳格度</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>個人情報</td>
+          <td>特定の個人を識別できる情報</td>
+          <td>氏名、住所、メール、顔写真、児童氏名+学年</td>
+          <td>★★ 同意・目的明示必要</td>
+        </tr>
+        <tr>
+          <td>個人データ</td>
+          <td>個人情報を体系的に整理したもの（DB等）</td>
+          <td>会員名簿、申込フォーム回答スプレッドシート</td>
+          <td>★★★ 安全管理措置・第三者提供制限</td>
+        </tr>
+        <tr>
+          <td>要配慮個人情報</td>
+          <td>差別・偏見につながりうる情報</td>
+          <td>アレルギー、持病、宗教、犯罪歴、障害情報</td>
+          <td>★★★★ 取得時に明示同意必須・漏洩時報告ハードル低</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box info-box-tip">
+      <h3>💡 実務上の含意</h3>
+      <p>イベント申込フォームに「アレルギー有無」を含めた瞬間、そのフォームの回答全体は<strong>要配慮個人情報を含む個人データ</strong>になります。Google Drive上の保管先・アクセス権限・保管期間を、通常の名簿より厳格に設計する必要があります。</p>
+    </div>
+  </section>
+
+  <!-- 3. 棚卸し -->
+  <section id="inventory" class="section">
+    <h2>3. PTAで扱う情報の棚卸し（年1回）</h2>
+    <p>役員交代直後に必ず実施してください。「何を持っているか」が分からない組織は、漏洩しても気付けません。</p>
+
+    <h3>3-1. 棚卸しテンプレート（Google Sheetsで管理）</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr><th>情報名</th><th>区分</th><th>取得経路</th><th>保管場所</th><th>アクセス権限者</th><th>保管期限</th><th>削除責任者</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>会員名簿</td>
+          <td>個人データ</td>
+          <td>入会届</td>
+          <td>Google Drive/01_名簿</td>
+          <td>会長・副会長・書記</td>
+          <td>退会後1年</td>
+          <td>書記</td>
+        </tr>
+        <tr>
+          <td>イベント申込</td>
+          <td>要配慮（アレルギー含）</td>
+          <td>Google Forms</td>
+          <td>Drive/02_行事/2026/秋祭り</td>
+          <td>実行委員のみ</td>
+          <td>イベント終了後3か月</td>
+          <td>イベント担当</td>
+        </tr>
+        <tr>
+          <td>当日写真</td>
+          <td>個人情報（肖像）</td>
+          <td>カメラ</td>
+          <td>Drive/05_写真</td>
+          <td>実行委員＋同意者</td>
+          <td>3年</td>
+          <td>広報担当</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box info-box-warn">
+      <h3>⚠️ よくある盲点</h3>
+      <p>「役員のメール下書きフォルダに残った名簿添付ファイル」「Canvaの過去デザインに含まれる児童顔写真」「LINE WORKSの古いトークの画像」も棚卸し対象です。<strong>クラウド上の”影のコピー”</strong>を可視化するのが本作業の目的です。</p>
+    </div>
+  </section>
+
+  <!-- 4. クラウド判断基準 -->
+  <section id="cloud-check" class="section">
+    <h2>4. クラウドサービス利用の判断基準</h2>
+    <p>「Google使って大丈夫か？」という質問への答えは<strong>条件付きでYes</strong>です。判断基準を6項目に分解します。</p>
+
+    <h3>4-1. 採用前チェック6項目</h3>
+    <ol class="numbered-list">
+      <li><strong>利用規約に「ユーザーデータの所有権はユーザー」明記</strong>あり（Google Workspace, LINE WORKS, Canva, Notionは全て該当）</li>
+      <li><strong>暗号化（保管時・通信時）</strong>を提供（同上）</li>
+      <li><strong>データ所在地が把握可能</strong>または日本法準拠</li>
+      <li><strong>退会時のデータ削除手段</strong>が明示</li>
+      <li><strong>無料プランの広告利用</strong>が個人データを学習に使わないこと（個人Gmailは個人利用前提のため要注意）</li>
+      <li><strong>役員交代時にアカウント移管できる</strong>仕組みがあること</li>
+    </ol>
+
+    <h3>4-2. 主要ツールの該当性（2026年4月時点）</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr><th>ツール</th><th>個人情報保護法上の位置づけ</th><th>外国第三者提供該当性</th><th>PTA利用判定</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google Workspace（学校契約）</td>
+          <td>取扱委託</td>
+          <td>非該当（Googleが「取り扱わない」立場）</td>
+          <td>○ 推奨</td>
+        </tr>
+        <tr>
+          <td>個人Googleアカウント</td>
+          <td>個人利用</td>
+          <td>非該当だが、退任後にデータ移管が困難</td>
+          <td>△ 引き継ぎ設計必須</td>
+        </tr>
+        <tr>
+          <td>LINE WORKS（非営利特別プラン）</td>
+          <td>取扱委託（国内法人）</td>
+          <td>非該当</td>
+          <td>◎ 強く推奨</td>
+        </tr>
+        <tr>
+          <td>個人LINE</td>
+          <td>個人通信</td>
+          <td>—</td>
+          <td>✕ 名簿・写真の取扱不可</td>
+        </tr>
+        <tr>
+          <td>ChatGPT 無料版</td>
+          <td>学習データに利用される可能性あり</td>
+          <td>米国 - 該当</td>
+          <td>△ 個人情報を入力しない条件で可</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="caption">事実: Google公式資料「個人情報保護法（日本）」（services.google.com/fh/files/misc/appi_062022_update_jpn.pdf）に基づく。｜ 推測: 「PTA利用判定」欄の◎○△✕は本ガイドの推奨であり、各PTAの規約・契約内容により異なる場合があります。</p>
+  </section>
+
+  <!-- 5. 同意 -->
+  <section id="consent" class="section">
+    <h2>5. 同意取得の実務</h2>
+    <p>同意は「いつ・何のために・誰に・どこまで」を特定して取得する必要があります。包括同意（「PTA活動全般のため」のみ）は2024年以降の判例傾向では無効化されやすくなっています。</p>
+
+    <h3>5-1. 入会時 同意文例</h3>
+    <div class="code-block">
+      <pre>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+個人情報の取扱いについての同意書
+
+◯◯小学校PTA（以下「当会」）は、以下の目的で個人情報を取得・利用します。
+
+1. 取得項目: 会員氏名、児童氏名・学年・組、連絡先（電話・メール）
+2. 利用目的:
+   ① 会員名簿の作成・配布（配布範囲: 役員のみ）
+   ② 行事・連絡事項の通知
+   ③ 緊急時の連絡
+3. 保管場所: Google Workspace（クラウド上、暗号化保管）
+4. 保管期間: 退会後1年以内に削除
+5. 第三者提供: 法令に基づく場合を除き行いません
+6. 開示・訂正・削除請求: 会長宛にメールで請求可能
+
+上記に同意します。
+署名: ＿＿＿＿＿＿＿＿  日付: ＿＿＿＿年＿＿月＿＿日
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿</pre>
+    </div>
+
+    <h3>5-2. 撮影・写真掲載 同意文例（イベント受付に掲示）</h3>
+    <div class="code-block">
+      <pre>＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+撮影・掲載に関するお願い
+
+本日のイベントでは記録写真を撮影します。撮影された写真は以下の用途で使用されます。
+
+✅ 使用範囲（同意者のみ）:
+   ・PTA広報誌（紙・PDF）への掲載
+   ・PTAウェブサイト・SNSへの掲載
+   ・次年度引き継ぎ資料での参照
+
+❌ 使用しない範囲:
+   ・第三者への提供
+   ・商業利用
+
+撮影されたくない方は、受付で「撮影NGバッジ」をお受け取りください。
+掲載拒否のご連絡は、◯◯（連絡先）まで。
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿</pre>
+    </div>
+
+    <div class="info-box info-box-tip">
+      <h3>💡 「肖像権」と「個人情報」は別概念</h3>
+      <p>顔写真は<strong>肖像権（人格権の一種）</strong>と<strong>個人情報</strong>の両方が発生します。前者は民法709条による損害賠償リスク、後者は個人情報保護法によるリスク。同意取得は両方を一括で済ませる文面が効率的です。</p>
+      <p class="source">出典: 全国高等学校PTA連合会 広報紙ガイドライン（zenkoupren.org）, ptas.site「卒業生の写真、PTAの告知物やサイトに掲載しても大丈夫？」</p>
+    </div>
+
+    <h3>5-3. 撮影NGバッジ運用</h3>
+    <p>事前同意の有無を当日識別する仕組みです。受付で配布する首掛けカード（赤=撮影NG, 緑=同意済）方式が、申込フォームでの事前回答と組み合わさると最も実効的です。詳細は<a href="../scenarios/event.html#consent">イベント運営ガイド</a>を参照してください。</p>
+  </section>
+
+  <!-- 6. アクセス権限設計 -->
+  <section id="access-control" class="section">
+    <h2>6. アクセス権限設計（Google Drive 4階層モデル）</h2>
+    <p>「とりあえず全員にリンク共有」は、最も多い情報事故原因です。階層を分けて運用します。</p>
+
+    <h3>6-1. 推奨4階層</h3>
+    <div class="card-grid card-grid-2">
+      <div class="card">
+        <h3>🔒 階層1: 機密（会長・副会長のみ）</h3>
+        <p>会員名簿全体、要配慮個人情報、口座情報、過去のインシデント記録。アクセス: <strong>個別メール指定のみ</strong>、リンク共有禁止。</p>
+      </div>
+      <div class="card">
+        <h3>🔐 階層2: 制限付（実行委員）</h3>
+        <p>イベント申込データ、当日写真（同意済）、進捗シート。アクセス: <strong>Googleグループ単位</strong>、役員交代で自動メンバー更新。</p>
+      </div>
+      <div class="card">
+        <h3>🔓 階層3: 役員共有</h3>
+        <p>会議議事録、年間予定、引き継ぎノート。アクセス: <strong>役員Googleグループ</strong>。</p>
+      </div>
+      <div class="card">
+        <h3>🌐 階層4: 公開可</h3>
+        <p>広報誌PDF、イベント告知、利用規約。アクセス: <strong>リンクを知っている全員（閲覧のみ）</strong>。</p>
+      </div>
+    </div>
+
+    <h3>6-2. Googleグループ運用が肝</h3>
+    <p>個人メールアドレスをDriveに直接追加すると、退任後の削除漏れが必ず発生します。<strong>Googleグループ（pta-officers@..., pta-event-2026@...）を作成し、グループ単位で権限付与</strong>すれば、年度末にメンバー入替するだけで済みます。</p>
+
+    <div class="info-box info-box-warn">
+      <h3>⚠️ よくある失敗</h3>
+      <ul>
+        <li>「リンクを知っている全員」を機密フォルダに設定 → URL流出で全公開状態</li>
+        <li>退任した会長のアカウントがオーナーのまま放置 → 次年度がアクセス不能</li>
+        <li>個人Gmailで作成 → 学校契約Workspaceに移管できない</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7. 引き継ぎ -->
+  <section id="handover" class="section">
+    <h2>7. 引き継ぎ時のセキュリティ</h2>
+    <p>4月の役員交代は、PTA最大のセキュリティ脆弱期間です。退任者削除と新任者付与を<strong>2週間以内</strong>に完了させてください。</p>
+
+    <h3>7-1. 引き継ぎチェックリスト（簡略版）</h3>
+    <ul class="checklist">
+      <li>□ 退任役員のGoogleグループからの除外</li>
+      <li>□ 退任役員のLINE WORKSアカウント無効化</li>
+      <li>□ Driveフォルダのオーナー権限を新会長に移譲</li>
+      <li>□ パスワード共有していたサービスのパスワード変更</li>
+      <li>□ 退任役員端末からの名簿等のローカルファイル削除確認</li>
+      <li>□ 個人LINE上の役員グループから退任者除外</li>
+      <li>□ 新任役員への秘密保持誓約書の取得</li>
+    </ul>
+    <p>詳細な引き継ぎ設計は<a href="./handover-design.html">引き継ぎ設計ガイド</a>を参照してください。</p>
+  </section>
+
+  <!-- 8. インシデント対応 -->
+  <section id="incident" class="section">
+    <h2>8. インシデント発生時の対応</h2>
+
+    <div class="info-box info-box-warn">
+      <h3>🚨 漏洩発覚時の最重要事項</h3>
+      <p><strong>速報: 3〜5日以内</strong> / <strong>確報: 30日以内（要配慮個人情報・1,000人超等は60日以内）</strong>に個人情報保護委員会への報告と本人通知が法定義務です（個人情報保護法施行規則7条）。</p>
+      <p class="source">出典: 個人情報保護委員会「漏えい等報告・本人への通知の義務化について」(ppc.go.jp/news/kaiseihou_feature/roueitouhoukoku_gimuka)</p>
+    </div>
+
+    <h3>8-1. 報告対象になる4類型</h3>
+    <ol class="numbered-list">
+      <li>要配慮個人情報の漏洩等（アレルギー情報含むため、PTAでも該当しうる）</li>
+      <li>財産的被害が生じるおそれがある漏洩等</li>
+      <li>不正アクセス等の故意による漏洩等</li>
+      <li>1,000人を超える漏洩等</li>
+    </ol>
+
+    <h3>8-2. 発覚時の72時間アクション</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr><th>時間</th><th>アクション</th><th>担当</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0〜2時間</td>
+          <td>①拡散停止（共有リンク無効化、該当アカウント停止） ②証拠保全（スクリーンショット）</td>
+          <td>会長・IT担当</td>
+        </tr>
+        <tr>
+          <td>2〜24時間</td>
+          <td>③学校管理職への報告 ④弁護士・自治体相談窓口への連絡</td>
+          <td>会長</td>
+        </tr>
+        <tr>
+          <td>24〜72時間</td>
+          <td>⑤被害範囲の確定 ⑥個人情報保護委員会へ速報 ⑦本人通知文書の作成</td>
+          <td>会長・書記</td>
+        </tr>
+        <tr>
+          <td>3〜30日</td>
+          <td>⑧確報提出 ⑨再発防止策の文書化 ⑩総会で報告</td>
+          <td>会長</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>8-3. 本人通知文例</h3>
+    <div class="code-block">
+      <pre>件名: 【お詫び】個人情報の漏洩に関するご報告
+
+◯◯小学校PTA会員の皆様
+
+平素より当会の活動にご協力いただき、誠にありがとうございます。
+このたび、当会が保管していた以下の個人情報が漏洩したことが判明し、
+深くお詫び申し上げます。
+
+1. 漏洩した情報: 2026年度会員氏名・児童学年（◯◯件）
+2. 発生日時: 2026年◯月◯日
+3. 原因: 共有リンク設定の誤り
+4. 二次被害: 現時点で確認されておりません
+5. 対応: 該当リンクの無効化、関係者への注意喚起、再発防止策の策定
+6. お問い合わせ: pta-info@...
+
+ご心配・ご迷惑をおかけしましたことを、重ねてお詫び申し上げます。
+
+◯◯小学校PTA 会長 ◯◯◯◯
+2026年◯月◯日</pre>
+    </div>
+  </section>
+
+  <!-- 9. チェックリスト&FAQ -->
+  <section id="checklist" class="section">
+    <h2>9. 年次セキュリティチェックリスト</h2>
+    <p>毎年4月（役員交代直後）と10月（中間点検）に実施してください。</p>
+
+    <details class="accordion">
+      <summary>📋 チェックリスト（30項目）を展開</summary>
+      <div class="accordion-body">
+        <h3>体制（5項目）</h3>
+        <ul class="checklist">
+          <li>□ 個人情報担当役員を1名指名している</li>
+          <li>□ 個人情報取扱規程が文書化されている</li>
+          <li>□ 規程は会員にアクセス可能な形で公開されている</li>
+          <li>□ 入会時の同意書を全会員から取得している</li>
+          <li>□ 秘密保持誓約書を全役員から取得している</li>
+        </ul>
+        <h3>棚卸し（5項目）</h3>
+        <ul class="checklist">
+          <li>□ 年1回の情報棚卸しを実施している</li>
+          <li>□ 各情報の保管期限が明記されている</li>
+          <li>□ 期限切れ情報の削除を実施している</li>
+          <li>□ 個人端末上のローカルコピーを把握している</li>
+          <li>□ 過去の役員端末の状況を把握している</li>
+        </ul>
+        <h3>クラウド（10項目）</h3>
+        <ul class="checklist">
+          <li>□ 利用するクラウドサービスを一覧化している</li>
+          <li>□ 各サービスの規約を確認済み</li>
+          <li>□ 個人アカウントと役員用アカウントを分離している</li>
+          <li>□ Googleグループでアクセス権限を管理している</li>
+          <li>□ 機密フォルダは「リンク共有禁止」設定</li>
+          <li>□ 共有設定の年次レビューを実施</li>
+          <li>□ 二段階認証を全役員アカウントで有効化</li>
+          <li>□ パスワード使い回しがない</li>
+          <li>□ 個人LINEで名簿等を送信していない</li>
+          <li>□ 生成AIに個人情報を入力していない</li>
+        </ul>
+        <h3>引き継ぎ・有事（10項目）</h3>
+        <ul class="checklist">
+          <li>□ 退任者削除を2週間以内に完了する手順がある</li>
+          <li>□ アカウントオーナー移譲手順が文書化</li>
+          <li>□ パスワード変更ルールがある</li>
+          <li>□ インシデント連絡網が整備</li>
+          <li>□ 学校管理職への一次連絡先が確定</li>
+          <li>□ 弁護士・自治体相談窓口が把握済み</li>
+          <li>□ 個人情報保護委員会の報告手順を確認</li>
+          <li>□ 本人通知文例が事前準備されている</li>
+          <li>□ 過去のインシデント記録が保管されている</li>
+          <li>□ 再発防止策が前年度から繰り越されていない</li>
+        </ul>
+      </div>
+    </details>
+
+    <h3>9-1. FAQ</h3>
+    <details class="accordion">
+      <summary>Q1. 学校が持つ児童名簿を、PTAでそのまま使ってよい？</summary>
+      <div class="accordion-body">
+        <p>原則ダメです。学校とPTAは法律上別組織のため、保護者の明示的同意なく学校がPTAに個人情報を渡すと第三者提供違反となります。入会時に同意書を取得する運用に切り替えてください。2024年に静岡市の小中学校20校で約9,200人分の同意なき提供事例が報告されており、今後の指導強化が予想されます。</p>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>Q2. ChatGPTに議事録を貼り付けて要約させてもいい？</summary>
+      <div class="accordion-body">
+        <p>無料版ではデフォルトで学習データに使われます。氏名・連絡先を伏字（A氏、B氏など）にしてから貼り付けてください。または、学習除外設定（Settings → Data Controls → "Improve the model for everyone"をOFF）を確認してから利用するか、同等機能で学習デフォルトオフのClaudeやGemini Workspaceの利用を検討してください。詳細は<a href="../tools/chatgpt.html">ChatGPT活用ガイド</a>へ。</p>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>Q3. 共有リンク（リンクを知っている全員）はどこまで使っていい？</summary>
+      <div class="accordion-body">
+        <p>個人情報を含まない公開資料（広報誌PDF、利用規約）のみに限定してください。名簿・申込データ・写真フォルダは「特定のユーザーのみ」設定が必須です。リンクは想定以上に拡散します。</p>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>Q4. 役員交代で、退任者の個人Googleアカウント上のデータをどう処理する？</summary>
+      <div class="accordion-body">
+        <p>そもそも個人Googleアカウントで作業しない仕組みが理想です。やむを得ず個人アカウントを使った場合は、退任前にすべてのオーナー権限を新役員（または役員共通アカウント）に移譲し、移譲後に退任者は自分のドライブから当該ファイルを削除します。詳細は<a href="./handover-design.html">引き継ぎ設計ガイド</a>へ。</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- 10. まとめ -->
+  <section id="summary" class="section">
+    <h2>10. 本ガイドの要点</h2>
+    <div class="info-box info-box-tip">
+      <ol class="numbered-list">
+        <li>PTAは1件でも個人情報を扱えば「個人情報取扱事業者」</li>
+        <li>同意は「目的・項目・保管期間・第三者提供」を特定して取得</li>
+        <li>クラウドはOK。ただし規約確認・Googleグループ運用・階層管理を前提</li>
+        <li>役員交代の2週間が最大の脆弱期間。チェックリストで管理</li>
+        <li>漏洩時は速報3〜5日、確報30日。報告先は個人情報保護委員会</li>
+      </ol>
+    </div>
+
+    <h3>10-1. 関連リンク</h3>
     <ul>
-      <li>個人情報保護委員会：<a href="https://www.ppc.go.jp/" target="_blank" rel="noopener">公式サイト</a></li>
-      <li>全国PTA連絡協議会：<a href="https://zen-p.net/tp/pms1.html" target="_blank" rel="noopener">個人情報保護対策の解説</a></li>
+      <li><a href="https://www.ppc.go.jp/" target="_blank" rel="noopener">個人情報保護委員会（公式）</a></li>
+      <li><a href="https://www.ppc.go.jp/news/kaiseihou_feature/roueitouhoukoku_gimuka" target="_blank" rel="noopener">漏えい等報告・本人通知の義務化（公式）</a></li>
+      <li><a href="http://www.zenkoupren.org/wp/wp-content/uploads/2025/03/600a2d2a969b1d883c23aa67a55302df.pdf" target="_blank" rel="noopener">PTA広報紙における個人情報の取り扱いガイドライン（全国高P連）</a></li>
+      <li><a href="./handover-design.html">引き継ぎ設計ガイド（本サイト）</a></li>
+      <li><a href="./antipatterns.html">失敗事例集（本サイト）</a></li>
     </ul>
   </section>
 
-  <section class="block">
-    <h2><span class="num">📮</span>先行公開リクエスト</h2>
-    <p>本ページは執筆優先度が最上位です。誤った情報による事故を避けるため、慎重に執筆します。</p>
-  </section>
 </main>
 
-<div data-related></div>
 <script src="../assets/nav.js"></script>
 </body>
 </html>
