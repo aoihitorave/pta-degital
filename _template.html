@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="ページの説明をここに記入（検索結果に表示される）">
+  <title></title><!-- 空でOK。nav.jsが自動補完 -->
+  <link rel="stylesheet" href="../assets/style.css">
+  <!-- index.html等、ルート直下のページでは ./assets/style.css にする -->
+</head>
+<body data-page-id="" data-progress>
+  <!--
+    data-page-id : site.json の pages キーと一致させる（必須）
+    data-progress: シナリオページなど読み進み表示が必要な場合のみ付ける
+  -->
+
+  <!-- パンくず（自動生成プレースホルダ） -->
+  <div data-breadcrumb></div>
+
+  <!-- ヒーロー（任意） -->
+  <header class="hero">
+    <span class="hero-badge">CATEGORY</span>
+    <h1>ページ<span class="accent">タイトル</span></h1>
+    <p class="lead">このページで得られることを1〜2文で。</p>
+  </header>
+
+  <main>
+
+    <!-- 本文ブロックの例 -->
+    <section class="block">
+      <h2><span class="num">1</span>セクション見出し</h2>
+      <p class="lead">セクションの概要</p>
+
+      <p>本文。</p>
+
+      <ol class="steps">
+        <li>ステップ1の説明</li>
+        <li>ステップ2の説明</li>
+      </ol>
+
+      <div class="box tip">
+        <span class="label">💡 ヒント</span>
+        補足情報。
+      </div>
+
+      <!-- ブラウザモックアップの例 -->
+      <div class="mockup-wrap">
+        <div class="browser-bar">
+          <div class="browser-dots">
+            <div class="browser-dot d-red"></div>
+            <div class="browser-dot d-yellow"></div>
+            <div class="browser-dot d-green"></div>
+          </div>
+          <div class="address-bar">🔒 example.com</div>
+        </div>
+        <div class="browser-content">
+          <!-- 中身を自由に -->
+        </div>
+      </div>
+
+      <!-- アコーディオンの例（補足情報のみ） -->
+      <details class="accordion">
+        <summary>上級者向け：詳細設定</summary>
+        <div class="accordion-body">
+          <p>畳んでよい情報のみここに。</p>
+        </div>
+      </details>
+
+    </section>
+
+  </main>
+
+  <!-- 関連ページサジェスト（自動生成プレースホルダ） -->
+  <div data-related></div>
+
+  <!-- フッタは nav.js が自動生成 -->
+
+  <script src="../assets/nav.js"></script>
+  <!-- index.html等、ルート直下では ./assets/nav.js にする -->
+</body>
+</html>

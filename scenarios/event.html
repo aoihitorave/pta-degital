@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="PTAイベント（秋祭り・運動会等）の企画から当日運営、振り返りまでを、無料ツールの組み合わせで効率化する実践ガイド。">
+  <title></title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-page-id="sc-event" data-progress>
+
+<div data-breadcrumb></div>
+
+<header class="hero">
+  <span class="hero-badge">SCENARIO #01</span>
+  <h1>🎪 イベントの<span class="accent">企画から当日運営</span>まで</h1>
+  <p class="lead">秋祭り・運動会・遠足・観察会など、すべてのPTAイベントに共通する流れを、無料ツールの組み合わせで一気通貫に効率化します。</p>
+</header>
+
+<main>
+
+  <!-- ============================================================
+       0. このページで得られるもの
+       ============================================================ -->
+  <section class="block">
+    <h2><span class="num">0</span>このページで得られるもの</h2>
+    <p>イベント担当に任命されたとき、「何から手をつけるか」「何をどの順で使うか」が明確になります。具体的には次の到達点を想定しています。</p>
+    <ul>
+      <li>2か月前から当日までの<strong>標準タイムライン</strong>が手元にある状態</li>
+      <li>参加申込・出欠管理・連絡・当日運営を<strong>すべてクラウドで完結</strong>できる状態</li>
+      <li>翌年の担当者へ<strong>そのまま引き継げる資産</strong>（フォーム・スプレッドシート・連絡記録）が残る状態</li>
+    </ul>
+
+    <div class="box info">
+      <span class="label">ℹ️ 題材について</span>
+      本ページは「秋祭り（バザー型イベント）」を題材に解説します。運動会・遠足・観察会など他のイベントでも、フォームの質問項目と当日タスクが変わるだけで、骨格は共通です。
+    </div>
+  </section>
+
+  <!-- ============================================================
+       1. 全体タイムライン
+       ============================================================ -->
+  <section class="block">
+    <h2><span class="num">1</span>全体タイムライン</h2>
+    <p class="lead">「いつ・何を・どのツールで」を一覧化します。詳細は各セクションで解説します。</p>
+
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>時期</th>
+            <th>やること</th>
+            <th>主に使うツール</th>
+            <th>解説セクション</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2か月前</td>
+            <td>企画書作成・実行委員会発足</td>
+            <td>📝 ドキュメント<br>💬 LINE WORKS</td>
+            <td><a href="#step-plan">2. 企画</a></td>
+          </tr>
+          <tr>
+            <td>1.5か月前</td>
+            <td>共有フォルダ整備・役割分担</td>
+            <td>📁 ドライブ<br>📊 スプレッドシート</td>
+            <td><a href="#step-folder">3. フォルダ整備</a></td>
+          </tr>
+          <tr>
+            <td>1か月前</td>
+            <td>申込フォーム作成・告知チラシ</td>
+            <td>📋 フォーム<br>🎨 Canva</td>
+            <td><a href="#step-form">4. 申込フォーム</a><br><a href="#step-flyer">5. 告知</a></td>
+          </tr>
+          <tr>
+            <td>3週間前〜</td>
+            <td>申込受付・進捗管理</td>
+            <td>📊 スプレッドシート</td>
+            <td><a href="#step-track">6. 進捗管理</a></td>
+          </tr>
+          <tr>
+            <td>1週間前</td>
+            <td>当日運営シート完成・直前連絡</td>
+            <td>📊 スプレッドシート<br>💬 LINE WORKS</td>
+            <td><a href="#step-prep">7. 直前準備</a></td>
+          </tr>
+          <tr>
+            <td>当日</td>
+            <td>受付・進行・トラブル対応</td>
+            <td>💬 LINE WORKS<br>📁 ドライブ</td>
+            <td><a href="#step-day">8. 当日運営</a></td>
+          </tr>
+          <tr>
+            <td>翌週</td>
+            <td>写真共有・お礼配布・振り返り</td>
+            <td>📁 ドライブ<br>📝 ドキュメント<br>🤖 ChatGPT</td>
+            <td><a href="#step-after">9. 振り返り</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       2. 企画フェーズ
+       ============================================================ -->
+  <section class="block" id="step-plan">
+    <h2><span class="num">2</span>企画フェーズ（2か月前）</h2>
+    <p class="lead">紙の企画書を回覧する文化から、クラウド共同編集に切り替えます。これだけで合意形成のスピードが2〜3倍になります。</p>
+
+    <h3>2-1. 企画書をGoogleドキュメントで作成</h3>
+    <p>白紙のWordから始めるのではなく、Googleドキュメントの「テンプレート」または前年度の企画書をコピーして上書き編集してください。ゼロからの作成は時間と気力の浪費です。</p>
+
+    <div class="mockup-wrap">
+      <div class="browser-bar">
+        <div class="browser-dots">
+          <div class="browser-dot d-red"></div>
+          <div class="browser-dot d-yellow"></div>
+          <div class="browser-dot d-green"></div>
+        </div>
+        <div class="address-bar">🔒 docs.google.com/document/d/.../edit</div>
+      </div>
+      <div class="browser-content">
+        <div style="background:white;border-bottom:1px solid #e0e0e0;padding:8px 16px;display:flex;align-items:center;gap:10px;">
+          <div style="width:28px;height:28px;background:linear-gradient(135deg,#1565c0,#1a73e8);border-radius:4px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:700;">D</div>
+          <div>
+            <div style="font-size:13px;color:#202124;font-weight:500;">2026年度 秋祭り 企画書（案）</div>
+            <div style="font-size:10px;color:#5f6368;">☁️ ドライブに保存済み</div>
+          </div>
+          <div style="margin-left:auto;background:#e8f0fe;color:#1a73e8;border-radius:4px;padding:5px 12px;font-size:12px;font-weight:700;">🔗 共有</div>
+        </div>
+        <div style="background:#f0f0f0;padding:20px;">
+          <div style="max-width:520px;margin:0 auto;background:white;padding:24px 32px;box-shadow:0 1px 4px rgba(0,0,0,0.1);font-size:13px;line-height:1.8;">
+            <h4 style="font-size:15px;margin:0 0 12px;border:none;padding:0;color:#202124;">2026年度 秋祭り 企画書</h4>
+            <p style="margin:0 0 8px;"><strong>1. 目的</strong>：児童・保護者・地域の交流促進</p>
+            <p style="margin:0 0 8px;"><strong>2. 日時</strong>：2026年10月18日（土）13:00〜16:00</p>
+            <p style="margin:0 0 8px;"><strong>3. 場所</strong>：◯◯小学校 校庭・体育館</p>
+            <p style="margin:0 0 8px;"><strong>4. 想定来場者</strong>：児童・保護者あわせて約400名</p>
+            <p style="margin:0 0 8px;"><strong>5. 出店</strong>：飲食5店舗・遊技4店舗・販売3店舗を予定</p>
+            <p style="margin:0 0 8px;background:#fff9c4;padding:2px 4px;border-radius:3px;"><strong>6. 予算</strong>：120,000円（前年度実績比 +5%）</p>
+            <p style="margin:0;color:#888;font-size:11px;">［編集中］ 田中さん（会長）が編集しています</p>
+          </div>
+          <div style="max-width:240px;margin:14px auto 0;background:#fffde7;border-left:3px solid #fdd835;padding:8px 12px;font-size:12px;color:#5d4037;">
+            💬 山田さん「予算、雨天延期の場合の追加費用も見ておきたいです」
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation">
+      <div class="annotation-circle">1</div>
+      <div>右上の<strong>「共有」</strong>から実行委員のGmailアドレスを「コメント可」または「編集可」で追加します。リンク共有（誰でも閲覧）は使わないこと。</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-circle">2</div>
+      <div>本文を選択して<code class="inline">Ctrl+Alt+M</code>（Mac: <code class="inline">⌘+Option+M</code>）でコメント挿入。「ここが気になる」を付箋のように残せます。</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-circle">3</div>
+      <div>修正提案は右上「編集モード」を「<strong>提案</strong>」に切り替えて行います。元の文を消さずに修正案を重ねられます。</div>
+    </div>
+
+    <div class="box tip">
+      <span class="label">💡 鉄則：修正は「変更後の文章」で出す</span>
+      「ここが変」「分かりにくい」だけのコメントは議論を停滞させます。必ず「こう直したい：◯◯◯◯」という形で具体的代替案を書く運用を、企画段階から徹底してください。
+    </div>
+
+    <h3>2-2. 実行委員会のチャット拠点をLINE WORKSに作る</h3>
+    <p>実行委員専用のグループトークを作成し、ピン留めメッセージに「企画書のドキュメントURL」「共有フォルダURL」「次回会議の日程」を固定します。これだけでイベント情報のハブが完成します。</p>
+
+    <details class="accordion">
+      <summary>個人LINEで作ってはいけない理由</summary>
+      <div class="accordion-body">
+        <p>個人LINEのグループは、第一にIDの相互開示が前提となるためプライバシーが混濁し、第二に役員退任後にメンバーから抜けても過去の会話履歴が他者の端末に残り続け、第三に年度末に「グループの引き継ぎ」をクリーンに行う仕組みがありません。</p>
+        <p>LINE WORKSは個人LINEと完全に別アプリとして動作するため、退任時はアカウントを削除すれば情報が手元から消去でき、組織としての情報資産管理が成立します。詳細は <a href="../tools/lineworks.html">LINE WORKSガイド</a> および <a href="../governance/security.html">個人情報保護</a> 参照。</p>
+      </div>
+    </details>
+
+    <h3>2-3. キックオフ会議の設定</h3>
+    <ol class="steps">
+      <li><strong>調整さん</strong>で日程候補を3〜5案提示。実行委員10名前後なら2日で確定できます。</li>
+      <li>確定したら<strong>Googleカレンダー</strong>に予定登録。「Google Meetを追加」をオンにするとビデオ会議リンクが自動発行されます。対面とMeetのハイブリッドで参加障壁を下げてください。</li>
+      <li>会議では「議事録テンプレ」をGoogleドキュメントで開き、書記が会議中にリアルタイム入力。<strong>会議終了時点で議事録が完成している状態</strong>を作るのが目標です。</li>
+    </ol>
+  </section>
+
+  <!-- ============================================================
+       3. フォルダ整備
+       ============================================================ -->
+  <section class="block" id="step-folder">
+    <h2><span class="num">3</span>共有フォルダ整備（1.5か月前）</h2>
+    <p class="lead">最初に箱を作っておかないと、当日が近づくにつれて情報が散らかります。標準フォルダ構造を冒頭で作成してください。</p>
+
+    <h3>3-1. フォルダ構造</h3>
+    <p>Googleドライブに以下の構造を作成し、実行委員全員に「編集者」権限で共有します。</p>
+
+<pre class="codeblock">📁 02_行事 / 2026年度 / 秋祭り
+  ├── 📄 00_企画書（Googleドキュメント）
+  ├── 📄 01_進行表（Googleドキュメント）
+  ├── 📊 02_運営シート（Googleスプレッドシート）
+  ├── 📁 03_告知物（Canvaチラシ・PDF）
+  ├── 📁 04_申込データ（フォーム回答）
+  ├── 📁 05_当日写真 ★肖像権同意済みのみ★
+  ├── 📁 06_領収書・支払い
+  └── 📁 99_過去年度参考資料</pre>
+
+    <div class="box warn">
+      <span class="label">⚠️ 写真フォルダの権限設定</span>
+      「05_当日写真」フォルダは肖像権の観点から、共有範囲を実行委員のみに限定してください。広報誌やお礼便りに使う写真は、別フォルダ（例: 05_当日写真_公開可）に選別したうえで配置します。詳しくは <a href="../governance/security.html">個人情報保護ガイド</a> へ。
+    </div>
+
+    <h3>3-2. 役割分担表をスプレッドシートで管理</h3>
+    <p>「02_運営シート」の最初のタブに役割分担表を作成します。当日まで役員全員が同じシートを見続けるため、「これが実行委員会の本体」と言える存在になります。</p>
+
+    <div class="mockup-wrap">
+      <div class="browser-bar">
+        <div class="browser-dots">
+          <div class="browser-dot d-red"></div>
+          <div class="browser-dot d-yellow"></div>
+          <div class="browser-dot d-green"></div>
+        </div>
+        <div class="address-bar">🔒 docs.google.com/spreadsheets/d/.../edit</div>
+      </div>
+      <div class="browser-content">
+        <div style="background:#0f9d58;color:white;padding:6px 12px;font-size:12px;font-weight:700;">2026年度 秋祭り 運営シート</div>
+        <div style="background:#f1f3f4;padding:6px 12px;font-size:11px;color:#5f6368;display:flex;gap:14px;">
+          <span style="background:white;padding:3px 10px;border-radius:4px 4px 0 0;color:#0f9d58;font-weight:700;">👥 役割分担</span>
+          <span>📋 タスク</span>
+          <span>💰 予算</span>
+          <span>📊 申込集計</span>
+          <span>🚨 緊急連絡</span>
+        </div>
+        <div style="background:white;font-size:12px;">
+          <div style="display:grid;grid-template-columns:50px 1fr 1.2fr 1fr 1fr;background:#f8f9fa;font-weight:700;color:#5f6368;">
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">No.</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">担当</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">責任者</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">サブ</div>
+            <div style="padding:8px 10px;">状態</div>
+          </div>
+          <div style="display:grid;grid-template-columns:50px 1fr 1.2fr 1fr 1fr;border-top:1px solid #e0e0e0;">
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">1</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">受付</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">田中</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">鈴木</div>
+            <div style="padding:8px 10px;"><span style="background:#34a853;color:white;padding:1px 8px;border-radius:10px;font-size:10px;">確定</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:50px 1fr 1.2fr 1fr 1fr;border-top:1px solid #e0e0e0;">
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">2</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">飲食ブース</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">山田</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">佐藤・高橋</div>
+            <div style="padding:8px 10px;"><span style="background:#34a853;color:white;padding:1px 8px;border-radius:10px;font-size:10px;">確定</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:50px 1fr 1.2fr 1fr 1fr;border-top:1px solid #e0e0e0;">
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">3</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">遊技ブース</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">伊藤</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">渡辺</div>
+            <div style="padding:8px 10px;"><span style="background:#fbbc04;color:white;padding:1px 8px;border-radius:10px;font-size:10px;">調整中</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:50px 1fr 1.2fr 1fr 1fr;border-top:1px solid #e0e0e0;">
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">4</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">救護</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">中村</div>
+            <div style="padding:8px 10px;border-right:1px solid #e0e0e0;">—</div>
+            <div style="padding:8px 10px;"><span style="background:#ea4335;color:white;padding:1px 8px;border-radius:10px;font-size:10px;">未確定</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box tip">
+      <span class="label">💡 状態列はプルダウンで</span>
+      状態列はGoogleスプレッドシートの「データ → データの入力規則 → プルダウン」で「未確定／調整中／確定／完了」の選択式にすると、入力ミスがなくなり進捗が一目で分かります。
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4. 申込フォーム
+       ============================================================ -->
+  <section class="block" id="step-form">
+    <h2><span class="num">4</span>参加申込フォーム作成（1か月前）</h2>
+    <p class="lead">「聞きすぎないフォーム」が回答率を最大化します。経験則として、質問が10問を超えた時点で離脱率が急上昇します。</p>
+
+    <h3>4-1. 質問項目の設計</h3>
+    <p>秋祭りでの推奨質問項目（合計5問）。</p>
+
+    <table>
+      <thead><tr><th>No.</th><th>質問</th><th>形式</th><th>必須</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>保護者氏名</td><td>記述式（短答）</td><td>必須</td></tr>
+        <tr><td>2</td><td>連絡先メールアドレス</td><td>メールアドレス</td><td>必須</td></tr>
+        <tr><td>3</td><td>お子さんの学年</td><td>ラジオボタン（1〜6年）</td><td>必須</td></tr>
+        <tr><td>4</td><td>参加人数（大人／子ども）</td><td>記述式（数値）×2</td><td>必須</td></tr>
+        <tr><td>5</td><td>食物アレルギー</td><td>記述式（任意）</td><td>任意</td></tr>
+      </tbody>
+    </table>
+
+    <details class="accordion">
+      <summary>質問項目を増やしたい場合の判断基準</summary>
+      <div class="accordion-body">
+        <p>「この情報がないと当日運営が成立しないか？」を自問してください。Yesなら追加、Noなら削除。「あったら便利」程度の項目が積み重なると、申込率が顕著に下がります。</p>
+        <p>たとえば「ボランティア協力可否」のような項目は、参加申込フォームに混ぜず、別途ボランティア募集フォームを切り分けたほうが、双方の回答率が上がります。</p>
+      </div>
+    </details>
+
+    <h3>4-2. フォーム作成画面</h3>
+
+    <div class="mockup-wrap">
+      <div class="browser-bar">
+        <div class="browser-dots">
+          <div class="browser-dot d-red"></div>
+          <div class="browser-dot d-yellow"></div>
+          <div class="browser-dot d-green"></div>
+        </div>
+        <div class="address-bar">🔒 docs.google.com/forms/d/.../edit</div>
+      </div>
+      <div class="browser-content">
+        <div style="background:#f3e5f5;padding:18px;">
+          <div style="background:white;border-radius:8px;border-top:8px solid #5E35B1;padding:20px;margin-bottom:14px;">
+            <div style="font-size:18px;font-weight:700;color:#202124;margin-bottom:6px;">🍂 2026年度 秋祭り 参加申込フォーム</div>
+            <div style="font-size:12px;color:#5f6368;line-height:1.7;">10月18日（土）13:00〜16:00 / ◯◯小学校<br>9月30日までにご回答ください。</div>
+          </div>
+
+          <div style="background:white;border-radius:8px;padding:16px;margin-bottom:10px;border-left:4px solid #5E35B1;">
+            <div style="font-size:13px;font-weight:700;color:#202124;margin-bottom:6px;">保護者氏名 <span style="color:#d32f2f;font-size:11px;">*必須</span></div>
+            <div class="mock-input">回答を入力</div>
+          </div>
+
+          <div style="background:white;border-radius:8px;padding:16px;margin-bottom:10px;">
+            <div style="font-size:13px;font-weight:700;color:#202124;margin-bottom:8px;">お子さんの学年 <span style="color:#d32f2f;font-size:11px;">*必須</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:12.5px;">
+              <label><span class="mock-radio"></span>1年</label>
+              <label><span class="mock-radio checked"></span>2年</label>
+              <label><span class="mock-radio"></span>3年</label>
+              <label style="color:#999;">…他3項目</label>
+            </div>
+          </div>
+
+          <div style="background:white;border-radius:8px;padding:16px;margin-bottom:14px;">
+            <div style="font-size:13px;font-weight:700;color:#202124;margin-bottom:8px;">食物アレルギー（任意）</div>
+            <div class="mock-input">該当する場合のみ記入</div>
+          </div>
+
+          <div style="text-align:right;">
+            <span class="mock-button" style="background:#5E35B1;">送信</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation">
+      <div class="annotation-circle">1</div>
+      <div>右上「設定」→「回答」で<strong>「メールアドレスを収集する」</strong>をオンに。回答者本人にコピーが届くため、申込内容の控えとして機能します。</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-circle">2</div>
+      <div>右上「公開」→<strong>「回答数の上限」</strong>を設定すれば、定員到達時に自動締め切り（2026年標準機能）。</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-circle">3</div>
+      <div>「回答」タブの右上にあるスプレッドシートアイコンをクリック→運営シートと同じファイル内のタブとして連携させると、データの一元管理ができます。</div>
+    </div>
+
+    <h3>4-3. 配布</h3>
+    <p>右上「送信」→ 🔗 リンクタブ →「URLを短縮」にチェック→コピー。LINE WORKSの保護者連絡グループに、告知文と一緒に貼り付けて配布します。</p>
+
+    <div class="box ok">
+      <span class="label">✅ 完了の判定</span>
+      自分で一度フォームを送信し、メールにコピーが届くこと、運営シートに回答が自動追記されることを確認してから保護者に配布してください。テスト送信はフォーム作成時の「鉄則」です。
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. 告知（Canva）
+       ============================================================ -->
+  <section class="block" id="step-flyer">
+    <h2><span class="num">5</span>告知チラシの作成（1か月前）</h2>
+    <p class="lead">紙とデジタル、両方で配布します。Canvaで作れば1つのデザインを両方に流用できます。</p>
+
+    <ol class="steps">
+      <li><a href="https://canva.com" target="_blank" rel="noopener">canva.com</a> にPTA共有Gmailでログイン → 「デザインを作成」 → 「A4文書」または「チラシ」</li>
+      <li>左サイドバー「テンプレート」で「<strong>秋祭り</strong>」「<strong>学校</strong>」「<strong>イベント</strong>」を検索し、雰囲気の合うものを選択</li>
+      <li>テキストをクリックして書き換え。日時・場所・主催・問合せ先を最低限表示</li>
+      <li>左サイドバー「<strong>アプリ</strong>」→「<strong>QRコード</strong>」を選び、申込フォームのURLを入力 → 紙面に貼り付け</li>
+      <li>右上「共有」→「ダウンロード」→ <strong>PDF（印刷用）</strong> でダウンロード</li>
+      <li>同じデザインをPNGでもダウンロードしておくと、LINE WORKS等のチャット配信用に使い回せる</li>
+    </ol>
+
+    <div class="box tip">
+      <span class="label">💡 印刷の選択肢</span>
+      校内のコピー機で白黒印刷が最安ですが、ラクスル・プリントパック等のネット印刷ならカラーA4両面500部で2,000〜3,000円程度（2026年時点目安）。「年に一度のイベント告知」のような限定用途では費用対効果が出ます。Canvaから直接入稿可能なサービスもあります。
+    </div>
+
+    <details class="accordion">
+      <summary>QRコードの精度に関する注意</summary>
+      <div class="accordion-body">
+        <p>QRコードは小さくしすぎると読み取れなくなります。A4チラシなら最低でも2.5cm四方を確保してください。また、コード周囲に「余白（クワイエットゾーン）」を取らないと読み取り精度が落ちるため、QRの周囲に他の文字や図形を密着させないよう注意します。</p>
+        <p>事前に複数機種のスマホ（古い端末を含む）で読み取りテストをすることを強く推奨します。これを怠ると当日「読めません」の問い合わせが殺到します。</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============================================================
+       6. 進捗管理
+       ============================================================ -->
+  <section class="block" id="step-track">
+    <h2><span class="num">6</span>申込受付・進捗管理（3週間前〜）</h2>
+    <p class="lead">フォーム回答が運営シートに自動で流れ込んでいる状態を維持し、毎週1回スプレッドシートを開いて進捗を確認します。</p>
+
+    <h3>6-1. 集計の自動化</h3>
+    <p>運営シートの「申込集計」タブに以下の関数を入れておくと、回答数や学年別内訳がリアルタイムで自動更新されます。</p>
+
+<pre class="codeblock">// A1: 「現在の申込件数」
+=COUNTA('フォームの回答 1'!B2:B)
+
+// A3: 「学年別の人数」
+=QUERY('フォームの回答 1'!A:E, "select C, count(C) where C is not null group by C label count(C) '人数'")
+
+// A10: 「定員（200名）に対する充足率」
+=COUNTA('フォームの回答 1'!B2:B) / 200</pre>
+
+    <div class="box info">
+      <span class="label">ℹ️ 関数が苦手な場合</span>
+      上記をそのままコピー＆ペーストすれば動きます。シート名（'フォームの回答 1'）が異なる場合は実際の名前に合わせて書き換えてください。難しければ、フォームの「回答」タブにある円グラフをそのまま使えば集計は十分です。
+    </div>
+
+    <h3>6-2. リマインダー配信</h3>
+    <p>締切1週間前と前日の2回、LINE WORKSの保護者グループでリマインドします。生成AIにリマインド文を作らせると効率的です。</p>
+
+<pre class="prompt">小学校PTAの広報担当として、秋祭り参加申込のリマインドメッセージを作成してください。
+
+【条件】
+・配信先：保護者向けLINE WORKSグループ
+・トーン：丁寧だがフレンドリー、急かしすぎない
+・150〜200字
+・申込フォームのURLを末尾に置く前提（URLは自分で挿入する想定）
+・現在の申込状況に触れる：「すでに約180名の方からお申込みいただいています」
+
+短い案を3つ出してください。</pre>
+  </section>
+
+  <!-- ============================================================
+       7. 直前準備
+       ============================================================ -->
+  <section class="block" id="step-prep">
+    <h2><span class="num">7</span>直前準備（1週間前）</h2>
+
+    <h3>7-1. 当日進行表の完成</h3>
+    <p>進行表（タイムテーブル）をGoogleドキュメントで作成し、PDFに書き出して、印刷したものを当日各ブースに配布します。同時にPDFを共有フォルダに置き、実行委員のスマホからすぐ参照できるようにします。</p>
+
+    <h3>7-2. 緊急連絡ツリー</h3>
+    <p>運営シートの「緊急連絡」タブに、以下を整理しておきます。当日のスマホ1台で見られる状態にすることが重要です。</p>
+
+    <ul>
+      <li>会長・副会長・会計の電話番号</li>
+      <li>学校警備員室の内線</li>
+      <li>近隣の救急対応病院（休日診療含む）</li>
+      <li>消防・警察の最寄り連絡先</li>
+      <li>当日キャンセル時の代替連絡網（業者・備品レンタル）</li>
+    </ul>
+
+    <h3>7-3. 直前リマインドと持ち物確認</h3>
+    <p>前日夕方にLINE WORKSで全員に最終リマインド。持ち物・集合時間・雨天時の判断基準（朝7時の段階で◯◯なら順延）を明文化します。</p>
+
+    <div class="box warn">
+      <span class="label">⚠️ 雨天判断の責任所在</span>
+      「誰が」「いつまでに」「どの判断基準で」雨天延期を決めるかを<strong>事前に文書化</strong>してください。当日の朝に電話で議論する状態は最悪です。たとえば「会長が、当日朝6:30の気象庁発表降水確率を見て、70%以上なら延期、即時LINE WORKSとメールで一斉連絡」のように具体化します。
+    </div>
+  </section>
+
+  <!-- ============================================================
+       8. 当日運営
+       ============================================================ -->
+  <section class="block" id="step-day">
+    <h2><span class="num">8</span>当日運営</h2>
+    <p class="lead">紙とデジタルのバランスを取ります。当日はスマホの電池とネットワークが落ちる可能性を想定し、紙のバックアップを必ず用意します。</p>
+
+    <h3>8-1. 受付の運用</h3>
+    <p>受付では、印刷した参加者一覧（申込スプレッドシートをPDF出力）でチェック。スマホでも同じスプレッドシートを開いておき、当日申込者の追記はデジタル側で対応します。</p>
+
+    <div class="phone-mockup">
+      <div class="phone-screen">
+        <div class="phone-statusbar">
+          <span>9:00</span>
+          <span>📶 🔋</span>
+        </div>
+        <div style="background:#00B900;color:white;padding:10px 16px;font-size:14px;font-weight:700;">💬 LINE WORKS</div>
+        <div style="background:#f5f5f5;padding:8px 12px;font-size:11px;color:#666;">📌 秋祭り 実行班 (12)</div>
+        <div style="padding:12px;font-size:12px;line-height:1.7;">
+          <div style="background:white;border-radius:12px;padding:8px 12px;margin-bottom:8px;max-width:80%;">
+            <strong style="color:#00B900;">田中（会長）</strong> 8:55<br>
+            おはようございます！全員集合確認しました。受付2名は8階段下、進行表は校長室前に貼っています。
+          </div>
+          <div style="background:white;border-radius:12px;padding:8px 12px;margin-bottom:8px;max-width:80%;">
+            <strong style="color:#00B900;">山田</strong> 9:02<br>
+            飲食ブース、たこ焼き器の電源確保完了。発電機側で接続しています。
+          </div>
+          <div style="background:#FFEB3B;border-radius:12px;padding:8px 12px;margin-bottom:8px;max-width:80%;">
+            📌 <strong>アナウンス</strong><br>
+            雨天判断：本日13:00予定通り開催。<br>
+            緊急連絡：090-XXXX-XXXX（田中）
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>8-2. トラブル発生時のフロー</h3>
+    <ol class="steps">
+      <li>第一発見者が<strong>無線または近くの実行委員</strong>に口頭で報告</li>
+      <li>同時にLINE WORKSの実行班グループに状況を投稿（後で時系列を追えるようにする）</li>
+      <li>会長または副会長が判断 → 必要なら救護担当・学校・外部機関へ連絡</li>
+      <li>解決後、運営シートの「インシデント記録」タブに発生時刻・対応・所要時間を記録</li>
+    </ol>
+
+    <div class="box tip">
+      <span class="label">💡 写真撮影の同意確認</span>
+      当日の受付で、肖像権同意の有無を申込時情報と突合できるよう、参加者バッジに色分け（同意=青、未確認=黄）するなどの工夫が有効です。撮影担当はバッジ色を見て撮るかどうか判断します。
+    </div>
+  </section>
+
+  <!-- ============================================================
+       9. 振り返り
+       ============================================================ -->
+  <section class="block" id="step-after">
+    <h2><span class="num">9</span>振り返り（翌週）</h2>
+
+    <h3>9-1. 写真の整理と共有</h3>
+    <p>実行委員が撮影した写真をGoogleドライブの「05_当日写真」に集約。肖像権同意済みの児童のみが映る写真を選別し、「05_当日写真_公開可」フォルダにコピーします。このフォルダのリンクを保護者に共有することで、ダウンロード可能なフォトアルバムとして機能します。</p>
+
+    <h3>9-2. お礼のお便り作成</h3>
+    <p>生成AIで下書きを作成 → ドキュメントで共同編集 → CanvaでデザインしてPDF配布、という流れが最速です。詳細は <a href="letter.html">お便り作成ガイド</a> 参照。</p>
+
+<pre class="prompt">小学校PTAの広報担当として、秋祭り終了後の保護者向けお礼のお便りを作成してください。
+
+【条件】
+・トーン：あたたかく、感謝が伝わる
+・400〜500字
+・盛り込む要素：
+  - 当日の参加者数（約380名）
+  - ボランティア協力者への感謝
+  - 印象に残った場面（具体的なエピソードは仮で可、後で差し替える前提）
+  - 来年度への意気込み
+・最後に写真フォルダのリンクを案内する一文を入れる</pre>
+
+    <h3>9-3. 振り返り会議と引き継ぎノート</h3>
+    <p>イベント後2週間以内に振り返り会議をMeetで開催。「うまくいったこと／改善点／来年への申し送り」の3カテゴリで議事録を作り、Notionまたは Googleドキュメントの「引き継ぎノート」に追記します。</p>
+
+    <div class="box ok">
+      <span class="label">✅ 翌年への資産化</span>
+      「秋祭り」フォルダ全体を「99_過去年度参考資料」配下にコピーして保管。来年の担当者は、このフォルダをコピーして上書き編集すればゼロから企画書を書く必要がありません。これがクラウド運用の最大の利点です。詳しくは <a href="../governance/handover-design.html">年度引き継ぎ設計</a> を参照してください。
+    </div>
+  </section>
+
+  <!-- ============================================================
+       10. チェックリスト
+       ============================================================ -->
+  <section class="block">
+    <h2><span class="num">10</span>担当者向けチェックリスト</h2>
+    <p class="lead">このページを読み終えた後、自校イベントに当てはめてチェックしていけば、抜け漏れなく準備が進みます。</p>
+
+    <h3>2か月前</h3>
+    <ul>
+      <li>☐ 企画書をGoogleドキュメントで作成し実行委員に共有</li>
+      <li>☐ LINE WORKSで実行委員グループ作成・ピン留め設定</li>
+      <li>☐ キックオフ会議の日程確定（調整さん）</li>
+    </ul>
+
+    <h3>1.5か月前</h3>
+    <ul>
+      <li>☐ Googleドライブに標準フォルダ構造を作成</li>
+      <li>☐ 役割分担表をスプレッドシートで作成</li>
+      <li>☐ 全実行委員のアクセス権設定完了</li>
+    </ul>
+
+    <h3>1か月前</h3>
+    <ul>
+      <li>☐ 申込フォーム作成・テスト送信完了</li>
+      <li>☐ Canvaでチラシ作成・QRコード組み込み・印刷発注</li>
+      <li>☐ LINE WORKS保護者グループでフォーム告知</li>
+    </ul>
+
+    <h3>3週間〜1週間前</h3>
+    <ul>
+      <li>☐ 申込集計の自動化設定</li>
+      <li>☐ 締切1週間前のリマインド配信</li>
+      <li>☐ 進行表完成・印刷</li>
+      <li>☐ 緊急連絡ツリー整備</li>
+      <li>☐ 雨天判断の責任所在を文書化</li>
+    </ul>
+
+    <h3>当日</h3>
+    <ul>
+      <li>☐ 朝のキックオフ（実行委員集合・確認）</li>
+      <li>☐ 受付運用開始</li>
+      <li>☐ LINE WORKSで状況共有</li>
+      <li>☐ インシデント記録</li>
+    </ul>
+
+    <h3>翌週</h3>
+    <ul>
+      <li>☐ 写真整理・公開可フォルダ作成</li>
+      <li>☐ お礼のお便り配布</li>
+      <li>☐ 振り返り会議実施</li>
+      <li>☐ 引き継ぎノートに追記</li>
+      <li>☐ 過去年度フォルダへ資料コピー</li>
+    </ul>
+  </section>
+
+</main>
+
+<div data-related></div>
+
+<script src="../assets/nav.js"></script>
+</body>
+</html>

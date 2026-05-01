@@ -1,0 +1,257 @@
+{
+  "site": {
+    "title": "PTA・地域活動 デジタル活用統合ガイド",
+    "baseUrl": "/pta-guide/",
+    "version": "2026.04",
+    "license": "CC BY 4.0"
+  },
+  "categories": [
+    {
+      "id": "scenarios",
+      "label": "🎯 やりたいこと別",
+      "path": "scenarios/",
+      "description": "業務シナリオから逆引き"
+    },
+    {
+      "id": "tools",
+      "label": "🧰 ツール別",
+      "path": "tools/",
+      "description": "個別ツールの操作ガイド"
+    },
+    {
+      "id": "governance",
+      "label": "🏛️ 組織運営",
+      "path": "governance/",
+      "description": "セキュリティ・引き継ぎ・失敗事例"
+    }
+  ],
+  "pages": {
+    "index": {
+      "title": "トップ",
+      "category": null,
+      "path": "index.html"
+    },
+    "sc-event": {
+      "title": "イベント運営",
+      "icon": "🎪",
+      "category": "scenarios",
+      "path": "scenarios/event.html",
+      "summary": "参加者募集・打合せ・当日運営まで",
+      "tools": ["forms", "sheets", "canva", "lineworks", "drive"],
+      "related": ["sc-letter", "sc-survey", "tool-canva"]
+    },
+    "sc-letter": {
+      "title": "お便り作成",
+      "icon": "✉️",
+      "category": "scenarios",
+      "path": "scenarios/letter.html",
+      "summary": "下書き・共同編集・PDF配布",
+      "tools": ["chatgpt", "docs", "canva"],
+      "related": ["tool-docs", "tool-canva", "tool-chatgpt"]
+    },
+    "sc-meeting": {
+      "title": "会議〜議事録",
+      "icon": "📅",
+      "category": "scenarios",
+      "path": "scenarios/meeting.html",
+      "summary": "日程調整からMeet・議事録自動化まで",
+      "tools": ["chouseisan", "meet", "docs", "notebooklm"],
+      "related": ["tool-meet", "tool-chouseisan", "tool-notebooklm"]
+    },
+    "sc-account": {
+      "title": "会計管理",
+      "icon": "💰",
+      "category": "scenarios",
+      "path": "scenarios/account.html",
+      "summary": "出納帳・領収書・決算報告",
+      "tools": ["sheets", "drive"],
+      "related": ["tool-sheets", "gov-handover"]
+    },
+    "sc-handover": {
+      "title": "役員引き継ぎ",
+      "icon": "🎓",
+      "category": "scenarios",
+      "path": "scenarios/handover.html",
+      "summary": "新年度4月の最重要タスク",
+      "tools": ["drive", "notion"],
+      "related": ["gov-handover", "gov-security"]
+    },
+    "sc-survey": {
+      "title": "アンケート",
+      "icon": "📋",
+      "category": "scenarios",
+      "path": "scenarios/survey.html",
+      "summary": "紙ゼロ・自動集計",
+      "tools": ["forms", "sheets"],
+      "related": ["tool-forms", "tool-sheets"]
+    },
+    "sc-ga": {
+      "title": "総会運営",
+      "icon": "🏛️",
+      "category": "scenarios",
+      "path": "scenarios/general-assembly.html",
+      "summary": "資料配布・議決・議事録",
+      "tools": ["drive", "forms", "meet", "docs"],
+      "related": ["sc-meeting", "tool-drive"]
+    },
+    "sc-pr": {
+      "title": "広報誌制作",
+      "icon": "📰",
+      "category": "scenarios",
+      "path": "scenarios/pr.html",
+      "summary": "Canvaとネット印刷",
+      "tools": ["canva"],
+      "related": ["tool-canva", "sc-letter"]
+    },
+    "sc-emergency": {
+      "title": "災害時連絡",
+      "icon": "🚨",
+      "category": "scenarios",
+      "path": "scenarios/emergency.html",
+      "summary": "多重化と冗長性",
+      "tools": ["lineworks"],
+      "related": ["tool-lineworks", "gov-security"]
+    },
+    "sc-recruit": {
+      "title": "ボランティア募集",
+      "icon": "🙋",
+      "category": "scenarios",
+      "path": "scenarios/recruit.html",
+      "summary": "応募障壁を下げる導線",
+      "tools": ["forms", "docs"],
+      "related": ["tool-forms", "sc-letter"]
+    },
+    "tool-forms": {
+      "title": "Googleフォーム",
+      "icon": "📋",
+      "category": "tools",
+      "path": "tools/forms.html",
+      "summary": "アンケート・参加確認",
+      "color": "var(--c-forms)",
+      "related": ["tool-sheets", "sc-survey", "sc-event"]
+    },
+    "tool-docs": {
+      "title": "Googleドキュメント",
+      "icon": "📝",
+      "category": "tools",
+      "path": "tools/docs.html",
+      "summary": "文書・議事録・お便り",
+      "color": "var(--c-docs)",
+      "related": ["tool-drive", "sc-letter", "tool-chatgpt"]
+    },
+    "tool-sheets": {
+      "title": "Googleスプレッドシート",
+      "icon": "📊",
+      "category": "tools",
+      "path": "tools/sheets.html",
+      "summary": "名簿・会計・進捗管理",
+      "color": "var(--c-sheets)",
+      "related": ["tool-forms", "sc-account"]
+    },
+    "tool-drive": {
+      "title": "Googleドライブ",
+      "icon": "📁",
+      "category": "tools",
+      "path": "tools/drive.html",
+      "summary": "クラウド共有フォルダ",
+      "color": "var(--c-drive)",
+      "related": ["gov-security", "gov-handover"]
+    },
+    "tool-meet": {
+      "title": "Google Meet",
+      "icon": "📹",
+      "category": "tools",
+      "path": "tools/meet.html",
+      "summary": "ビデオ会議",
+      "color": "var(--c-meet)",
+      "related": ["sc-meeting", "tool-calendar"]
+    },
+    "tool-calendar": {
+      "title": "Googleカレンダー",
+      "icon": "🗓️",
+      "category": "tools",
+      "path": "tools/calendar.html",
+      "summary": "予定共有・Meet連携",
+      "color": "var(--c-meet)",
+      "related": ["tool-meet", "sc-meeting"]
+    },
+    "tool-canva": {
+      "title": "Canva",
+      "icon": "🎨",
+      "category": "tools",
+      "path": "tools/canva.html",
+      "summary": "デザイン・印刷物制作",
+      "color": "var(--c-canva)",
+      "related": ["sc-pr", "sc-letter"]
+    },
+    "tool-chouseisan": {
+      "title": "調整さん",
+      "icon": "📅",
+      "category": "tools",
+      "path": "tools/chouseisan.html",
+      "summary": "日程調整",
+      "color": "var(--c-chouseisan)",
+      "related": ["sc-meeting", "tool-calendar"]
+    },
+    "tool-lineworks": {
+      "title": "LINE WORKS",
+      "icon": "💬",
+      "category": "tools",
+      "path": "tools/lineworks.html",
+      "summary": "ビジネス版LINE",
+      "color": "var(--c-lineworks)",
+      "related": ["sc-emergency", "gov-security"]
+    },
+    "tool-notion": {
+      "title": "Notion",
+      "icon": "🗂️",
+      "category": "tools",
+      "path": "tools/notion.html",
+      "summary": "ナレッジ蓄積",
+      "color": "var(--c-notion)",
+      "related": ["gov-handover", "sc-handover"]
+    },
+    "tool-chatgpt": {
+      "title": "ChatGPT・生成AI",
+      "icon": "🤖",
+      "category": "tools",
+      "path": "tools/chatgpt.html",
+      "summary": "お便り・挨拶文・要約",
+      "color": "var(--c-ai)",
+      "related": ["tool-notebooklm", "sc-letter"]
+    },
+    "tool-notebooklm": {
+      "title": "NotebookLM",
+      "icon": "📚",
+      "category": "tools",
+      "path": "tools/notebooklm.html",
+      "summary": "資料要約・議事録分析",
+      "color": "var(--c-ai)",
+      "related": ["tool-chatgpt", "sc-meeting"]
+    },
+    "gov-security": {
+      "title": "個人情報保護",
+      "icon": "🔒",
+      "category": "governance",
+      "path": "governance/security.html",
+      "summary": "クラウド利用時の安全運用",
+      "related": ["gov-handover", "gov-antipatterns"]
+    },
+    "gov-handover": {
+      "title": "年度引き継ぎ設計",
+      "icon": "🔁",
+      "category": "governance",
+      "path": "governance/handover-design.html",
+      "summary": "組織アカウント・フォルダ構造",
+      "related": ["gov-security", "sc-handover"]
+    },
+    "gov-antipatterns": {
+      "title": "失敗事例集",
+      "icon": "⚠️",
+      "category": "governance",
+      "path": "governance/antipatterns.html",
+      "summary": "他PTAの教訓",
+      "related": ["gov-security", "gov-handover"]
+    }
+  }
+}
