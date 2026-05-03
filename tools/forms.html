@@ -3,511 +3,447 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Googleフォーム 完全ガイド｜PTA・地域活動 デジタル活用統合ガイド</title>
-<meta name="description" content="PTA・地域活動でGoogleフォームを使い倒すための完全ガイド。質問設計・配布・回答制限・集計・条件分岐・スプレッドシート連携・トラブル対処までを網羅。">
-<meta property="og:title" content="Googleフォーム完全ガイド｜PTAデジタル活用統合ガイド">
-<meta property="og:description" content="質問設計5原則・回答制限・条件分岐・スプレッドシート関数まで体系化。">
-<meta property="og:type" content="article">
+<title>Google Forms完全ガイド | PTA・地域活動 デジタル活用統合ガイド</title>
+<meta name="description" content="PTA役員のためのGoogle Forms活用完全ガイド。出欠確認・アンケート・申込フォームの作成手順を画面イメージ付きで解説。条件分岐・回答制限・個人情報の取り扱い・LINE WORKSとの連携まで網羅。">
 <link rel="stylesheet" href="../assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
-<body data-page-id="tool-forms" data-progress>
-
+<body data-page="tools/forms">
 <main class="container">
 
-  <header class="hero">
-    <span class="badge badge-tool">TOOL · 完全版</span>
-    <h1>Googleフォーム 完全ガイド</h1>
-    <p class="lead">
-      Googleフォームは、PTA・地域活動で最も使用頻度の高い無料ツールです。
-      参加申込、アンケート、出欠確認、意見募集など、用途は多岐にわたります。
-      本ガイドは、基本操作から条件分岐・スプレッドシート連携まで、
-      <strong>このページ単独で実務に必要な全機能</strong>を網羅します。
-    </p>
-    <div class="meta-row">
-      <span>📖 想定読了時間: 25分</span>
-      <span>🎯 対象: 全役員（特にイベント担当・書記）</span>
-      <span>🔄 最終更新: 2026年5月</span>
+<header class="page-header">
+  <div class="page-tag">TOOLS · 完全版</div>
+  <h1 class="page-title">Google Forms完全ガイド</h1>
+  <p class="page-lead">PTAの出欠確認・アンケート・各種申込は、紙の集計を Google Forms に置き換えるだけで集計時間が概ね9割削減できます。本ガイドは「最初のフォーム作成」から「個人情報を含むセンシティブな設問の安全な扱い」まで、画面イメージ付きで段階的に解説します。</p>
+  <div class="page-meta">
+    <span>📖 想定読了時間: 25分</span>
+    <span>🎯 対象: 出欠・アンケートを担当する全役員</span>
+    <span>🔄 最終更新: 2026年5月</span>
+  </div>
+</header>
+
+<nav aria-label="パンくず" class="breadcrumb">
+  <a href="../index.html">ホーム</a> &gt; <a href="../index.html#tools">ツールガイド</a> &gt; <span>Google Forms完全ガイド</span>
+</nav>
+
+<section id="how-to-read">
+  <h2>0. このページの読み方</h2>
+  <p>Google Forms の経験度に応じて、3つのルートを用意しました。</p>
+  <div class="card-row">
+    <div class="card">
+      <h3>🚀 5分ルート</h3>
+      <p>とにかく今日中に出欠フォームを作りたい方向け。</p>
+      <p><a href="#quickstart">→ 第1章 クイックスタートへ</a></p>
     </div>
-  </header>
-
-  <!-- 0. ページ構成 -->
-  <section id="how-to-read" class="section">
-    <h2>0. このページの読み方</h2>
-    <div class="card-grid card-grid-3">
-      <div class="card">
-        <h3>⚡ 5分版（即実装）</h3>
-        <p><a href="#basics">第1章「基礎」</a>の5ステップで、最初のフォームを即作成。</p>
-      </div>
-      <div class="card">
-        <h3>⏱ 15分版（実務）</h3>
-        <p>第1〜5章を通読。質問設計・配布・回答制限まで把握できれば、ほぼ全PTA業務に対応可能。</p>
-      </div>
-      <div class="card">
-        <h3>📚 全読版（25分）</h3>
-        <p>第6〜8章の集計・応用・トラブル対処まで。スプレッドシート関数で運営シートを自動化したい方向け。</p>
-      </div>
+    <div class="card">
+      <h3>📋 15分ルート</h3>
+      <p>標準的な役員向け。アンケート設計の勘所まで。</p>
+      <p><a href="#design">→ 第3章 設問設計へ</a></p>
     </div>
-
-    <h3>0-1. 目次</h3>
-    <ul>
-      <li><a href="#basics">1. 基礎（アクセス・5ステップ作成）</a></li>
-      <li><a href="#question-types">2. 質問タイプの選び方</a></li>
-      <li><a href="#design-principles">3. 質問設計の5原則</a></li>
-      <li><a href="#settings">4. 設定（公開・回答制限・通知）</a></li>
-      <li><a href="#distribute">5. 配布方法（URL・QR・埋め込み）</a></li>
-      <li><a href="#aggregate">6. 集計とスプレッドシート連携</a></li>
-      <li><a href="#advanced">7. 応用（条件分岐・バリデーション・テーマ）</a></li>
-      <li><a href="#faq">8. FAQ・トラブル対処</a></li>
-    </ul>
-  </section>
-
-  <!-- 1. 基礎 -->
-  <section id="basics" class="section">
-    <h2>1. 基礎</h2>
-
-    <h3>1-1. アクセス方法</h3>
-    <p>URL: <a href="https://forms.google.com" target="_blank" rel="noopener">https://forms.google.com</a></p>
-    <p>Googleアカウント（無料）でログインすれば全機能が使えます。料金は発生しません。<a href="./drive.html">Google Drive</a>からも「新規 → Google フォーム」で作成可能です。</p>
-
-    <div class="info-box info-box-warn">
-      <h3>⚠️ 個人アカウントか共通アカウントか</h3>
-      <p>PTAで使う場合、<strong>必ずPTA共通Googleアカウント</strong>で作成してください。個人アカウントで作成すると、退任時に回答データの引き継ぎが困難になります。詳細は<a href="../governance/handover-design.html#common-account">引き継ぎ設計ガイド第3章</a>を参照。</p>
+    <div class="card">
+      <h3>📚 完全版（25分）</h3>
+      <p>会長・個人情報担当役員向け。安全運用と引き継ぎまで。</p>
+      <p><a href="#privacy">→ 第6章 個人情報の扱いへ</a></p>
     </div>
+  </div>
+</section>
 
-    <h3>1-2. 5分で最初のフォームを作る（5ステップ）</h3>
-    <ol class="numbered-list">
-      <li><strong>新規作成</strong>: forms.google.com にアクセス → 右下の「＋」ボタン → 空白のフォーム</li>
-      <li><strong>タイトルと説明</strong>: 上部の「無題のフォーム」を変更（例:「秋祭り参加申込」）。説明欄に開催日時・場所・問い合わせ先を記載</li>
-      <li><strong>質問追加</strong>: 右側の「＋」アイコンで質問追加。タイプ（記述式・選択肢等）を選び、質問文と選択肢を入力</li>
-      <li><strong>必須化</strong>: 各質問の右下「必須」スイッチをONに（氏名・連絡先など必要なもののみ）</li>
-      <li><strong>送信</strong>: 右上「送信」ボタン → 「🔗 リンク」タブ → URLをコピー → LINE WORKSやメールで配布</li>
-    </ol>
+<section id="why-forms">
+  <h2>1. なぜPTAでGoogle Formsか</h2>
+  <p>事実: 2026年5月時点で、Google Formsは個人Googleアカウントでも組織Workspaceでも無料で利用でき、回答数の上限は実質無制限、回答はGoogle スプレッドシートに自動連携されます。</p>
+  <p>推測: PTAで紙運用が残っている主因は「保護者全員がスマホで回答できるか不安」という心理的障壁ですが、2024年度以降の各種統計でスマホ保有率は保護者世代でほぼ100%に達しているため、紙併用を前提に置きつつもメイン経路をフォーム化する判断が合理的です。</p>
 
-    <h3>1-3. スマホからの作成</h3>
-    <p>iPhone/Android のChromeブラウザから forms.google.com にアクセスすれば、PCと同じ操作が可能です。専用アプリは存在しません（2026年4月時点）。スマホでの長時間編集は誤タップが増えるため、本格的なフォーム作成はPC推奨です。</p>
-  </section>
-
-  <!-- 2. 質問タイプ -->
-  <section id="question-types" class="section">
-    <h2>2. 質問タイプの選び方</h2>
-    <p>Googleフォームには多数の質問タイプがあります。PTA実務でよく使う7種を整理します。</p>
-
-    <table class="comparison-table">
+  <div class="comparison-table">
+    <table>
+      <caption>紙運用 vs Google Forms（2026年5月時点）</caption>
       <thead>
-        <tr><th>タイプ</th><th>用途</th><th>PTA具体例</th><th>注意点</th></tr>
+        <tr><th>観点</th><th>紙の出欠票</th><th>Google Forms</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td>記述式（短文）</td>
-          <td>1行回答</td>
-          <td>氏名、メール、電話番号</td>
-          <td>表記揺れが発生しやすい</td>
-        </tr>
-        <tr>
-          <td>段落（長文）</td>
-          <td>自由記述</td>
-          <td>意見・要望、アレルギー詳細</td>
-          <td>集計困難、件数が多いと処理重い</td>
-        </tr>
-        <tr>
-          <td>ラジオボタン</td>
-          <td>単一選択</td>
-          <td>参加可否、希望時間帯</td>
-          <td>選択肢は3〜5個が読みやすい</td>
-        </tr>
-        <tr>
-          <td>チェックボックス</td>
-          <td>複数選択</td>
-          <td>参加日程（複数日）、興味のある分野</td>
-          <td>「すべて選択」になると集計意味が薄れる</td>
-        </tr>
-        <tr>
-          <td>プルダウン</td>
-          <td>選択肢が多い単一選択</td>
-          <td>学年（1〜6）、組（A〜F）</td>
-          <td>スマホで開きにくい場合あり</td>
-        </tr>
-        <tr>
-          <td>日付</td>
-          <td>日付指定</td>
-          <td>希望日、出欠予定日</td>
-          <td>過去日付も入力可能なため要バリデーション</td>
-        </tr>
-        <tr>
-          <td>均等目盛</td>
-          <td>1〜5等の評価</td>
-          <td>イベント満足度、運営評価</td>
-          <td>中央値に集まる傾向あり</td>
-        </tr>
+        <tr><td>配布コスト</td><td>印刷・配布で1〜2時間</td><td>LINE WORKSにURL貼付で1分</td></tr>
+        <tr><td>集計コスト</td><td>200件で3〜4時間</td><td>自動集計（0分）</td></tr>
+        <tr><td>集計ミス</td><td>転記ミスが発生</td><td>ゼロ（直接記録）</td></tr>
+        <tr><td>欠席者の追跡</td><td>誰が未提出か不明</td><td>メアド収集で可視化</td></tr>
+        <tr><td>個人情報の漏洩リスク</td><td>紛失リスク高</td><td>適切な共有設定で低</td></tr>
+        <tr><td>非デジタル世帯対応</td><td>標準対応</td><td>紙併用が必要</td></tr>
       </tbody>
     </table>
+  </div>
 
-    <h3>2-1. 選択基準のフローチャート</h3>
-    <ol class="numbered-list">
-      <li>回答が「文字」か「選択肢」か → 文字なら記述式/段落、選択肢なら次へ</li>
-      <li>選択肢は「1つだけ」か「複数」か → 1つならラジオ/プルダウン、複数ならチェックボックス</li>
-      <li>選択肢は「3〜5個」か「6個以上」か → 少数ならラジオ、多数ならプルダウン</li>
-      <li>回答が「日付」か → 日付タイプ</li>
-      <li>回答が「程度」か → 均等目盛</li>
-    </ol>
-  </section>
+  <div class="info-box-tip">
+    <strong>💡 実務のヒント</strong>
+    <p>「紙か Forms か」の二択ではなく「Formsを基本、紙を例外」の運用が現実解です。紙提出された分は役員が代理入力すれば、集計の一元化が保てます。</p>
+  </div>
+</section>
 
-  <!-- 3. 設計5原則 -->
-  <section id="design-principles" class="section">
-    <h2>3. 質問設計の5原則</h2>
-    <p>「集めた後で使えないデータ」を作らないための設計原則です。</p>
+<section id="quickstart">
+  <h2>2. クイックスタート（5分で出欠フォーム）</h2>
+  <p>最初の1個を作るのが最大のハードルです。「PTA総会の出欠確認」を題材に、最短5分の手順を示します。</p>
 
-    <div class="card-grid card-grid-2">
-      <div class="card">
-        <h3>原則1: 必要最小限</h3>
-        <p>「念のため」の質問が回答率を下げる。各質問について「これがないと意思決定できないか？」を自問する。</p>
-      </div>
-      <div class="card">
-        <h3>原則2: 表記揺れの抑制</h3>
-        <p>記述式より選択肢式。学年は「1〜6年」のプルダウンで、「いちねん」「1ねん」「1」の表記揺れを回避。</p>
-      </div>
-      <div class="card">
-        <h3>原則3: 集計可能性</h3>
-        <p>「自由記述で意見を書く」だけでなく「カテゴリ選択＋詳細自由記述」の二段構成にすれば後の集計が容易。</p>
-      </div>
-      <div class="card">
-        <h3>原則4: 回答負荷の最小化</h3>
-        <p>5〜10問が上限。それを超えると回答率が顕著に低下する傾向（推測: PTA経験則・一般的なアンケート設計知見から）。</p>
+  <h3>2-1. フォームを新規作成する</h3>
+  <p>ブラウザで <code>forms.google.com</code> にアクセスし、「空白のフォーム」を選択します。</p>
+
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">forms.google.com</span>
+    </div>
+    <div class="browser-content">
+      <div class="mock-form">
+        <div class="mock-form-header">新しいフォームを作成</div>
+        <div class="mock-template-row">
+          <div class="mock-template highlighted">
+            <div class="mock-template-thumb">＋</div>
+            <div class="mock-template-label">空白のフォーム</div>
+            <div class="annotation">① ここをクリック</div>
+          </div>
+          <div class="mock-template">
+            <div class="mock-template-thumb">📋</div>
+            <div class="mock-template-label">連絡先情報</div>
+          </div>
+          <div class="mock-template">
+            <div class="mock-template-thumb">📝</div>
+            <div class="mock-template-label">RSVP</div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="card-grid card-grid-1">
-      <div class="card">
-        <h3>原則5: プライバシーへの配慮</h3>
-        <p>取得するすべての項目について、利用目的・保管期限・第三者提供の有無を明示する。フォーム説明欄の冒頭に記載するか、リンクで個人情報取扱方針へ誘導する。詳細は<a href="../governance/security.html#consent">セキュリティガイド第5章</a>。</p>
+  <h3>2-2. タイトルと最初の質問を設定する</h3>
+  <p>タイトルに用件、説明欄に締切と問い合わせ先を明記します。最初の質問は「出席／欠席」のラジオボタンが基本形です。</p>
+
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">docs.google.com/forms/...</span>
+    </div>
+    <div class="browser-content">
+      <div class="mock-form-edit">
+        <div class="mock-input mock-title">第○○回PTA総会 出欠確認</div>
+        <div class="mock-input mock-desc">締切: 5月20日(火) / 問い合わせ: 副会長 ○○</div>
+        <div class="mock-question">
+          <div class="mock-q-title">出欠を選択してください <span class="required">*</span></div>
+          <div class="mock-q-radio">○ 出席する</div>
+          <div class="mock-q-radio">○ 欠席する</div>
+          <div class="mock-q-radio">○ 委任する</div>
+          <div class="annotation right">② 「必須」をオン</div>
+        </div>
       </div>
     </div>
+  </div>
 
-    <h3>3-1. 良い例・悪い例</h3>
-    <table class="comparison-table">
+  <h3>2-3. 回答方法を設定する</h3>
+  <p>右上の歯車アイコン「設定」から、PTA用途で確認すべき項目は3点だけです。</p>
+  <ol>
+    <li><strong>メールアドレスを収集する</strong>（誰が回答したかを追跡したい場合）</li>
+    <li><strong>回答を1回に制限する</strong>（重複回答を防ぎたい場合・Googleログイン必須化に注意）</li>
+    <li><strong>進行状況バーを表示</strong>（複数セクションを使う長いフォームの場合）</li>
+  </ol>
+
+  <div class="info-box-warn">
+    <strong>⚠️ 重要なトレードオフ</strong>
+    <p>「回答を1回に制限する」をオンにすると、回答者はGoogleアカウントへのログインが必須になります。Googleアカウントを持たない祖父母世代の保護者を排除するリスクがあるため、PTAでは原則オフを推奨します。重複防止が必要な場合は、最初の質問に「お子様の学年・組」を必須記述で求める方式が現実的です。</p>
+  </div>
+
+  <h3>2-4. URLを取得して配布する</h3>
+  <p>右上「送信」→「リンク」アイコン→「URLを短縮」にチェック→「コピー」で短縮URLが得られます。LINE WORKSの全体トークに貼り付けて完了です。</p>
+
+  <div class="phone-mockup">
+    <div class="phone-screen">
+      <div class="phone-app-bar">LINE WORKS · PTA役員一同</div>
+      <div class="phone-msg">
+        <div class="phone-msg-name">副会長</div>
+        <div class="phone-msg-bubble">
+          【総会出欠のお願い】<br>
+          5月20日(火)までにご回答ください。<br>
+          <span class="phone-link">https://forms.gle/xxxxx</span>
+        </div>
+      </div>
+      <div class="phone-msg">
+        <div class="phone-msg-name">会長</div>
+        <div class="phone-msg-bubble">回答しました 👍</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="design">
+  <h2>3. アンケート設問設計の原則</h2>
+  <p>「フォームが作れる」ことと「使えるアンケートが作れる」ことは別問題です。PTAアンケートでよくある失敗と対策を整理します。</p>
+
+  <h3>3-1. 設問数は7問以内が目安</h3>
+  <p>事実: 一般的なWebアンケート研究では、設問数が10を超えると完了率が顕著に低下することが知られています。PTAの保護者は隙間時間で回答するため、より厳しく7問以内に絞るのが現実的です。</p>
+
+  <h3>3-2. 質問形式の使い分け</h3>
+  <div class="comparison-table">
+    <table>
       <thead>
-        <tr><th>悪い例</th><th>良い例</th><th>改善点</th></tr>
+        <tr><th>形式</th><th>適切な用途</th><th>避けるべき用途</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Q. お子様について教えてください（記述式）</td>
-          <td>Q1. 児童の学年（プルダウン1〜6）<br>Q2. 児童の組（プルダウンA〜F）</td>
-          <td>分割と選択肢化で集計可能に</td>
-        </tr>
-        <tr>
-          <td>Q. ご意見・ご要望（段落、必須）</td>
-          <td>Q. ご意見（任意・段落）</td>
-          <td>必須化が回答率を下げる</td>
-        </tr>
-        <tr>
-          <td>Q. 連絡先（記述式）</td>
-          <td>Q1. メールアドレス<br>Q2. 緊急連絡先電話番号</td>
-          <td>用途別に分離、形式バリデーション可能</td>
-        </tr>
-        <tr>
-          <td>Q. アレルギーがあれば書いてください</td>
-          <td>Q1. アレルギーの有無（はい/いいえ）<br>Q2. 「はい」の場合、内容（条件分岐で表示）</td>
-          <td>条件分岐で空欄を減らし、「なし」が一目で分かる</td>
-        </tr>
+        <tr><td>ラジオボタン</td><td>択一の意思確認（出欠・賛否）</td><td>選択肢が10を超える場合</td></tr>
+        <tr><td>チェックボックス</td><td>複数選択可（参加可能な日程）</td><td>択一質問に誤用すると無効回答増</td></tr>
+        <tr><td>プルダウン</td><td>選択肢が多い項目（学年・組）</td><td>選択肢が3つ以下の場合は冗長</td></tr>
+        <tr><td>記述式（短文）</td><td>氏名・連絡先・自由意見の概要</td><td>長文の自由回答</td></tr>
+        <tr><td>段落（長文）</td><td>自由意見・要望の詳細</td><td>必須項目にすると離脱増</td></tr>
+        <tr><td>均等目盛</td><td>満足度・重要度の5段階評価</td><td>複雑な多軸評価</td></tr>
       </tbody>
     </table>
-  </section>
+  </div>
 
-  <!-- 4. 設定 -->
-  <section id="settings" class="section">
-    <h2>4. 設定（公開・回答制限・通知）</h2>
-    <p>右上の歯車アイコン「⚙️ 設定」から各種オプションを設定します。</p>
+  <h3>3-3. 必須項目は最小限に</h3>
+  <p>推測: 「全部必須にすれば回答が揃う」は錯覚です。途中で答えに詰まった項目が必須だと回答者は離脱し、途中までの情報も失われます。氏名・出欠といった本当の必須のみに限定し、自由意見等は任意項目にする方が、結果として得られる情報量が増えます。</p>
 
-    <h3>4-1. 「全般」タブ</h3>
-    <ul>
-      <li><strong>メールアドレスを収集する</strong>: 自動収集を選ぶと、回答者のGoogleアカウントメールが自動取得される（要ログイン状態）。手動入力にすればGoogleアカウント不要だが表記揺れのリスクあり</li>
-      <li><strong>回答のコピーを回答者に送信</strong>: 「常に表示」にすると、申込確認の自動メールとして機能する。リクエスト時に送信は回答者が選択</li>
-      <li><strong>回答の編集を許可</strong>: ONにすると、回答者があとから自分の回答を修正できる。申込キャンセル対応に便利</li>
-      <li><strong>回答を1回に制限</strong>: ONにするとGoogleアカウントログインが必須になる。重複回答防止に有効だが、ログイン不慣れな保護者には負担</li>
-    </ul>
-
-    <h3>4-2. 「プレゼンテーション」タブ</h3>
-    <ul>
-      <li><strong>進行状況バーを表示</strong>: 複数セクションのある長いフォームではON推奨</li>
-      <li><strong>確認メッセージ</strong>: 送信後の表示文を編集（例:「ご回答ありがとうございました。3日以内に確認メールをお送りします」）</li>
-    </ul>
-
-    <h3>4-3. 「回答」タブ</h3>
-    <ul>
-      <li><strong>回答を受け付ける</strong>: スイッチでON/OFF切替。締切時にOFFにすれば自動で受付停止</li>
-      <li><strong>回答数の上限</strong>（2026年追加機能）: 設定値に達すると自動で受付停止。定員制イベントに有用</li>
-      <li><strong>新しい回答のメール通知</strong>: 1回答ごとに通知メールが届く。件数が多い場合はOFFにしてスプレッドシート側で管理</li>
-    </ul>
-
-    <div class="info-box info-box-tip">
-      <h3>💡 締切日時を自動化する</h3>
-      <p>Googleフォーム単体には「特定日時で自動締切」機能はありません。Apps Scriptを使えば実装可能ですが、ハードルが高いため、実務上は「回答数上限」を活用するか、締切日にカレンダー通知を設定して手動でスイッチOFFする運用が現実的です。</p>
+  <details>
+    <summary>📝 PTAアンケートの「悪い設問」3例と修正案</summary>
+    <div class="example-bad">
+      <strong>悪い例1:</strong> 「PTA活動についてどう思いますか？」（記述式・必須）<br>
+      → 抽象的すぎて回答負荷が高い。
+      <br><strong>修正:</strong> 「次年度の重点活動として優先すべきものを3つまで選んでください」（チェックボックス・必須）+「その他ご意見があればお書きください」（段落・任意）
     </div>
+    <div class="example-bad">
+      <strong>悪い例2:</strong> 「役員に立候補されますか？はい／いいえ」（ラジオ・必須）<br>
+      → 「はい」を選びにくい同調圧力が働く。
+      <br><strong>修正:</strong> 「役員・委員のうち関心のあるものを選んでください（複数可・任意）」（チェックボックス・任意）+ 選択肢に「現時点では難しい」を含める
+    </div>
+    <div class="example-bad">
+      <strong>悪い例3:</strong> 「お子様の学年・組・氏名・住所・電話番号を記入してください」（記述式・必須）<br>
+      → 用途不明の個人情報を一括取得しているため、個人情報保護法上の問題。
+      <br><strong>修正:</strong> 必要最小限に分解（学年・組のみで足りないか再検討）し、設問の冒頭に「取得目的・保管期間・連絡先」を明記。詳細は<a href="../governance/security.html#purpose">セキュリティガイド第4章</a>参照。
+    </div>
+  </details>
+</section>
 
-    <h3>4-4. 公開前チェックリスト</h3>
-    <ul class="checklist">
-      <li>□ プレビュー（右上の👁アイコン）で実際の見え方を確認</li>
-      <li>□ テスト送信を1回実施し、メール通知・スプレッドシート連携を確認</li>
-      <li>□ テスト回答をスプレッドシートから削除</li>
-      <li>□ メールアドレス収集設定の妥当性確認</li>
-      <li>□ 必須項目の過剰指定がないか確認</li>
-      <li>□ 個人情報取扱方針の記載または参照リンク</li>
-      <li>□ 締切日時の文中明記</li>
-    </ul>
-  </section>
+<section id="branching">
+  <h2>4. セクション分岐で回答負荷を下げる</h2>
+  <p>「出席する人だけに懇親会参加を聞きたい」というケースは、セクション分岐で実装できます。全員に同じ設問を出すより回答時間が短くなり、完了率が上がります。</p>
 
-  <!-- 5. 配布 -->
-  <section id="distribute" class="section">
-    <h2>5. 配布方法</h2>
-    <p>右上「送信」ボタンから4種類の配布方法が選択できます。</p>
+  <h3>4-1. セクション分岐の構造</h3>
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">docs.google.com/forms/...</span>
+    </div>
+    <div class="browser-content">
+      <div class="mock-flow">
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">セクション1</div>
+          <div class="mock-flow-q">出欠を選択</div>
+          <div class="mock-flow-branches">
+            <div class="mock-flow-branch">出席 → セクション2へ</div>
+            <div class="mock-flow-branch">欠席 → セクション3へ</div>
+            <div class="mock-flow-branch">委任 → セクション4へ</div>
+          </div>
+        </div>
+        <div class="mock-flow-arrow">↓</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">セクション2（出席者のみ）</div>
+          <div class="mock-flow-q">懇親会に参加されますか</div>
+          <div class="mock-flow-q">アレルギーの有無</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <table class="comparison-table">
+  <h3>4-2. 設定手順</h3>
+  <ol>
+    <li>分岐の起点となる質問の右下「︙」をクリック</li>
+    <li>「回答に応じてセクションに移動」を選択</li>
+    <li>各選択肢の隣に「次のセクションに進む／セクション○に移動／フォームを送信」を設定</li>
+  </ol>
+
+  <div class="info-box-tip">
+    <strong>💡 注意点</strong>
+    <p>分岐機能はラジオボタンとプルダウンでのみ利用可能です。チェックボックス（複数選択）では使えません。</p>
+  </div>
+</section>
+
+<section id="spreadsheet">
+  <h2>5. スプレッドシート連携と集計</h2>
+  <p>Forms 単体では集計に限界があるため、回答をスプレッドシートに連携するのが標準運用です。</p>
+
+  <h3>5-1. 連携の設定</h3>
+  <p>編集画面の「回答」タブから、緑色のスプレッドシートアイコンをクリック→「新しいスプレッドシートを作成」を選択。これだけで、以降の回答が自動的にスプレッドシートに追記されます。</p>
+
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">docs.google.com/spreadsheets/...</span>
+    </div>
+    <div class="browser-content">
+      <table class="mock-sheet">
+        <thead>
+          <tr><th>タイムスタンプ</th><th>学年・組</th><th>保護者氏名</th><th>出欠</th><th>懇親会</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>5/15 09:32</td><td>3年2組</td><td>○○ ○○</td><td>出席</td><td>参加</td></tr>
+          <tr><td>5/15 12:18</td><td>1年1組</td><td>△△ △△</td><td>欠席</td><td>—</td></tr>
+          <tr><td>5/15 18:45</td><td>5年3組</td><td>□□ □□</td><td>出席</td><td>不参加</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>5-2. 集計に役立つ関数</h3>
+  <details>
+    <summary>📊 PTA運用でよく使う関数3選（クリックで展開）</summary>
+    <p><strong>出席者数のカウント:</strong></p>
+    <pre class="code-block">=COUNTIF(D:D,"出席")</pre>
+    <p><strong>学年別の集計:</strong></p>
+    <pre class="code-block">=COUNTIFS(B:B,"3年*",D:D,"出席")</pre>
+    <p><strong>未提出者の特定（メアド収集オン時）:</strong></p>
+    <pre class="code-block">=FILTER(全員リスト!A:A,COUNTIF(回答!B:B,全員リスト!A:A)=0)</pre>
+  </details>
+</section>
+
+<section id="privacy">
+  <h2>6. 個人情報を含むフォームの扱い</h2>
+  <p>事実: PTAは2017年の個人情報保護法改正以降、保有件数に関係なく「個人情報取扱事業者」に該当します。フォームで収集する情報の種別によっては、安全管理措置と利用目的の明示が法的義務となります。</p>
+
+  <h3>6-1. 設問の冒頭に明記すべき4項目</h3>
+  <ol>
+    <li><strong>利用目的</strong>（例: 「総会の出欠確認のためにのみ使用します」）</li>
+    <li><strong>保管期間</strong>（例: 「総会終了後30日以内に削除します」）</li>
+    <li><strong>第三者提供の有無</strong>（例: 「学校・他団体への提供は行いません」）</li>
+    <li><strong>問い合わせ先</strong>（例: 「個人情報担当: 副会長○○ / xxx@xxx.com」）</li>
+  </ol>
+
+  <h3>6-2. 取得を避けるべき情報</h3>
+  <div class="info-box-warn">
+    <strong>⚠️ 要配慮個人情報に該当する設問は原則避ける</strong>
+    <p>アレルギー・既往歴・宗教・人種・犯罪歴等は「要配慮個人情報」（個人情報保護法第2条第3項）に該当し、取得には本人の明示的同意と特別な安全管理措置が必要です。アレルギー情報を取得する場合は、設問冒頭に「アレルギー情報は要配慮個人情報に該当します。同意の上ご回答ください」と明記してください。詳細は<a href="../governance/security.html#sensitive">セキュリティガイド第3章</a>参照。</p>
+  </div>
+
+  <h3>6-3. アクセス権限の設計</h3>
+  <p>フォームと連携スプレッドシートは「PTA共通アカウント」で作成し、編集権限は会長・担当役員のみに限定します。「リンクを知っている全員に公開」は絶対に使用しないでください。実例として2025年7月、奈良市内中学校PTAでGoogle Drive共有設定ミスにより211名分の生徒情報と関連PTA文書が漏洩する事故が発生しています（出典: <a href="https://www.gate02.ne.jp/lab/incident-news/nara-city-20250722/" rel="noopener">gate02.ne.jp</a>）。</p>
+
+  <p>共有設計の詳細は<a href="../governance/security.html#access-control">セキュリティガイド第6章「アクセス権限の4層モデル」</a>を参照してください。</p>
+</section>
+
+<section id="anti-patterns">
+  <h2>7. PTAでよくある失敗パターン</h2>
+
+  <details>
+    <summary>❌ 失敗1: 個人Googleアカウントでフォームを作成し、退任時に全データ消失</summary>
+    <p>事象: 副会長が個人Gmailで作成したフォームを、任期終了で削除してしまい、過去の回答データが復元不能に。</p>
+    <p>対策: 必ずPTA共通アカウント（例: maru-pta@gmail.com）でフォームを作成し、所有権を引き継ぐ。<a href="../governance/handover-design.html#common-account">引き継ぎ設計ガイド第3章</a>参照。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗2: 「リンクを知っている全員」設定で回答スプレッドシートが流出</summary>
+    <p>事象: フォーム回答を集計するスプレッドシートに保護者氏名・連絡先が含まれていたが、共有設定が「リンクを知っている全員」になっており、SNS等で第三者がアクセス可能な状態に。</p>
+    <p>対策: スプレッドシートの共有は「特定のユーザー」に限定。フォーム編集権限とスプレッドシート閲覧権限は別管理。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗3: 締切後に回答を受け付け続けて二重集計</summary>
+    <p>事象: 締切を過ぎても回答受付がオンのままで、集計後に追加回答が来てしまい、配布資料との不整合が発生。</p>
+    <p>対策: 「回答」タブの「回答を受付中」トグルをオフにする運用ルールを引き継ぎ書に明記。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗4: 学校配布の個人情報をフォームの初期値に流用</summary>
+    <p>事象: 学校から受領した児童名簿を、出欠確認フォームの選択肢として転記。本人同意のない目的外利用に該当。</p>
+    <p>対策: 学校から受領した名簿はPTA活動の目的外利用不可。フォームでは保護者自身に学年・組を入力してもらう。詳細は<a href="../governance/security.html#consent">セキュリティガイド第2章</a>参照。</p>
+  </details>
+</section>
+
+<section id="comparison">
+  <h2>8. 他フォームツールとの比較</h2>
+  <div class="comparison-table">
+    <table>
       <thead>
-        <tr><th>方法</th><th>適する場面</th><th>長所</th><th>短所</th></tr>
+        <tr><th>ツール</th><th>料金</th><th>強み</th><th>PTAでの位置づけ</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td>📧 メール</td>
-          <td>会員全員に確実に届けたい</td>
-          <td>到達率高、本文に質問埋込可</td>
-          <td>送信先メアド事前管理が必要</td>
-        </tr>
-        <tr>
-          <td>🔗 URL</td>
-          <td>LINE WORKSや掲示で配布</td>
-          <td>最汎用、短縮可能</td>
-          <td>URLが長い、改ざん不能</td>
-        </tr>
-        <tr>
-          <td>📱 QRコード</td>
-          <td>紙チラシや会場掲示</td>
-          <td>スマホで即アクセス</td>
-          <td>QRコード生成は別ツール（Canva等）</td>
-        </tr>
-        <tr>
-          <td>&lt;/&gt; HTML埋込</td>
-          <td>PTAサイトに直接埋込</td>
-          <td>外部サイト遷移なし</td>
-          <td>サイト保有が前提</td>
-        </tr>
+        <tr><td>Google Forms</td><td>無料</td><td>スプレッドシート連携・無制限</td><td>第1選択</td></tr>
+        <tr><td>Microsoft Forms</td><td>無料（MSアカウント）</td><td>Excel連携・分岐機能</td><td>Microsoft 365契約校なら可</td></tr>
+        <tr><td>formrun</td><td>有料中心</td><td>顧客管理機能・デザイン性</td><td>PTAには過剰</td></tr>
+        <tr><td>Googirl/Tayori</td><td>無料枠あり</td><td>UIの分かりやすさ</td><td>機能制約・連携が弱い</td></tr>
+        <tr><td>紙＋手集計</td><td>印刷費</td><td>非デジタル世帯対応</td><td>例外対応として併用</td></tr>
       </tbody>
     </table>
+  </div>
+  <p>推測: 多くのPTAでは Google Forms の代替を検討する実益はほぼ無いと考えられます。学校がMicrosoft 365を導入している場合のみ、保護者のアカウント連携の整合性から Microsoft Forms を検討する価値があります。</p>
+</section>
 
-    <h3>5-1. 短縮URL</h3>
-    <p>「リンク」タブで「URLを短縮」にチェックすると、`https://forms.gle/xxxxx` 形式の短いURLが生成されます。紙印刷時や音声案内時に有用です。</p>
+<section id="handover">
+  <h2>9. 引き継ぎ・資産化</h2>
+  <p>フォームは「作って終わり」ではなく「翌年も使える資産」にすることで価値が倍加します。</p>
+  <ul>
+    <li>PTA共通アカウントの「テンプレート用Drive」に過去フォームを保管</li>
+    <li>フォーム名に年度を含める（例: 「R7_総会出欠」）</li>
+    <li>「コピーを作成」で翌年度フォームを派生させる運用</li>
+    <li>回答スプレッドシートは年度終了後30日以内に削除（個人情報の保管期間遵守）</li>
+  </ul>
+  <p>詳細な引き継ぎフローは<a href="../governance/handover-design.html#documents">引き継ぎ設計ガイド第4章「4つの必須ドキュメント」</a>を参照してください。</p>
+</section>
 
-    <h3>5-2. QRコードの作成</h3>
-    <p>Googleフォーム自体にQR生成機能はありません（2026年4月時点）。以下のいずれかを使います。</p>
-    <ol class="numbered-list">
-      <li><a href="./canva.html">Canva</a>のQRコード機能（アプリ → QRコード → URL貼付 → 生成）</li>
-      <li>Google Chromeのアドレスバー右側「共有 → QRコードを作成」</li>
-      <li>QRコード作成専用Webサービス（多数あり、無料）</li>
-    </ol>
+<section id="faq">
+  <h2>10. FAQ</h2>
+  <details>
+    <summary>Q1. 紙でしか回答できない保護者がいる場合は？</summary>
+    <p>紙の回答用紙を用意し、提出されたものを役員が代理入力します。代理入力時はタイムスタンプではなく備考欄に「○月○日紙提出」と記録すると後の照合が楽です。</p>
+  </details>
+  <details>
+    <summary>Q2. 回答数の上限は？</summary>
+    <p>2026年5月時点で、Google Forms に明示的な回答数上限はありません。ただし連携スプレッドシートは1シート1,000万セルが上限のため、列数×回答数がこれを超える場合は分割が必要です。PTA規模では実質無制限です。</p>
+  </details>
+  <details>
+    <summary>Q3. 回答者にお礼メールを送りたい</summary>
+    <p>「設定」→「回答のコピーを回答者に送信」をオンにすると、回答内容のコピーが回答者宛に自動送信されます。お礼の文面をカスタマイズしたい場合は、Google Apps Scriptを併用するか、formrunなど他ツールを検討してください。</p>
+  </details>
+  <details>
+    <summary>Q4. 匿名アンケートを実施したい</summary>
+    <p>「メールアドレスを収集する」をオフ、「回答を1回に制限する」もオフに設定すれば匿名アンケートになります。ただし完全な匿名性を保証するためには、設問内で氏名・学年・組等の特定可能情報を求めない設計が必要です。</p>
+  </details>
+  <details>
+    <summary>Q5. 過去の回答を編集・修正したい</summary>
+    <p>連携スプレッドシート側で直接修正可能ですが、修正履歴は残らないため、重要な修正は別シートに修正ログを記録する運用を推奨します。</p>
+  </details>
+</section>
 
-    <h3>5-3. LINE WORKS経由での配布</h3>
-    <p>PTA非営利特別プランの<a href="./lineworks.html">LINE WORKS</a>でグループトークにURLを投稿すれば、既読・未読が把握でき、リマインダー配信も容易です。詳細は<a href="../scenarios/event.html#form">イベント運営ガイド</a>を参照。</p>
+<section id="summary">
+  <h2>11. まとめ</h2>
+  <ul>
+    <li>PTAの出欠・アンケート・申込はGoogle Formsを第1選択とする</li>
+    <li>必ずPTA共通アカウントで作成し、退任時の資産消失を防ぐ</li>
+    <li>「回答を1回に制限する」はGoogleログイン必須化と引き換えのため、PTAでは原則オフ</li>
+    <li>個人情報を含む設問は冒頭に4項目（目的・期間・第三者提供・問い合わせ先）を明記</li>
+    <li>要配慮個人情報（アレルギー・既往歴等）は原則避け、必要時は明示的同意を取得</li>
+    <li>連携スプレッドシートの共有設定は「特定のユーザー」のみ</li>
+  </ul>
 
-    <div class="info-box info-box-warn">
-      <h3>⚠️ 個人LINEでの配布の落とし穴</h3>
-      <p>個人LINEで配布した場合、誰が回答済みか追跡できません。リマインダー対象を絞れず「全員に再送」するため通知疲れを招きます。会員数30名以上の運用では LINE WORKS への移行を強く推奨します。</p>
-    </div>
-  </section>
-
-  <!-- 6. 集計 -->
-  <section id="aggregate" class="section">
-    <h2>6. 集計とスプレッドシート連携</h2>
-
-    <h3>6-1. フォーム上での集計（3ビュー）</h3>
-    <p>編集画面の「回答」タブで以下3つのビューを切り替えられます。</p>
+  <div class="related-pages">
+    <h3>📚 関連ページ</h3>
     <ul>
-      <li><strong>概要</strong>: グラフによる自動集計。理事会報告に即使える</li>
-      <li><strong>質問</strong>: 質問ごとに全回答を一覧</li>
-      <li><strong>個別</strong>: 1回答ずつカード形式で確認</li>
+      <li><a href="../governance/security.html">セキュリティガイド</a> - 個人情報の取り扱い詳細</li>
+      <li><a href="../governance/handover-design.html">引き継ぎ設計ガイド</a> - PTA共通アカウントの運用</li>
+      <li><a href="../governance/antipatterns.html">失敗事例集</a> - 共有設定ミスによる漏洩事故</li>
+      <li><a href="lineworks.html">LINE WORKS完全ガイド</a> - フォームURLの配布経路</li>
+      <li><a href="chatgpt.html">ChatGPT完全ガイド</a> - アンケート設問の作成支援</li>
+      <li><a href="../scenarios/event.html">行事運営シナリオ</a> - 出欠フォームの実例</li>
     </ul>
-
-    <h3>6-2. スプレッドシート連携（必須設定）</h3>
-    <p>「回答」タブ右上の緑色スプレッドシートアイコンをクリック → 「新しいスプレッドシートを作成」または「既存のスプレッドシートを選択」。連携後、回答が即時にシートへ反映されます。</p>
-
-    <div class="info-box info-box-tip">
-      <h3>💡 連携スプレッドシートに直接書き込まない</h3>
-      <p>連携シートの「フォームの回答 1」タブは、フォーム側の更新で上書きされる可能性があります。集計や加工は<strong>別タブ（例: 集計、ダッシュボード）</strong>を作成し、関数で参照する形にしてください。</p>
-    </div>
-
-    <h3>6-3. 実務で頻用するスプレッドシート関数</h3>
-    <table class="comparison-table">
-      <thead>
-        <tr><th>用途</th><th>関数例</th><th>説明</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>回答件数</td>
-          <td><code>=COUNTA('フォームの回答 1'!B2:B)</code></td>
-          <td>B列（氏名等）の入力済セル数</td>
-        </tr>
-        <tr>
-          <td>定員充足率</td>
-          <td><code>=COUNTA('フォームの回答 1'!B2:B)/200</code></td>
-          <td>定員200名に対する充足率</td>
-        </tr>
-        <tr>
-          <td>選択肢ごと集計</td>
-          <td><code>=COUNTIF('フォームの回答 1'!D2:D,"参加")</code></td>
-          <td>D列で「参加」を選んだ件数</td>
-        </tr>
-        <tr>
-          <td>条件抽出</td>
-          <td><code>=QUERY('フォームの回答 1'!A:F,"SELECT B,C WHERE D='参加'")</code></td>
-          <td>参加者のみ氏名・学年抽出</td>
-        </tr>
-        <tr>
-          <td>重複検出</td>
-          <td><code>=COUNTIF('フォームの回答 1'!C:C,C2)&gt;1</code></td>
-          <td>メールアドレスの重複行を判定</td>
-        </tr>
-        <tr>
-          <td>未回答者抽出</td>
-          <td><code>=FILTER(会員名簿!A:A,COUNTIF('フォームの回答 1'!C:C,会員名簿!B:B)=0)</code></td>
-          <td>名簿にあって回答にない人を抽出</td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="caption">事実: 上記関数はGoogle Sheets標準機能。｜ 推測: 実際の列番号（B, C, D等）はフォーム構成により変動するため、各PTAで読み替えが必要。</p>
-
-    <h3>6-4. CSVエクスポート</h3>
-    <p>「回答」タブ右上の三点メニュー → 「回答をダウンロード（.csv）」で全回答をCSV出力できます。Excelで処理したい場合や、フォーム削除前のバックアップとして活用してください。</p>
-  </section>
-
-  <!-- 7. 応用 -->
-  <section id="advanced" class="section">
-    <h2>7. 応用機能</h2>
-
-    <h3>7-1. セクション分割</h3>
-    <p>質問追加メニューの「セクションを追加」で、フォームを複数ページに分割できます。「基本情報」「参加詳細」「アンケート」のように分割すると、回答者の心理的負担が軽減します。</p>
-
-    <h3>7-2. 条件分岐</h3>
-    <p>ラジオボタン質問の右下三点メニュー →「回答に応じてセクションに移動」で条件分岐が設定できます。</p>
-
-    <div class="code-block">
-<pre>例: アレルギー有無で分岐
-セクション1: 基本情報
-  Q. アレルギーの有無（はい/いいえ）
-    「はい」→ セクション2へ
-    「いいえ」→ セクション3へ
-セクション2: アレルギー詳細（食材・症状・対応）
-セクション3: その他確認事項</pre>
-    </div>
-
-    <p>条件分岐により、不要な質問を非表示にでき、回答時間が短縮されます。</p>
-
-    <h3>7-3. 入力バリデーション</h3>
-    <p>記述式・段落質問の三点メニュー →「回答の検証」で入力形式を制約できます。</p>
-    <ul>
-      <li><strong>数値</strong>: 範囲指定（例: 1〜6の学年）</li>
-      <li><strong>テキスト</strong>: 「メールアドレス」を選ぶと形式チェック自動</li>
-      <li><strong>長さ</strong>: 最大文字数指定</li>
-      <li><strong>正規表現</strong>: 電話番号形式など独自ルール（例: <code>^0\d{9,10}$</code>）</li>
-    </ul>
-
-    <h3>7-4. テーマ・配色</h3>
-    <p>右上の🎨パレットアイコンから、ヘッダー画像・カラー・フォントを変更できます。PTA独自のロゴをヘッダーに入れると、なりすまし防止になります。</p>
-
-    <h3>7-5. テスト・採点モード</h3>
-    <p>「設定」→「テストにする」を有効化すると、選択肢に正答を設定でき自動採点されます。PTA文脈では研修の理解度確認や、子ども向けクイズイベントで活用可能です。</p>
-
-    <h3>7-6. 共同編集</h3>
-    <p>右上の三点メニュー →「共同編集者を追加」で、複数役員によるフォーム編集が可能です。質問内容の責任分担に有用ですが、誤って必要な質問を削除する事故も起きやすいため、編集前にコピー（ファイル → コピーを作成）でバックアップを取る習慣を推奨します。</p>
-
-    <h3>7-7. テンプレート化</h3>
-    <p>毎年同じイベントを開催する場合、「ファイル → コピーを作成」で前年フォームを複製し、日付・定員のみ更新します。Drive上に「テンプレート」フォルダを作り、原本を保管しておくと引き継ぎが容易です。詳細は<a href="../governance/handover-design.html#documents">引き継ぎ設計ガイド第4章</a>。</p>
-  </section>
-
-  <!-- 8. FAQ -->
-  <section id="faq" class="section">
-    <h2>8. FAQ・トラブル対処</h2>
-
-    <details class="accordion">
-      <summary>Q1. 回答者が「アクセス権がありません」と表示される</summary>
-      <div class="accordion-body">
-        <p>原因はフォームの公開範囲が「組織内のみ」または「特定ユーザーのみ」になっていること。「設定」→「全般」→「メールアドレスを収集する」と「回答を1回に制限」を一旦OFFにし、URLを再共有してください。学校契約のWorkspaceで作成した場合、組織外（保護者）からアクセスできない設定が初期値の可能性があります。</p>
-      </div>
-    </details>
-
-    <details class="accordion">
-      <summary>Q2. スプレッドシート連携を解除したい</summary>
-      <div class="accordion-body">
-        <p>「回答」タブ右上の三点メニュー →「リンクを解除」。解除しても既存スプレッドシートは残ります。再連携する場合は「新しいスプレッドシートを作成」を選んでください。既存シートに再連携すると、列構成が一致しない場合エラーが出ます。</p>
-      </div>
-    </details>
-
-    <details class="accordion">
-      <summary>Q3. 同じ人が複数回回答してしまう</summary>
-      <div class="accordion-body">
-        <p>「設定」→「回答」→「回答を1回に制限」をONに。ただしGoogleアカウントログインが必須になり、ログイン不慣れな保護者の回答率が下がる可能性があります。代替策として、メールアドレス収集をONにし、スプレッドシート側で<code>COUNTIF</code>関数で重複検出する方式も有効です。</p>
-      </div>
-    </details>
-
-    <details class="accordion">
-      <summary>Q4. 回答締切後も回答が来る</summary>
-      <div class="accordion-body">
-        <p>「回答」タブの「回答を受け付けています」スイッチをOFFにしてください。「回答数の上限」設定がある場合は上限到達で自動OFFされます。完全に停止したい場合は両方を確認。フォームのURLは生きているため、アクセスは可能ですが「回答を受け付けていません」のメッセージが表示されます。</p>
-      </div>
-    </details>
-
-    <details class="accordion">
-      <summary>Q5. 過去のフォームが見つからない</summary>
-      <div class="accordion-body">
-        <p>forms.google.com のトップ画面で全フォーム一覧が表示されます。共通アカウントで作成していれば、そのアカウントでログインしてください。個人アカウントで作成された場合、退任者しかアクセスできない可能性があります。引き継ぎミスの典型例です。<a href="../governance/handover-design.html#common-account">引き継ぎ設計ガイド第3章</a>を参照し、再発防止策を導入してください。</p>
-      </div>
-    </details>
-
-    <details class="accordion">
-      <summary>Q6. 回答の編集権限を回答者にも与えたい</summary>
-      <div class="accordion-body">
-        <p>「設定」→「全般」→「回答の編集を許可」をON。送信後の確認画面に「回答を編集」リンクが表示され、回答者は自分の回答を後から修正できます。申込キャンセル・人数変更対応に便利ですが、悪意ある改ざんリスクも生じるため、用途に応じて判断してください。</p>
-      </div>
-    </details>
-
-    <details class="accordion">
-      <summary>Q7. フォームに画像を追加したい</summary>
-      <div class="accordion-body">
-        <p>右側の質問追加メニューから🖼アイコンを選択し、画像をアップロード。会場地図・チラシ画像などを質問の合間に表示できます。各質問内にも画像を埋め込み可能（質問の右側🖼）。ただし画像が多いとモバイル読み込みが遅くなるため、最小限に留めてください。</p>
-      </div>
-    </details>
-
-    <details class="accordion">
-      <summary>Q8. ファイルアップロードを回答者に求めたい</summary>
-      <div class="accordion-body">
-        <p>質問タイプ「ファイルのアップロード」を選択。回答者はGoogleアカウントログインが必須となり、アップロードされたファイルはフォーム作成者のDriveに保存されます。容量を消費するため、写真投稿型イベント以外では使用頻度は低めです。回答者のログイン負担を考慮してください。</p>
-      </div>
-    </details>
-  </section>
-
-  <!-- 9. まとめ -->
-  <section id="summary" class="section">
-    <h2>9. 本ガイドの要点</h2>
-    <div class="info-box info-box-tip">
-      <ol class="numbered-list">
-        <li>必ずPTA共通アカウントで作成（個人アカウント運用は引き継ぎ崩壊の元凶）</li>
-        <li>質問は5〜10問が上限。表記揺れを避けるため選択肢化を優先</li>
-        <li>条件分岐とバリデーションで「集計可能なデータ」を作る</li>
-        <li>スプレッドシート連携は別タブで関数集計、連携タブには直接書き込まない</li>
-        <li>個人情報を扱う以上、利用目的・保管期限の明示は必須</li>
-      </ol>
-    </div>
-
-    <h3>関連リンク</h3>
-    <ul>
-      <li><a href="./sheets.html">Googleスプレッドシート活用ガイド</a></li>
-      <li><a href="./drive.html">Google Drive活用ガイド</a></li>
-      <li><a href="./lineworks.html">LINE WORKS活用ガイド</a></li>
-      <li><a href="../scenarios/event.html">イベント運営シナリオガイド</a></li>
-      <li><a href="../scenarios/survey.html">アンケート設計シナリオガイド</a></li>
-      <li><a href="../governance/security.html">個人情報保護完全ガイド</a></li>
-      <li><a href="https://support.google.com/docs/topic/9055404" target="_blank" rel="noopener">Googleフォーム公式ヘルプ</a></li>
-    </ul>
-  </section>
+  </div>
+</section>
 
 </main>
+
+<footer class="site-footer">
+  <p>PTA・地域活動 デジタル活用統合ガイド | CC BY 4.0</p>
+  <p><a href="../index.html">ホームに戻る</a></p>
+</footer>
 
 <script src="../assets/nav.js"></script>
 </body>
