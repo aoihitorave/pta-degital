@@ -1364,3 +1364,295 @@ main > section button:focus-visible {
   outline-offset: 3px;
   border-radius: 4px;
 }
+/* ============================================================
+   Mock-up components for tools/forms.html, tools/sheets.html
+   ============================================================ */
+
+/* Browser mockup container */
+.browser-mockup {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5em 0;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #e5e7eb;
+  border-bottom: 1px solid #d1d5db;
+}
+.browser-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.browser-dot.red { background: #ef4444; }
+.browser-dot.yellow { background: #f59e0b; }
+.browser-dot.green { background: #10b981; }
+.browser-url {
+  flex: 1;
+  margin-left: 12px;
+  padding: 4px 12px;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #4b5563;
+  font-family: monospace;
+}
+.browser-content {
+  padding: 16px;
+  background: #f9fafb;
+}
+
+/* Phone mockup */
+.phone-mockup {
+  max-width: 320px;
+  margin: 1.5em auto;
+  border: 8px solid #1f2937;
+  border-radius: 28px;
+  background: #1f2937;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+}
+.phone-screen {
+  background: #f3f4f6;
+  border-radius: 16px;
+  padding: 12px;
+  min-height: 320px;
+}
+.phone-app-bar {
+  background: #06c755;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.85em;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+.phone-msg {
+  margin-bottom: 12px;
+}
+.phone-msg-name {
+  font-size: 0.75em;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+.phone-msg-bubble {
+  background: #fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  line-height: 1.5;
+  display: inline-block;
+  max-width: 85%;
+}
+.phone-link {
+  color: #2563eb;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+/* Annotations (callout labels on mockups) */
+.annotation {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px dashed #f59e0b;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75em;
+  margin-top: 6px;
+  position: relative;
+}
+.annotation.right { float: right; }
+
+/* Mock form (template selection) */
+.mock-form {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+.mock-form-header {
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #374151;
+}
+.mock-template-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.mock-template {
+  padding: 16px 8px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #f9fafb;
+}
+.mock-template.highlighted {
+  border: 2px solid #f59e0b;
+  background: #fffbeb;
+}
+.mock-template-thumb {
+  font-size: 2em;
+  margin-bottom: 6px;
+}
+.mock-template-label {
+  font-size: 0.8em;
+  color: #6b7280;
+}
+
+/* Mock form edit screen */
+.mock-form-edit {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+.mock-input {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+}
+.mock-input.mock-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.mock-input.mock-desc {
+  font-size: 0.85em;
+  color: #6b7280;
+}
+.mock-question {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 12px;
+  background: #fff;
+  position: relative;
+}
+.mock-q-title {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.mock-q-title .required {
+  color: #dc2626;
+}
+.mock-q-radio {
+  padding: 6px 0;
+  font-size: 0.9em;
+  color: #4b5563;
+}
+
+/* Mock flow diagram (section branching, accounting structure) */
+.mock-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.mock-flow-section {
+  background: #fff;
+  border: 2px solid #06c755;
+  border-radius: 8px;
+  padding: 12px 16px;
+  width: 100%;
+  max-width: 480px;
+}
+.mock-flow-label {
+  font-weight: bold;
+  font-size: 0.85em;
+  color: #06c755;
+  margin-bottom: 6px;
+}
+.mock-flow-q {
+  font-size: 0.9em;
+  padding: 4px 0;
+  color: #374151;
+}
+.mock-flow-branches {
+  margin-top: 8px;
+  padding-left: 12px;
+  border-left: 2px solid #d1d5db;
+}
+.mock-flow-branch {
+  font-size: 0.85em;
+  color: #6b7280;
+  padding: 2px 0;
+}
+.mock-flow-arrow {
+  color: #6b7280;
+  font-size: 1.4em;
+}
+
+/* Mock spreadsheet table */
+.mock-sheet {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85em;
+  background: #fff;
+}
+.mock-sheet th,
+.mock-sheet td {
+  border: 1px solid #d1d5db;
+  padding: 6px 10px;
+  text-align: left;
+}
+.mock-sheet th {
+  background: #f3f4f6;
+  font-weight: 600;
+  color: #374151;
+}
+.mock-sheet .status-done { background: #d1fae5; color: #065f46; }
+.mock-sheet .status-doing { background: #fef3c7; color: #92400e; }
+.mock-sheet .status-todo { background: #fee2e2; color: #991b1b; }
+
+/* Bad example block (forms.html) */
+.example-bad {
+  background: #fef2f2;
+  border-left: 4px solid #dc2626;
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 4px;
+  font-size: 0.9em;
+  line-height: 1.7;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .mock-template-row {
+    grid-template-columns: 1fr;
+  }
+  .mock-flow-section {
+    max-width: 100%;
+  }
+  .browser-content {
+    padding: 8px;
+  }
+  .mock-sheet {
+    font-size: 0.75em;
+  }
+  .mock-sheet th,
+  .mock-sheet td {
+    padding: 4px 6px;
+  }
+  /* Horizontal scroll for wide tables on mobile */
+  .browser-content {
+    overflow-x: auto;
+  }
+  .phone-mockup {
+    max-width: 280px;
+  }
+  .annotation.right {
+    float: none;
+    display: block;
+    margin-top: 4px;
+  }
+}
