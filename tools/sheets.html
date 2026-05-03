@@ -1,51 +1,484 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="Googleスプレッドシートの完全ガイド。名簿・会計・進捗管理を1ファイルで運用する設計。">
-  <title></title>
-  <link rel="stylesheet" href="../assets/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Sheets完全ガイド | PTA・地域活動 デジタル活用統合ガイド</title>
+<meta name="description" content="PTA役員のためのGoogle Sheets活用完全ガイド。会計帳簿・名簿管理・進捗管理の実装を画面イメージ付きで解説。シート保護・閲覧履歴・横領防止の運用設計、引き継ぎを意識したテンプレート構造まで網羅。">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
-<body data-page-id="tool-sheets">
+<body data-page="tools/sheets">
+<main class="container">
 
-<div data-breadcrumb></div>
-
-<header class="hero">
-  <span class="hero-badge">COMING SOON · TOOL</span>
-  <h1>📊 <span class="accent">Googleスプレッドシート</span> ガイド</h1>
-  <p class="lead">名簿・会計・進捗管理を1つのファイルに集約する設計と、PTAでよく使う関数を整理する予定です。</p>
+<header class="page-header">
+  <div class="page-tag">TOOLS · 完全版</div>
+  <h1 class="page-title">Google Sheets完全ガイド</h1>
+  <p class="page-lead">PTAの会計帳簿・名簿・進捗管理は、Excelファイルをメール添付で回す運用から Google Sheets に置き換えるだけで、版管理ミス・横領リスク・引き継ぎ時のデータ消失を同時に解決できます。本ガイドは「会計担当が明日から使える帳簿テンプレート」を中心に、画面イメージ付きで実装手順を示します。</p>
+  <div class="page-meta">
+    <span>📖 想定読了時間: 30分</span>
+    <span>🎯 対象: 会計担当・書記・進捗管理を担う全役員</span>
+    <span>🔄 最終更新: 2026年5月</span>
+  </div>
 </header>
 
-<main>
-  <section class="block">
-    <h2><span class="num">📝</span>このページで書く予定の内容</h2>
-    <ul>
-      <li>Excelとの違いと共通点</li>
-      <li>標準シート構成（名簿・会計・進捗・フォーム回答の4タブ）</li>
-      <li>PTAで頻出する10個の関数（SUM・COUNTIF・QUERY・VLOOKUP等）</li>
-      <li>データの入力規則（プルダウン・必須化）</li>
-      <li>条件付き書式で進捗を可視化</li>
-      <li>ピボットテーブルで決算集計</li>
-      <li>共有とアクセス権の段階設定</li>
-    </ul>
-  </section>
+<nav aria-label="パンくず" class="breadcrumb">
+  <a href="../index.html">ホーム</a> &gt; <a href="../index.html#tools">ツールガイド</a> &gt; <span>Google Sheets完全ガイド</span>
+</nav>
 
-  <section class="block">
-    <h2><span class="num">💡</span>いまできる代替策</h2>
-    <ul>
-      <li><a href="../scenarios/event.html#step-folder">イベント運営の「フォルダ整備」</a>（公開済み）：運営シートの実例</li>
-      <li><a href="../tools/forms.html#analyze">Googleフォーム「6. 集計」</a>（公開済み）：関数の実例</li>
-    </ul>
-  </section>
+<section id="how-to-read">
+  <h2>0. このページの読み方</h2>
+  <p>担当業務に応じて、3つのルートを用意しました。</p>
+  <div class="card-row">
+    <div class="card">
+      <h3>💰 会計担当ルート（20分）</h3>
+      <p>横領防止・監査対応を含む会計帳簿の実装。</p>
+      <p><a href="#accounting">→ 第3章 会計帳簿の作り方へ</a></p>
+    </div>
+    <div class="card">
+      <h3>📋 書記・進捗管理ルート（15分）</h3>
+      <p>名簿・タスク管理・行事進捗の実装。</p>
+      <p><a href="#roster">→ 第4章 名簿管理へ</a></p>
+    </div>
+    <div class="card">
+      <h3>📚 完全版（30分）</h3>
+      <p>会長・引き継ぎ担当者向け。運用設計まで。</p>
+      <p><a href="#protection">→ 第5章 保護と権限設計へ</a></p>
+    </div>
+  </div>
+</section>
 
-  <section class="block">
-    <h2><span class="num">📮</span>先行公開リクエスト</h2>
-    <p>「会計テンプレートを早く欲しい」等、用途別の優先順位リクエストを歓迎します。</p>
-  </section>
+<section id="why-sheets">
+  <h2>1. なぜPTAでGoogle Sheetsか</h2>
+  <p>事実: PTAの会計帳簿・名簿・進捗管理は、複数役員が同時編集する性質がある一方、ExcelファイルのUSB・メール添付運用では「最新版がどれか分からない」状態が頻発します。Google Sheetsは常に1ファイル・常に最新版という設計のため、版管理問題が構造的に発生しません。</p>
+
+  <p>事実: 全国のPTAで2024年以降に複数の会計横領事件が報道されています。金沢市PTAで約1,541万円（2024年）、東京都内PTAで約600万円（2024年）、複数団体で合計約3,000万円（朝日新聞報道）の事例が確認できます（出典: <a href="https://www.asahi.com/articles/ASS8F1VS3S8FUTNB002M.html" rel="noopener">朝日新聞</a>、<a href="https://news.yahoo.co.jp/articles/e2afb4e3e810b6c1befc6028985e24b61ceda763" rel="noopener">Yahoo!ニュース</a>）。共通する構造は「会計担当1人が紙帳簿と通帳を独占管理し、誰も中身を見ない」という運用にあります。</p>
+
+  <p>推測: Google Sheetsの編集履歴・閲覧履歴・権限設計を活用すれば、横領が発生しにくい構造を技術的に担保できます。「人を信頼するから記録は不要」ではなく「人を信頼するから記録を残す」という発想転換が必要です。</p>
+
+  <div class="comparison-table">
+    <table>
+      <caption>Excel運用 vs Google Sheets運用</caption>
+      <thead>
+        <tr><th>観点</th><th>Excel + メール添付</th><th>Google Sheets</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>最新版の特定</td><td>不可能（ファイル名で類推）</td><td>常に1ファイル</td></tr>
+        <tr><td>同時編集</td><td>不可能（後勝ち上書き）</td><td>標準機能</td></tr>
+        <tr><td>編集履歴</td><td>残らない</td><td>全変更が自動記録</td></tr>
+        <tr><td>誰が見たかの追跡</td><td>不可能</td><td>アクティビティダッシュボード</td></tr>
+        <tr><td>退任時のデータ移行</td><td>USB/メールで再配布</td><td>所有権移譲のみ</td></tr>
+        <tr><td>監査対応</td><td>「最終版」の証明困難</td><td>編集履歴で完全追跡可</td></tr>
+        <tr><td>個人情報漏洩リスク</td><td>添付メール誤送信で漏洩</td><td>権限管理で制御</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="quickstart">
+  <h2>2. クイックスタート（5分で帳簿作成）</h2>
+  <p>「PTA共通アカウント」で sheets.google.com にアクセスし、「空白のスプレッドシート」を選択します。共通アカウントの取得方法は<a href="../governance/handover-design.html#common-account">引き継ぎ設計ガイド第3章</a>を参照してください。</p>
+
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">sheets.google.com</span>
+    </div>
+    <div class="browser-content">
+      <div class="mock-form">
+        <div class="mock-form-header">新しいスプレッドシートを作成</div>
+        <div class="mock-template-row">
+          <div class="mock-template highlighted">
+            <div class="mock-template-thumb">＋</div>
+            <div class="mock-template-label">空白</div>
+            <div class="annotation">① ここをクリック</div>
+          </div>
+          <div class="mock-template">
+            <div class="mock-template-thumb">📊</div>
+            <div class="mock-template-label">月間予算</div>
+          </div>
+          <div class="mock-template">
+            <div class="mock-template-thumb">📋</div>
+            <div class="mock-template-label">タスク管理</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box-warn">
+    <strong>⚠️ 個人Googleアカウントで作成しないこと</strong>
+    <p>個人アカウントで作成したシートは、退任時にアクセス権が失われ、データが孤立します。実際に「副会長が退任した瞬間に過去3年分の会計データが閲覧不能になった」事例が発生しています。必ずPTA共通アカウントで作成してください。</p>
+  </div>
+</section>
+
+<section id="accounting">
+  <h2>3. 会計帳簿の作り方（横領防止構造）</h2>
+  <p>PTA会計の最重要要件は「お金の動きが第三者にも追跡可能であること」です。以下の3シート構成で、構造的に不正がしにくい帳簿を実装します。</p>
+
+  <h3>3-1. 帳簿の3シート構成</h3>
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">docs.google.com/spreadsheets/...</span>
+    </div>
+    <div class="browser-content">
+      <div class="mock-flow">
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">シート1: 入出金明細（入力用）</div>
+          <div class="mock-flow-q">日付・摘要・収入・支出・残高・領収書ID・入力者</div>
+        </div>
+        <div class="mock-flow-arrow">↓ 自動集計</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">シート2: 月次サマリー（自動計算）</div>
+          <div class="mock-flow-q">費目別の月次集計・予算対比</div>
+        </div>
+        <div class="mock-flow-arrow">↓ 参照</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">シート3: 予算（年度初め固定）</div>
+          <div class="mock-flow-q">総会承認後ロック・編集不可</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>3-2. シート1「入出金明細」の構造</h3>
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">入出金明細シート</span>
+    </div>
+    <div class="browser-content">
+      <table class="mock-sheet">
+        <thead>
+          <tr><th>日付</th><th>摘要</th><th>費目</th><th>収入</th><th>支出</th><th>残高</th><th>領収書ID</th><th>入力者</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>4/10</td><td>会費入金（1学期）</td><td>会費収入</td><td>240,000</td><td></td><td>540,000</td><td>—</td><td>会計</td></tr>
+          <tr><td>4/15</td><td>総会資料印刷</td><td>事務費</td><td></td><td>8,400</td><td>531,600</td><td>R7-001</td><td>会計</td></tr>
+          <tr><td>4/22</td><td>運動会備品</td><td>行事費</td><td></td><td>34,500</td><td>497,100</td><td>R7-002</td><td>副会計</td></tr>
+          <tr><td>5/8</td><td>講演会講師謝礼</td><td>研修費</td><td></td><td>30,000</td><td>467,100</td><td>R7-003</td><td>会計</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p>残高は手入力ではなく数式で自動計算します。これにより転記ミスがゼロになります。</p>
+
+  <pre class="code-block">F2セル（残高初期値）: 前年度繰越額を直接入力
+F3セル以降: =F2+D3-E3</pre>
+
+  <h3>3-3. 領収書IDによる物理証憑との突合</h3>
+  <p>「領収書ID」列は単なる番号管理ではなく、物理的な領収書ファイルとシートの突合を保証する仕組みです。クリアファイルに通し番号順で保管し、シートのIDと一致させます。監査時にどちらかが欠けていれば即座に発見できます。</p>
+
+  <h3>3-4. シート2「月次サマリー」の自動集計</h3>
+  <details>
+    <summary>📊 費目別月次集計の関数（クリックで展開）</summary>
+    <p>月次サマリーシートのB2セル（4月の事務費合計）に以下を入力します。</p>
+    <pre class="code-block">=SUMIFS(入出金明細!E:E, 入出金明細!C:C, "事務費", 入出金明細!A:A, "&gt;="&amp;DATE(2025,4,1), 入出金明細!A:A, "&lt;"&amp;DATE(2025,5,1))</pre>
+    <p>これを費目×月のマトリクスにコピーすれば、月次推移が自動的に可視化されます。手動再計算は一切不要です。</p>
+    <p>予算対比は、月次サマリーシートの隣の列に予算シートからの参照式を置きます。</p>
+    <pre class="code-block">=IFERROR(B2/予算!B2, "")    （予算消化率）</pre>
+  </details>
+
+  <h3>3-5. 横領が起きにくい運用ルール</h3>
+  <div class="info-box-tip">
+    <strong>💡 構造的な不正防止策</strong>
+    <ol>
+      <li><strong>会計担当を2名以上に分散</strong>（会計と副会計）</li>
+      <li><strong>通帳と印鑑を別の役員が管理</strong>（会計が通帳、会長が印鑑）</li>
+      <li><strong>引き出しは2名以上の同行</strong>を引き継ぎ書に明記</li>
+      <li><strong>シート1は「入力者」列で誰が記録したかを必ず明示</strong></li>
+      <li><strong>監査役員にシートの閲覧権限を年度通じて付与</strong>（年度末だけでなく）</li>
+      <li><strong>編集履歴を月1回確認</strong>する役割を会長に割り当てる</li>
+    </ol>
+  </div>
+
+  <p>関連: 会計トラブルの実例と詳細な再発防止策は<a href="../governance/antipatterns.html#accounting">失敗事例集 第3章「会計トラブル」</a>を参照してください。</p>
+</section>
+
+<section id="roster">
+  <h2>4. 名簿管理</h2>
+
+  <h3>4-1. 名簿シートの構造</h3>
+  <p>PTA名簿は「最小限の項目」で「明確な利用目的」のもとに作成します。事実: 個人情報保護法において、利用目的を超えた項目を保有するだけで「目的外保有」のリスクが生じます。</p>
+
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">名簿シート（役員のみアクセス可）</span>
+    </div>
+    <div class="browser-content">
+      <table class="mock-sheet">
+        <thead>
+          <tr><th>学年</th><th>組</th><th>児童氏名</th><th>保護者氏名</th><th>連絡先</th><th>役職</th><th>同意取得日</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>3</td><td>2</td><td>○○ ○○</td><td>○○ ○○</td><td>090-xxxx</td><td>学級委員</td><td>2025/4/15</td></tr>
+          <tr><td>1</td><td>1</td><td>△△ △△</td><td>△△ △△</td><td>080-xxxx</td><td>—</td><td>2025/4/15</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>4-2. 名簿運用の鉄則</h3>
+  <ul>
+    <li>学校から受領した児童名簿は<strong>PTA活動への目的外利用不可</strong>。必ずPTA独自で保護者から同意取得して作成する</li>
+    <li>「同意取得日」列は監査・問い合わせ対応の必須項目</li>
+    <li>連絡先は「役員のみ」「広報のみ」など列単位で権限分離（後述の保護機能で実装）</li>
+    <li>退会・卒業した家庭の情報は卒業後30日以内に削除</li>
+  </ul>
+
+  <p>2025年9月時点で、静岡市内20の小中学校で約9,200名の児童情報が保護者の同意なくPTAに提供されていた事例が報道されています（出典: <a href="https://news.yahoo.co.jp/articles/aec803a33d21104996e07e4137a5fdb74034dabc" rel="noopener">Yahoo!ニュース</a>）。学校から名簿を受け取る場合は、必ず保護者個別の同意確認を経てください。</p>
+
+  <p>同意書のテンプレートは<a href="../governance/security.html#consent">セキュリティガイド第5章「同意取得の実装」</a>を参照してください。</p>
+</section>
+
+<section id="task">
+  <h2>5. 行事進捗・タスク管理</h2>
+  <p>運動会・バザー等の行事進捗は、Notionや専用ツールに頼る前に、まずSheetsで以下の構造で管理できます。</p>
+
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">運動会タスク管理シート</span>
+    </div>
+    <div class="browser-content">
+      <table class="mock-sheet">
+        <thead>
+          <tr><th>タスク</th><th>担当</th><th>期限</th><th>状態</th><th>備考</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>会場予約</td><td>副会長A</td><td>4/30</td><td class="status-done">完了</td><td>R7-予約001</td></tr>
+          <tr><td>備品発注</td><td>副会計</td><td>5/15</td><td class="status-doing">進行中</td><td>3社見積取得済</td></tr>
+          <tr><td>保護者周知</td><td>広報</td><td>5/20</td><td class="status-todo">未着手</td><td></td></tr>
+          <tr><td>当日運営マニュアル</td><td>会長</td><td>5/25</td><td class="status-todo">未着手</td><td>昨年版を流用</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <details>
+    <summary>🎨 状態列を色分けする条件付き書式（クリックで展開）</summary>
+    <ol>
+      <li>状態列（D列）を選択</li>
+      <li>「表示形式」→「条件付き書式」</li>
+      <li>「完全一致するテキスト」で「完了」→ 緑、「進行中」→ 黄、「未着手」→ 赤、を設定</li>
+    </ol>
+    <p>これにより、シートを開いた瞬間に進捗の遅延箇所が視覚的に判別できます。</p>
+  </details>
+</section>
+
+<section id="protection">
+  <h2>6. シート保護と権限設計</h2>
+
+  <h3>6-1. 「シートと範囲を保護」の使い分け</h3>
+  <p>事実: Google Sheetsには「シート全体の保護」と「特定範囲の保護」があり、PTA運用ではこれらを組み合わせて誤編集を防ぎます。</p>
+
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>保護対象</th><th>用途</th><th>編集可能者</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>予算シート全体</td><td>総会承認後の改竄防止</td><td>会長のみ（会計は閲覧可）</td></tr>
+        <tr><td>入出金明細の残高列</td><td>数式の保護</td><td>会計・副会計</td></tr>
+        <tr><td>名簿の連絡先列</td><td>権限分離</td><td>会長・副会長のみ</td></tr>
+        <tr><td>月次サマリーシート全体</td><td>自動計算の保護</td><td>会長のみ</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>6-2. 設定手順</h3>
+  <ol>
+    <li>保護したいシートのタブを右クリック→「シートを保護」</li>
+    <li>説明欄に保護理由を記入（例: 「総会承認済みのため改竄防止」）</li>
+    <li>「権限を設定」→「次のユーザーのみに編集を許可」</li>
+    <li>編集可能なユーザーを選択（複数指定可）</li>
+    <li>「完了」</li>
+  </ol>
+
+  <h3>6-3. アクセス権限の4層モデル</h3>
+  <p>シート単位の権限と、ファイル単位の共有設定を組み合わせて4層モデルを実装します。</p>
+
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>層</th><th>対象シート</th><th>共有範囲</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>機密</td><td>会計帳簿・名簿</td><td>会長・会計・副会計のみ</td></tr>
+        <tr><td>制限</td><td>議事録・行事計画</td><td>役員全員</td></tr>
+        <tr><td>共有</td><td>タスク管理・連絡事項</td><td>役員＋委員</td></tr>
+        <tr><td>公開</td><td>年間行事カレンダー</td><td>保護者全員（閲覧のみ）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>詳細な4層モデルの設計思想は<a href="../governance/security.html#access-control">セキュリティガイド第6章</a>を参照してください。</p>
+
+  <div class="info-box-warn">
+    <strong>⚠️ 「リンクを知っている全員」設定は会計帳簿に絶対使用しない</strong>
+    <p>2025年7月、奈良市内中学校PTAでGoogle Drive共有設定ミスにより211名分の生徒情報と関連PTA文書が漏洩した事故が発生しています（出典: <a href="https://www.gate02.ne.jp/lab/incident-news/nara-city-20250722/" rel="noopener">gate02.ne.jp</a>）。会計・名簿系シートは必ず「特定のユーザー」のみで共有してください。</p>
+  </div>
+</section>
+
+<section id="audit">
+  <h2>7. 編集履歴・閲覧履歴の活用</h2>
+
+  <h3>7-1. 編集履歴の確認</h3>
+  <p>「ファイル」→「変更履歴」→「変更履歴を表示」で、過去の全変更を時系列で確認できます。</p>
+  <ul>
+    <li>誰が何を変更したかセル単位で表示</li>
+    <li>過去の任意時点に復元可能</li>
+    <li>監査時の最大の武器となる機能</li>
+  </ul>
+
+  <h3>7-2. 閲覧履歴の確認</h3>
+  <p>「ツール」→「アクティビティダッシュボード」で、誰がいつシートを閲覧したかが分かります。事実: この機能はGoogle Workspaceアカウントで完全に機能し、個人Googleアカウントでも一部閲覧可能です。</p>
+
+  <div class="info-box-tip">
+    <strong>💡 監査運用への組み込み</strong>
+    <p>会長が月1回、編集履歴とアクティビティダッシュボードを確認し、「異常な深夜編集」「想定外のユーザーアクセス」がないかチェックする運用を年度初めに合意します。これだけで横領インセンティブが大幅に低下します。</p>
+  </div>
+</section>
+
+<section id="anti-patterns">
+  <h2>8. PTAでよくある失敗パターン</h2>
+
+  <details>
+    <summary>❌ 失敗1: 会計担当が個人Excelで管理し、退任時にデータ消失</summary>
+    <p>事象: 会計担当のPCローカルでExcel管理されており、PC故障で過去5年分の帳簿が消失。監査対応不能。</p>
+    <p>対策: 必ずPTA共通アカウントのGoogle Sheetsで管理。<a href="../governance/handover-design.html#common-account">引き継ぎ設計ガイド第3章</a>参照。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗2: 数式セルを上書きして残高がずれる</summary>
+    <p>事象: 役員が残高列に手入力して数式を破壊し、以降の計算が狂う。</p>
+    <p>対策: 残高列に「シートと範囲を保護」を設定。会計・副会計のみ編集可とする。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗3: 名簿の連絡先列が委員全員に見えてしまう</summary>
+    <p>事象: 名簿シートのファイル単位共有を「役員＋委員」にしたところ、本来役員限定の連絡先列まで委員が閲覧可能に。</p>
+    <p>対策: 連絡先は別シートに分離し、シート単位で権限制御。または列単位で「データの保護」設定。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗4: メールで「最新版」のCSVを配布し続ける</summary>
+    <p>事象: Google Sheetsを使っているのに、毎回CSV出力してメール添付で配布。版管理問題が再発。</p>
+    <p>対策: 共有URLのみを共有。CSV出力は監査・年度末アーカイブ等の確定タイミングのみ。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗5: 会計担当1人にアクセス権が集中</summary>
+    <p>事象: 会計担当のみがシートを編集可能で、会長すら閲覧していない。横領が発生しても発見できない。</p>
+    <p>対策: 会長・監査役員に閲覧権限を年度通じて付与。月1回の編集履歴チェックを義務化。</p>
+  </details>
+</section>
+
+<section id="comparison">
+  <h2>9. 他ツールとの比較</h2>
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>ツール</th><th>料金</th><th>強み</th><th>PTAでの位置づけ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Google Sheets</td><td>無料</td><td>同時編集・履歴・連携</td><td>第1選択</td></tr>
+        <tr><td>Excel Online</td><td>無料（MSアカウント）</td><td>関数の互換性</td><td>Microsoft 365契約校なら可</td></tr>
+        <tr><td>Excel（デスクトップ版）</td><td>有料</td><td>大規模データ・高度な分析</td><td>PTA規模では過剰、版管理問題</td></tr>
+        <tr><td>会計専用ソフト（弥生等）</td><td>有料</td><td>会計法準拠の出力</td><td>PTAには過剰機能</td></tr>
+        <tr><td>紙の出納帳</td><td>—</td><td>非デジタル世帯対応</td><td>監査・引き継ぎで詰まる</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>推測: PTA規模（年間予算100万〜1,000万円程度）では、Google Sheets で実装上の不足はほぼ発生しません。会計専用ソフトの導入は「機能不足」ではなく「政治的な信頼性の演出」として検討されることが多いですが、Google Sheetsの編集履歴の方が監査証跡として実質的に強力です。</p>
+</section>
+
+<section id="handover">
+  <h2>10. 引き継ぎ・テンプレート化</h2>
+  <p>1年使ったシートを翌年も使える「テンプレート資産」にすることで、毎年ゼロから作る無駄を排除します。</p>
+
+  <ol>
+    <li>年度終了後、当該年度のシートを「ファイル」→「コピーを作成」</li>
+    <li>コピー先のファイル名を「テンプレート_会計帳簿_R7」とする</li>
+    <li>明細データを全行削除し、ヘッダー・関数・予算シートのみ残す</li>
+    <li>「PTAテンプレート用Drive」フォルダに格納</li>
+    <li>翌年度初めに、新会計担当が「コピーを作成」して新年度シートを生成</li>
+  </ol>
+
+  <p>引き継ぎフロー全体は<a href="../governance/handover-design.html#documents">引き継ぎ設計ガイド第4章「4つの必須ドキュメント」</a>を参照してください。</p>
+</section>
+
+<section id="faq">
+  <h2>11. FAQ</h2>
+  <details>
+    <summary>Q1. 会計監査の際、Google Sheetsのまま提出できる？</summary>
+    <p>監査人の合意があれば共有URLでの監査が可能です。書面提出が求められる場合は「ファイル」→「ダウンロード」→「PDF」で出力し、編集履歴のスクリーンショットを添付すれば、改竄不能性を証明できます。</p>
+  </details>
+  <details>
+    <summary>Q2. オフラインで使える？</summary>
+    <p>Chrome拡張機能「Google Docs Offline」を有効化すれば、オフライン編集が可能です。次回オンライン時に自動同期されます。ただし複数人がオフライン編集すると競合が発生するため、PTA運用では原則オンライン使用を推奨します。</p>
+  </details>
+  <details>
+    <summary>Q3. シートが重くなってきた</summary>
+    <p>10万行を超えると動作が重くなります。PTAでは年度ごとにシートを分けることで実質的に発生しません。月次サマリーで集計済みなら、過去年度のシートは「閲覧専用」でアーカイブ化してください。</p>
+  </details>
+  <details>
+    <summary>Q4. パスワードでシートをロックできる？</summary>
+    <p>Google Sheets自体にパスワード機能はありません。アクセス制御は「特定のユーザーとの共有」と「シート保護」で実装します。これはGoogleアカウント単位の認証の方が、パスワード共有より安全という設計思想です。</p>
+  </details>
+  <details>
+    <summary>Q5. Excelファイルの取り込みは？</summary>
+    <p>「ファイル」→「インポート」で.xlsxを取り込めます。多くの関数は互換性がありますが、マクロ（VBA）は動作しません。マクロを使う場合はGoogle Apps Scriptに書き換える必要があります。</p>
+  </details>
+</section>
+
+<section id="summary">
+  <h2>12. まとめ</h2>
+  <ul>
+    <li>PTAの会計・名簿・進捗管理はGoogle Sheetsを第1選択とする</li>
+    <li>必ずPTA共通アカウントで作成し、退任時のデータ孤立を防ぐ</li>
+    <li>会計帳簿は「入出金明細／月次サマリー／予算」の3シート構成</li>
+    <li>残高列は数式・領収書IDで物理証憑と突合・「入力者」列で記録の透明化</li>
+    <li>会計担当を2名以上に分散・通帳と印鑑の管理者を分離</li>
+    <li>編集履歴とアクティビティダッシュボードを月1回確認する運用を会長に割り当てる</li>
+    <li>4層のアクセス権限（機密／制限／共有／公開）を意識した共有設計</li>
+  </ul>
+
+  <div class="related-pages">
+    <h3>📚 関連ページ</h3>
+    <ul>
+      <li><a href="../governance/security.html">セキュリティガイド</a> - 個人情報の取り扱い・4層モデル</li>
+      <li><a href="../governance/handover-design.html">引き継ぎ設計ガイド</a> - PTA共通アカウントの運用</li>
+      <li><a href="../governance/antipatterns.html#accounting">失敗事例集 第3章</a> - 会計トラブル実例</li>
+      <li><a href="forms.html">Google Forms完全ガイド</a> - 集計シートとの連携</li>
+      <li><a href="lineworks.html">LINE WORKS完全ガイド</a> - シートURLの安全な配布</li>
+      <li><a href="chatgpt.html">ChatGPT完全ガイド</a> - 関数・条件付き書式の作成支援</li>
+    </ul>
+  </div>
+</section>
+
 </main>
 
-<div data-related></div>
+<footer class="site-footer">
+  <p>PTA・地域活動 デジタル活用統合ガイド | CC BY 4.0</p>
+  <p><a href="../index.html">ホームに戻る</a></p>
+</footer>
+
 <script src="../assets/nav.js"></script>
 </body>
 </html>
