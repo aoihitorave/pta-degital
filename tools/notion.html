@@ -1,51 +1,500 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="Notionで、年度交代しても残るPTAナレッジベースを構築する手順。">
-  <title></title>
-  <link rel="stylesheet" href="../assets/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion完全ガイド | PTA・地域活動 デジタル活用統合ガイド</title>
+<meta name="description" content="PTA役員のためのNotion活用完全ガイド。引き継ぎナレッジベース・議事録・タスク管理の実装を解説。1,000ブロック制限の現実的な対処、Google Sitesとの使い分け、PTA向けページ構造テンプレート、退任時の権限継承まで網羅。">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
-<body data-page-id="tool-notion">
+<body data-page="tools/notion">
+<main class="container">
 
-<div data-breadcrumb></div>
-
-<header class="hero">
-  <span class="hero-badge">COMING SOON · TOOL</span>
-  <h1>🗂️ <span class="accent">Notion</span> ガイド</h1>
-  <p class="lead">「PTA Wikipedia」を作って、年度交代しても消えないナレッジベースを設計します。</p>
+<header class="page-header">
+  <div class="page-tag">TOOLS · 完全版</div>
+  <h1 class="page-title">Notion完全ガイド</h1>
+  <p class="page-lead">PTAの「毎年やり方を一から作り直している」問題は、引き継ぎドキュメントを紙やWordで書いている限り解決しません。Notionは「検索できる・更新できる・権限管理できる」ナレッジベースを無料で構築できますが、PTA運用には2名以上での1,000ブロック制限という大きな落とし穴があります。本ガイドはこの制約を直視した上で、現実的な採用判断と運用設計を提示します。</p>
+  <div class="page-meta">
+    <span>📖 想定読了時間: 25分</span>
+    <span>🎯 対象: 会長・引き継ぎ担当・ナレッジ管理を担う役員</span>
+    <span>🔄 最終更新: 2026年5月</span>
+  </div>
 </header>
 
-<main>
-  <section class="block">
-    <h2><span class="num">📝</span>このページで書く予定の内容</h2>
-    <ul>
-      <li>Notionが他のツールと違う点（データベース＋ドキュメントのハイブリッド）</li>
-      <li>無料プランの範囲と、PTA用途で十分な理由</li>
-      <li>PTAナレッジベースのページ構成例</li>
-      <li>「PTA Meeting」「PTA Planning」公式テンプレートの活用</li>
-      <li>議事録・規約・ベンダー連絡先・FAQの蓄積</li>
-      <li>権限設計と、保護者への一部公開</li>
-      <li>Googleドライブ・スプレッドシートとの併用設計</li>
-    </ul>
-  </section>
+<nav aria-label="パンくず" class="breadcrumb">
+  <a href="../index.html">ホーム</a> &gt; <a href="../index.html#tools">ツールガイド</a> &gt; <span>Notion完全ガイド</span>
+</nav>
 
-  <section class="block">
-    <h2><span class="num">💡</span>いまできる代替策</h2>
-    <ul>
-      <li>Notion公式：<a href="https://www.notion.com/ja/templates/pta-meeting" target="_blank" rel="noopener">PTA Meetingテンプレート</a></li>
-      <li><a href="../governance/handover-design.html">年度引き継ぎ設計</a>（準備中）</li>
-    </ul>
-  </section>
+<section id="how-to-read">
+  <h2>0. このページの読み方</h2>
+  <p>Notionの導入判断と運用設計に応じて、3つのルートを用意しました。</p>
+  <div class="card-row">
+    <div class="card">
+      <h3>🤔 採用判断ルート（10分）</h3>
+      <p>そもそもNotionを使うべきか迷っている方向け。</p>
+      <p><a href="#decision">→ 第2章 採用判断へ</a></p>
+    </div>
+    <div class="card">
+      <h3>🏗️ 構築ルート（20分）</h3>
+      <p>採用が決まった役員向け。具体的なページ構造設計。</p>
+      <p><a href="#structure">→ 第4章 ページ構造設計へ</a></p>
+    </div>
+    <div class="card">
+      <h3>📚 完全版（25分）</h3>
+      <p>会長向け。引き継ぎ・権限・代替手段比較まで。</p>
+      <p><a href="#handover">→ 第8章 引き継ぎ設計へ</a></p>
+    </div>
+  </div>
+</section>
 
-  <section class="block">
-    <h2><span class="num">📮</span>先行公開リクエスト</h2>
-    <p>Notionの導入は中級〜上級者向けと位置付けています。「導入したいが何から始めればよいか」のリクエストを特に歓迎します。</p>
-  </section>
+<section id="why-notion">
+  <h2>1. NotionをPTAで使うべき場面</h2>
+  <p>事実: Notionはページ・データベース・テキスト・画像・埋め込み等を1つのワークスペースに統合できるドキュメントツールです。Google Driveとの最大の違いは「全文検索が高速で、構造化された目次から階層的に辿れる」点にあります。</p>
+
+  <p>事実: 2026年5月時点のNotion無料プランは、個人利用ではブロック無制限ですが、2名以上のメンバーがいるワークスペースでは累計1,000ブロックの制限があります（出典: <a href="https://www.notion.com/ja/help/understanding-block-usage" rel="noopener">Notion公式ヘルプ</a>）。</p>
+
+  <p>推測: PTAで複数役員が共同編集する用途では、無料プランの1,000ブロック制限に1〜3年で到達する可能性が高いと考えられます。年度の議事録・引き継ぎ資料・行事マニュアルを蓄積していくと、1ページ平均10〜30ブロックとして100ページ前後で上限に達します。これがPTAでのNotion採用における最大の現実的制約です。</p>
+
+  <div class="info-box-warn">
+    <strong>⚠️ 「ブロック」の数え方</strong>
+    <p>Notionでは1行のテキスト・1つの見出し・1つの画像・1つの表の1行など、入力単位ごとに1ブロックとカウントされます。1ページに見出し・段落・箇条書き・画像があれば、それだけで20〜50ブロックを消費します。</p>
+  </div>
+
+  <h3>1-1. Notionが特に有効な場面</h3>
+  <ul>
+    <li>会長・副会長・引き継ぎ担当者向けの「中核ナレッジベース」</li>
+    <li>過去の決定事項・失敗事例・FAQの蓄積</li>
+    <li>議事録のデータベース化（年度・議題・決定事項で検索可能に）</li>
+    <li>業務マニュアル（行事運営手順・問い合わせ対応）</li>
+  </ul>
+
+  <h3>1-2. Notionが不向きな場面</h3>
+  <ul>
+    <li>会計帳簿・大規模な名簿管理（Google Sheets推奨）</li>
+    <li>日常の連絡・即時の意思疎通（LINE WORKS推奨）</li>
+    <li>大量のファイル保管（Google Drive推奨）</li>
+    <li>IT初心者が大半のチーム（Google Sites の方が学習コスト低）</li>
+  </ul>
+</section>
+
+<section id="decision">
+  <h2>2. 採用判断: Notion vs Google Sites vs Drive</h2>
+
+  <h3>2-1. 3ツールの比較</h3>
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>観点</th><th>Notion</th><th>Google Sites</th><th>Google Drive</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>料金</td><td>無料（1,000ブロック上限）</td><td>完全無料</td><td>完全無料</td></tr>
+        <tr><td>学習コスト</td><td>中（数時間）</td><td>低（30分）</td><td>低（既知）</td></tr>
+        <tr><td>全文検索</td><td>高速・強力</td><td>限定的</td><td>強力</td></tr>
+        <tr><td>構造化</td><td>階層+データベース</td><td>階層のみ</td><td>フォルダのみ</td></tr>
+        <tr><td>同時編集</td><td>可</td><td>可</td><td>ファイルごと</td></tr>
+        <tr><td>権限管理</td><td>ページ単位（親継承）</td><td>サイト単位</td><td>ファイル単位</td></tr>
+        <tr><td>退任時の継承</td><td>ワークスペース移譲</td><td>所有権移譲</td><td>所有権移譲</td></tr>
+        <tr><td>長期蓄積耐性</td><td>1,000ブロック制約あり</td><td>制限ほぼなし</td><td>15GB上限</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>2-2. PTA規模別の推奨</h3>
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>PTA規模</th><th>IT習熟度</th><th>推奨ツール</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>役員10名以下</td><td>低</td><td>Google Drive のフォルダ整理で十分</td></tr>
+        <tr><td>役員10〜30名</td><td>中</td><td>Google Sites（無料・容易）</td></tr>
+        <tr><td>役員10〜30名</td><td>高</td><td>Notion（1,000ブロック内に収める運用）</td></tr>
+        <tr><td>役員30名超</td><td>—</td><td>Notion有料プラン or Google Sites</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>2-3. 採用判断のチェックリスト</h3>
+  <p>以下のうち4つ以上が該当する場合のみ、PTAでのNotion採用を推奨します。</p>
+  <ul>
+    <li>役員の中に1名以上、Notionの操作経験者がいる</li>
+    <li>蓄積したい情報が「フラットなファイル」ではなく「階層+検索可能な知識」である</li>
+    <li>過去の議事録・決定事項を頻繁に参照する文化がある</li>
+    <li>引き継ぎ時に「どこに何があるか」の説明に毎年苦労している</li>
+    <li>1,000ブロック上限到達時に有料化（年払い1,650円×アクティブメンバー数）を許容できる</li>
+    <li>新任役員にNotionの使い方を教える時間（1人30分程度）を確保できる</li>
+  </ul>
+
+  <div class="info-box-tip">
+    <strong>💡 迷ったらGoogle Sitesから</strong>
+    <p>4つ以上該当しない場合は、まずGoogle Sitesで運用を始め、本当にNotionが必要になったタイミングで移行する方が現実的です。「とりあえずNotion」は、1,000ブロック到達時に大量のページを移行する負債になります。</p>
+  </div>
+</section>
+
+<section id="pricing">
+  <h2>3. 料金プランと非営利割引の現実</h2>
+
+  <h3>3-1. プラン比較</h3>
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>プラン</th><th>料金（年払い）</th><th>主要な違い</th><th>PTAでの位置づけ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>フリー</td><td>0円</td><td>2名以上で1,000ブロック上限</td><td>少人数・少情報量で第1選択</td></tr>
+        <tr><td>プラス</td><td>1,650円/月/メンバー</td><td>ブロック無制限・ファイル無制限</td><td>本格運用時の現実解</td></tr>
+        <tr><td>ビジネス</td><td>3,150円/月/メンバー</td><td>SAML SSO・高度な権限管理</td><td>PTAには過剰</td></tr>
+        <tr><td>非営利割引</td><td>プラスから50%オフ</td><td>機能はプラス同等</td><td>NPO法人格があれば検討</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>3-2. 非営利割引の申請可否</h3>
+  <p>事実: Notionの非営利向けプログラムは、登録された非営利団体に対しプラスプランの50%オフ（年払い1,650円→825円/月）を提供します（出典: <a href="https://www.notion.com/ja/nonprofits" rel="noopener">Notion非営利ページ</a>）。</p>
+
+  <p>推測: Canva for Nonprofitsと同様、日本のPTAは法人格を持たない任意団体が大半のため、申請通過は団体の登録状況に依存します。NPO法人格を持つPTAであれば申請通過の可能性がありますが、任意団体PTAでの通過実績は限定的と思われます。</p>
+
+  <h3>3-3. 現実的な料金戦略</h3>
+  <p>役員10名がアクティブメンバーになると、プラスプラン年払いで月16,500円・年間198,000円となります。これはPTA予算規模に対して無視できない金額です。以下の戦略を推奨します。</p>
+
+  <ul>
+    <li><strong>編集者を絞る</strong>: 会長・副会長・書記の3名のみアクティブメンバーとし、他は閲覧のみのゲスト権限で運用（ゲストはメンバー数にカウントされない）</li>
+    <li><strong>無料プランで運用を続ける場合</strong>: 1,000ブロック以内に収める設計（後述の構造設計参照）</li>
+    <li><strong>移行期は併用</strong>: 既存資産（Google Drive等）と並行運用し、Notionが本当に役立つかを年単位で評価</li>
+  </ul>
+</section>
+
+<section id="structure">
+  <h2>4. PTA向けページ構造の設計</h2>
+  <p>Notionの最大の落とし穴は「自由度が高すぎてページが散らかる」ことです。最初に構造を設計し、全員でその構造を守る規律が必須です。</p>
+
+  <h3>4-1. 推奨ページ構造（5階層モデル）</h3>
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">PTAナレッジベース構造</span>
+    </div>
+    <div class="browser-content">
+      <div class="mock-flow">
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">第1階層: トップページ（ホーム）</div>
+          <div class="mock-flow-q">「今年度のお知らせ」「主要リンク」「目次」のみ配置</div>
+        </div>
+        <div class="mock-flow-arrow">↓</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">第2階層: 5つの大カテゴリ</div>
+          <div class="mock-flow-q">①組織情報 ②議事録DB ③行事マニュアル ④引き継ぎ ⑤FAQ</div>
+        </div>
+        <div class="mock-flow-arrow">↓</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">第3階層: サブカテゴリ</div>
+          <div class="mock-flow-q">例: 行事マニュアル → 運動会 / バザー / 卒業式</div>
+        </div>
+        <div class="mock-flow-arrow">↓</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">第4階層: 個別ページ</div>
+          <div class="mock-flow-q">例: 運動会 → 開催準備 / 当日運営 / 振り返り</div>
+        </div>
+        <div class="mock-flow-arrow">↓</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">第5階層: 詳細・添付</div>
+          <div class="mock-flow-q">例: 当日運営 → タイムテーブル・役割分担表・連絡先</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>4-2. 5つの大カテゴリの設計意図</h3>
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>カテゴリ</th><th>主な内容</th><th>更新頻度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>① 組織情報</td><td>役員一覧・連絡先・組織図・規約</td><td>年1回（年度初め）</td></tr>
+        <tr><td>② 議事録DB</td><td>役員会・委員会の議事録（DB化）</td><td>会議ごと</td></tr>
+        <tr><td>③ 行事マニュアル</td><td>各行事の運営手順・チェックリスト</td><td>行事後に更新</td></tr>
+        <tr><td>④ 引き継ぎ</td><td>4つの必須ドキュメント・年間スケジュール</td><td>年1回（任期末）</td></tr>
+        <tr><td>⑤ FAQ</td><td>頻出質問・対応事例・トラブル対応</td><td>随時</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>4つの必須ドキュメント（組織図・運営マニュアル・決定ログ・改善ノート）の詳細は<a href="../governance/handover-design.html#documents">引き継ぎ設計ガイド第4章</a>を参照してください。</p>
+
+  <h3>4-3. 議事録のデータベース化</h3>
+  <p>議事録を単なるページではなくデータベース（Notionデータベース機能）として実装することで、年度・議題・決定事項による検索が可能になります。</p>
+
+  <details>
+    <summary>📊 議事録データベースのプロパティ設計（クリックで展開）</summary>
+    <ul>
+      <li><strong>日付</strong>（Date型）: 開催日</li>
+      <li><strong>会議種別</strong>（Select型）: 役員会 / 委員会 / 臨時 / 総会</li>
+      <li><strong>議題</strong>（Multi-select型）: 予算 / 行事 / 会員管理 / 規約 等</li>
+      <li><strong>決定事項</strong>（Text型）: 決定内容の要約</li>
+      <li><strong>担当者</strong>（Person型）: 議事録作成者・決定実行者</li>
+      <li><strong>関連行事</strong>（Relation型）: 行事マニュアルDBへのリンク</li>
+      <li><strong>承認状況</strong>（Status型）: 草案 / 確認中 / 確定</li>
+    </ul>
+    <p>このデータベースを「年度別ビュー」「議題別ビュー」「未承認ビュー」など複数の表示形式で出し分けることで、過去の意思決定経緯を素早く参照できます。</p>
+  </details>
+
+  <h3>4-4. 1,000ブロック制限内に収める運用</h3>
+  <p>無料プランで運用する場合、以下のルールでブロック消費を抑えます。</p>
+  <ul>
+    <li><strong>長文より箇条書き</strong>: 段落ブロックを増やさず、ネスト箇条書きで表現</li>
+    <li><strong>画像は外部リンク</strong>: Notionに画像をアップロードせず、Google Driveの画像へのリンクで参照</li>
+    <li><strong>古い議事録は外部化</strong>: 1年以上前の議事録はGoogle Drive PDFに移行し、Notionには見出しとリンクのみ残す</li>
+    <li><strong>テンプレート活用</strong>: 同じ構造の繰り返しはテンプレート機能で複製（ブロック数は減らないが管理コストが下がる）</li>
+  </ul>
+</section>
+
+<section id="permissions">
+  <h2>5. 権限設計</h2>
+
+  <h3>5-1. Notionの権限の3つの特性</h3>
+  <ol>
+    <li><strong>親ページの権限を子ページが継承</strong>: ルートで「全員編集可」にすると、配下すべてが編集可になる</li>
+    <li><strong>ページ単位で個別設定可能</strong>: 子ページで親と異なる権限を設定すると、以降はその設定が継承される</li>
+    <li><strong>4種類の権限レベル</strong>: フルアクセス / 編集可 / コメントのみ / 閲覧のみ</li>
+  </ol>
+
+  <h3>5-2. PTA運用での権限設計例</h3>
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>カテゴリ</th><th>会長・副会長</th><th>その他役員</th><th>委員</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>① 組織情報</td><td>編集可</td><td>閲覧のみ</td><td>閲覧のみ</td></tr>
+        <tr><td>② 議事録DB</td><td>編集可</td><td>編集可</td><td>閲覧のみ</td></tr>
+        <tr><td>③ 行事マニュアル</td><td>編集可</td><td>編集可</td><td>担当行事のみ編集可</td></tr>
+        <tr><td>④ 引き継ぎ</td><td>フルアクセス</td><td>閲覧のみ</td><td>アクセス不可</td></tr>
+        <tr><td>⑤ FAQ</td><td>編集可</td><td>コメント可</td><td>閲覧のみ</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>5-3. 個人情報を含むページの扱い</h3>
+  <div class="info-box-warn">
+    <strong>⚠️ 名簿・連絡先はNotionに置かない</strong>
+    <p>Notionは権限管理が「ページ単位の継承モデル」のため、子ページに個人情報を置くと親の共有設定変更で意図せず開示されるリスクがあります。名簿・連絡先・会計情報は権限管理がより堅牢なGoogle Sheetsに置き、Notionからは「Google Sheetsへのリンク」のみ参照する設計を推奨します。詳細は<a href="../governance/security.html#access-control">セキュリティガイド第6章</a>参照。</p>
+  </div>
+
+  <h3>5-4. 「Webに公開」設定の危険性</h3>
+  <p>Notionには「Webに公開」機能があり、これを有効化するとURLを知る誰もが閲覧可能になります。便利な機能ですが、PTA用途では以下の場合にのみ限定使用してください。</p>
+  <ul>
+    <li>公開しても問題ない情報のみ（年間行事予定・公開イベント案内等）</li>
+    <li>個人情報・連絡先・議事録は絶対に公開しない</li>
+    <li>公開ページの一覧を年度初めに会長が確認する運用</li>
+  </ul>
+</section>
+
+<section id="ai">
+  <h2>6. Notion AIの活用</h2>
+
+  <h3>6-1. Notion AIで何ができるか</h3>
+  <p>事実: Notion AIはNotion内のページを横断的に検索・要約・編集できる機能です。「過去の運動会の振り返り内容を要約して」「過去3年分の議事録から会費に関する決定だけ抽出して」などの問い合わせが可能です。</p>
+
+  <h3>6-2. 料金</h3>
+  <p>事実: Notion AIは別途有料機能として提供されており、プラス・ビジネスプラン契約者向けにアドオン課金または各プランへの統合となります。料金は時期によって変動するため、最新情報は<a href="https://www.notion.com/ja/pricing" rel="noopener">Notion公式料金ページ</a>で確認してください。</p>
+
+  <h3>6-3. PTA用途での価値</h3>
+  <p>推測: Notion AIの最大の価値は「過去ナレッジの即時参照」にあります。新任役員が「これってどうやって決まったんだっけ」と過去議事録を探す時間を、AI問い合わせで数秒に短縮できます。一方で、PTAの蓄積情報量がそもそも少ない初期段階では費用対効果が低いと考えられます。蓄積年数3年以上で運用が成熟したPTAで導入を検討する選択が合理的です。</p>
+
+  <div class="info-box-warn">
+    <strong>⚠️ AIに個人情報を入力しない</strong>
+    <p>Notion AIに対する問い合わせは、Notionワークスペース内のデータをAIモデルに送信する処理です。名簿・連絡先・センシティブな議題が含まれるページに対して使用すると、間接的な個人情報の取扱いに該当します。詳細は<a href="chatgpt.html#privacy">ChatGPT完全ガイド第5章</a>と同じ原則を適用してください。</p>
+  </div>
+</section>
+
+<section id="templates">
+  <h2>7. PTA向けテンプレート</h2>
+  <p>Notionには標準でテンプレートライブラリがあり、「議事録」「タスク管理」「ナレッジベース」等のPTAでも転用可能なテンプレートが多数用意されています。ただしPTA向けに最適化されたものは少ないため、以下の自作テンプレート構造を推奨します。</p>
+
+  <h3>7-1. 議事録テンプレートの推奨項目</h3>
+  <ul>
+    <li>会議名・日時・場所・参加者・欠席者</li>
+    <li>議題（番号付き）</li>
+    <li>各議題の議論要旨（決定事項とそれ以外を明確に区別）</li>
+    <li>決定事項（誰が・何を・いつまでに）</li>
+    <li>次回会議までの宿題（担当者・期限）</li>
+    <li>次回開催予定</li>
+  </ul>
+
+  <h3>7-2. 行事マニュアルテンプレートの推奨項目</h3>
+  <ul>
+    <li>行事概要（目的・規模・予算）</li>
+    <li>年間スケジュール（X週間前から逆算）</li>
+    <li>役割分担表（担当・副担当・サポート）</li>
+    <li>当日タイムテーブル</li>
+    <li>必要備品・調達先・予算</li>
+    <li>緊急時対応（雨天・体調不良・連絡網）</li>
+    <li>振り返りセクション（行事終了後に追記）</li>
+  </ul>
+
+  <h3>7-3. 引き継ぎチェックリストテンプレート</h3>
+  <p>引き継ぎ設計ガイド第6章「2週間プロトコル」と整合する以下の項目を含めます。</p>
+  <ul>
+    <li>共通アカウント情報の引き渡し</li>
+    <li>各種ツール（LINE WORKS / Drive / Canva 等）の権限移譲</li>
+    <li>現在進行中の案件一覧</li>
+    <li>外部関係者連絡先</li>
+    <li>過去の決定事項のうち継続中のもの</li>
+    <li>引き継ぎ完了確認のサインオフ</li>
+  </ul>
+
+  <p>引き継ぎ全体のフローは<a href="../governance/handover-design.html">引き継ぎ設計ガイド</a>を参照してください。</p>
+</section>
+
+<section id="handover">
+  <h2>8. ワークスペースの引き継ぎ</h2>
+
+  <h3>8-1. ワークスペース所有者の移譲</h3>
+  <p>事実: Notionでは「ワークスペースオーナー」という管理権限があり、メンバーの追加・削除・課金管理ができます。任期交代時にこのオーナー権限を確実に移譲する必要があります。</p>
+
+  <h3>8-2. 引き継ぎの3ステップ</h3>
+  <ol>
+    <li><strong>新会長をオーナー権限で追加</strong>（旧会長と並行して2名がオーナー期間を1〜2週間設ける）</li>
+    <li><strong>並行期間中に新会長が全機能を確認</strong>（メンバー追加・課金・権限変更）</li>
+    <li><strong>旧会長のオーナー権限を削除</strong>（または閲覧のみのゲストに降格）</li>
+  </ol>
+
+  <div class="info-box-warn">
+    <strong>⚠️ 「ワークスペースを削除する」操作の存在</strong>
+    <p>オーナー権限はワークスペースごと削除する操作も可能です。退任時のトラブル等で旧会長が悪意を持つと全データが失われるリスクがあるため、引き継ぎ完了直後に必ず<strong>「エクスポート機能」でMarkdown形式での全データバックアップ</strong>を取得してください。これは構造的なリスク低減策です。</p>
+  </div>
+
+  <h3>8-3. PTA共通アカウントとの整合</h3>
+  <p>Notionワークスペースのオーナーアカウントは、他ツールと同様にPTA共通Gmailで作成します。「個人Gmail+招待」モデルでは、退任時にデータが孤立するリスクがあります。共通アカウントの設計は<a href="../governance/handover-design.html#common-account">引き継ぎ設計ガイド第3章</a>を参照してください。</p>
+</section>
+
+<section id="anti-patterns">
+  <h2>9. PTAでよくある失敗パターン</h2>
+
+  <details>
+    <summary>❌ 失敗1: 個人アカウントでワークスペース作成</summary>
+    <p>事象: 副会長が個人GmailでNotionワークスペースを作成し、退任時にPTA運用情報を私物化することに。</p>
+    <p>対策: PTA共通Gmailでワークスペース作成。個人アカウントでの初期構築を後から共通化するのは困難なため、最初から共通アカウントで開始する。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗2: 1,000ブロック制限到達で更新不能</summary>
+    <p>事象: 役員10名がアクティブメンバーとなり、議事録・マニュアルを蓄積した結果、2年目で1,000ブロック上限に到達。新規ページ作成不能に。</p>
+    <p>対策: 設計段階で1,000ブロック制限を意識した運用ルール設定。または最初から有料プラン契約か、Google Sites での運用を検討。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗3: 権限継承の誤解で個人情報が委員全体に開示</summary>
+    <p>事象: ルートページで「役員＋委員に編集権限」を設定し、配下に作成した名簿ページが委員全員から閲覧可能に。</p>
+    <p>対策: 名簿・連絡先はNotionに置かず、Google Sheetsで管理。Notionには参照リンクのみ。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗4: 「Webに公開」を誤って有効化し議事録流出</summary>
+    <p>事象: 役員が議事録ページを「Webに公開」設定にし、検索エンジンにインデックス化された結果、保護者氏名が検索結果に表示される事態に。</p>
+    <p>対策: 「Webに公開」設定は会長承認制とし、年度初めに公開ページ一覧を会長が確認する運用ルールを定める。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗5: 構造設計なしで自由に書き始め、検索不能なカオスに</summary>
+    <p>事象: 役員それぞれが自由にページ作成し、似た内容のページが複数箇所に散在。誰も最新版を判別できない状態に。</p>
+    <p>対策: 第4章の5階層モデルで最初に構造を設計。新規ページ作成は所定の階層内のみとし、構造逸脱には会長が介入。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗6: 退任時のエクスポートを取らずデータ消失リスク</summary>
+    <p>事象: 退任した会長がワークスペース削除権限を持ったまま離脱。後任が不安を抱えながら運用継続。</p>
+    <p>対策: 引き継ぎ完了時に必ずMarkdownエクスポートを取得し、PTA共通Driveに保管。これは「念のため」ではなく必須プロセス。</p>
+  </details>
+</section>
+
+<section id="comparison">
+  <h2>10. 他ナレッジベースツールとの比較</h2>
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>ツール</th><th>料金</th><th>強み</th><th>PTAでの位置づけ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Notion</td><td>無料〜（制約あり）</td><td>柔軟性・データベース・AI</td><td>IT慣れたPTAの第1選択</td></tr>
+        <tr><td>Google Sites</td><td>完全無料</td><td>シンプル・学習コスト低</td><td>IT初心者PTAの第1選択</td></tr>
+        <tr><td>Google Drive（フォルダ運用）</td><td>完全無料</td><td>既知ツール</td><td>小規模PTAなら十分</td></tr>
+        <tr><td>Microsoft OneNote</td><td>無料</td><td>手書き対応</td><td>MS環境校なら検討</td></tr>
+        <tr><td>WordPress</td><td>無料〜（サーバー有料）</td><td>本格Webサイト</td><td>PTAには過剰</td></tr>
+        <tr><td>紙のファイル</td><td>—</td><td>慣れている</td><td>引き継ぎで詰まる</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>推測: Google Sites と Notion の選択は「現在の役員のITリテラシー」と「将来の蓄積志向」のトレードオフです。3年以上の継続運用を見据え、議事録・決定事項の構造化検索に価値を見出すPTAではNotion、年度ごとに人が大幅に入れ替わる流動性の高いPTAではGoogle Sitesが現実解です。</p>
+</section>
+
+<section id="faq">
+  <h2>11. FAQ</h2>
+  <details>
+    <summary>Q1. スマホアプリで使える？</summary>
+    <p>iOS/Androidアプリで主要機能は使えます。閲覧・コメント・短い追記は快適ですが、構造設計や長文編集はPCの方が圧倒的に効率的です。</p>
+  </details>
+  <details>
+    <summary>Q2. オフラインで使える？</summary>
+    <p>2026年5月時点で、Notionのオフライン機能は限定的です。直前に開いたページのみ一定期間オフライン閲覧可能ですが、編集には基本的にオンライン接続が必要です。</p>
+  </details>
+  <details>
+    <summary>Q3. Google Driveのファイルを埋め込める？</summary>
+    <p>埋め込みブロック機能で可能です。ただし共有設定がDrive側で「リンクを知っている全員」になっている必要があり、権限管理が二重化するため、原則「リンクを貼る」のみを推奨します。</p>
+  </details>
+  <details>
+    <summary>Q4. Wordファイルからインポートできる？</summary>
+    <p>Word・Markdown・HTML・CSV等からインポート可能です。ただしレイアウトは大きく崩れるため、過去Word資料の移行時は構造を再設計する前提で取り組んでください。</p>
+  </details>
+  <details>
+    <summary>Q5. 退任後も自分が作ったページを残しておきたい</summary>
+    <p>個人作成のページであっても、PTA共通アカウント配下のワークスペースに作成したものは「PTAの資産」として扱う規約を年度初めに合意してください。退任者の私的所有を許容すると、ナレッジが流出します。個人的に保管したい場合は、退任前に該当部分のみエクスポートし、個人ワークスペースに移動する処理が可能です。</p>
+  </details>
+  <details>
+    <summary>Q6. ブロック数は確認できる？</summary>
+    <p>ワークスペース設定の「請求」セクションでブロック使用状況が表示されます。月1回程度の確認を会長または書記の業務に組み込むと、上限到達直前の慌てた対応を回避できます。</p>
+  </details>
+</section>
+
+<section id="summary">
+  <h2>12. まとめ</h2>
+  <ul>
+    <li>NotionはPTAの中核ナレッジベースとして強力だが、無料プランの1,000ブロック制限が最大の制約</li>
+    <li>採用判断のチェックリスト4項目以上が該当しなければ、まずGoogle Sitesから始める</li>
+    <li>必ずPTA共通Gmailでワークスペースを作成（個人アカウントは私物化リスク）</li>
+    <li>5階層モデル（トップ／5大カテゴリ／サブカテゴリ／個別／詳細）で構造を最初に設計</li>
+    <li>5大カテゴリ: 組織情報／議事録DB／行事マニュアル／引き継ぎ／FAQ</li>
+    <li>名簿・連絡先・会計情報はNotionに置かず、Google Sheetsで管理しリンクのみ参照</li>
+    <li>「Webに公開」は会長承認制とし、年度初めに公開ページ一覧を確認</li>
+    <li>引き継ぎ時はオーナー権限の並行期間を設け、Markdownエクスポートを必須化</li>
+  </ul>
+
+  <div class="related-pages">
+    <h3>📚 関連ページ</h3>
+    <ul>
+      <li><a href="../governance/handover-design.html">引き継ぎ設計ガイド</a> - 4つの必須ドキュメント・2週間プロトコル</li>
+      <li><a href="../governance/security.html#access-control">セキュリティガイド第6章</a> - アクセス権限の4層モデル</li>
+      <li><a href="../governance/antipatterns.html">失敗事例集</a> - 引き継ぎ・情報漏洩の実例</li>
+      <li><a href="sheets.html">Google Sheets完全ガイド</a> - 名簿・会計の堅牢な管理</li>
+      <li><a href="chatgpt.html">ChatGPT完全ガイド</a> - AIへの個人情報入力の判断</li>
+      <li><a href="lineworks.html">LINE WORKS完全ガイド</a> - 日常コミュニケーションの分担</li>
+    </ul>
+  </div>
+</section>
+
 </main>
 
-<div data-related></div>
+<footer class="site-footer">
+  <p>PTA・地域活動 デジタル活用統合ガイド | CC BY 4.0</p>
+  <p><a href="../index.html">ホームに戻る</a></p>
+</footer>
+
 <script src="../assets/nav.js"></script>
 </body>
 </html>
