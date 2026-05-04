@@ -1,50 +1,590 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="PTA会計を、Googleスプレッドシート1枚で完結させる出納帳・領収書・決算報告の作り方。">
-  <title></title>
-  <link rel="stylesheet" href="../assets/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会計担当の年間運用 | PTA・地域活動 デジタル活用統合ガイド</title>
+<meta name="description" content="PTA会計担当が年度を通じて何を・いつ・どう実行するかを場面別に示す実践ガイド。予算編成・会費徴収・行事収支・現金取扱・監査対応・決算と総会準備までを時系列で網羅。tools/sheets.htmlの仕組み構築とantipatterns章3の不正防止を、月次運用レベルに落とし込む。">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
-<body data-page-id="sc-account">
+<body data-page="scenarios/accounting">
+<main class="container">
 
-<div data-breadcrumb></div>
-
-<header class="hero">
-  <span class="hero-badge">COMING SOON · SCENARIO</span>
-  <h1>💰 <span class="accent">会計管理</span> ガイド</h1>
-  <p class="lead">出納帳・領収書・決算報告までを、無料ツールで完結させる手順を準備中です。</p>
+<header class="page-header">
+  <div class="page-tag">SCENARIOS · 実践ガイド</div>
+  <h1 class="page-title">会計担当の年間運用</h1>
+  <p class="page-lead">tools/sheets.html が「帳簿の作り方」を、antipatterns 章3が「失敗の構造」を扱うのに対し、本ページは「4月から3月まで何を・いつ・どう実行するか」を時系列で示します。会計担当の頭の中にある段取りを、引き継ぎ可能な手順として外部化することが目的です。各章はアコーディオンで折り畳まれており、必要な章だけ展開して参照してください。</p>
+  <div class="page-meta">
+    <span>📖 想定読了時間: 章ごとに3〜5分（合計30分）</span>
+    <span>🎯 対象: 会計担当・副会計・監査役員・会長</span>
+    <span>🔄 最終更新: 2026年5月</span>
+  </div>
 </header>
 
-<main>
-  <section class="block">
-    <h2><span class="num">📝</span>このページで書く予定の内容</h2>
-    <ul>
-      <li>PTA会計の特性（現金主義・年度区切り）と、必要十分な記帳粒度</li>
-      <li>スプレッドシートでの出納帳テンプレート（コピーして使える形式）</li>
-      <li>領収書のスマホ撮影・命名規則・フォルダ構造</li>
-      <li>月次照合と会計監査のクラウド運用</li>
-      <li>決算報告書をピボットテーブル＋Canvaで作成する手順</li>
-      <li>専用会計ソフト（freee・マネーフォワード）が不要な理由</li>
-    </ul>
-  </section>
+<nav aria-label="パンくず" class="breadcrumb">
+  <a href="../index.html">ホーム</a> &gt; <a href="../index.html#scenarios">業務シナリオ</a> &gt; <span>会計担当の年間運用</span>
+</nav>
 
-  <section class="block">
-    <h2><span class="num">💡</span>いまできる代替策</h2>
-    <ul>
-      <li><a href="../tools/sheets.html">Googleスプレッドシート</a>（準備中）</li>
-      <li><a href="../governance/handover-design.html">年度引き継ぎ設計</a>（準備中）：会計データの引き継ぎ</li>
-    </ul>
-  </section>
+<section id="how-to-read">
+  <h2>0. このページの読み方</h2>
+  <p>会計担当としての位置に応じて、3つの入り口を用意しました。第0章と第1章のみ最初から開いた状態にしてあります。第2章以降は▶を押して必要な章だけ展開してください。</p>
+  <div class="card-row">
+    <div class="card">
+      <h3>🆕 新任会計担当</h3>
+      <p>就任直後にやるべき初動から読みます。</p>
+      <p><a href="#april">→ 第2章 4月の初動へ</a></p>
+    </div>
+    <div class="card">
+      <h3>🎉 行事担当が決まった</h3>
+      <p>行事収支管理・現金取扱の実務から読みます。</p>
+      <p><a href="#event">→ 第4章 行事収支管理へ</a></p>
+    </div>
+    <div class="card">
+      <h3>📊 年度末が近い</h3>
+      <p>決算・監査・総会準備から読みます。</p>
+      <p><a href="#year-end">→ 第6章 決算と監査へ</a></p>
+    </div>
+  </div>
+</section>
 
-  <section class="block">
-    <h2><span class="num">📮</span>先行公開リクエスト</h2>
-    <p>会計領域はPTAごとに規約と慣習の差が大きいため、貴PTAの規約と運用例をIssueで共有いただけると、より実用的なガイドが作れます。</p>
-  </section>
+<section id="core-message">
+  <h2>1. 会計担当の本質的な仕事</h2>
+
+  <p>事実: PTA会計担当の役割は「お金を管理すること」ではなく「お金の動きを第三者にも追跡可能な状態に保つこと」です。記帳・支払い・徴収という作業の表面に目を奪われると、本質的な仕事を見失います。</p>
+
+  <p>推測: 会計担当が任期中に消耗する最大の原因は「記録不足」と「個人責任の過剰負担」の2つです。記録が不十分なまま次の支払いに追われ、後から確認が取れない状態が積み上がり、最終的に監査・引き継ぎで破綻します。</p>
+
+  <p>本ページの基本方針は以下の3点です。詳細な仕組み設計は <a href="../tools/sheets.html">Google Sheets完全ガイド</a> を、不正発生の構造分析は <a href="../governance/antipatterns.html#accounting">失敗事例集 第3章</a> を参照してください。</p>
+
+  <div class="card-row">
+    <div class="card">
+      <h3>1. 即時記録</h3>
+      <p>取引はその日のうちに記録する。「後でまとめて」が破綻の起点。</p>
+    </div>
+    <div class="card">
+      <h3>2. 物理証憑との突合</h3>
+      <p>領収書IDで帳簿と物理書類を1対1に紐付ける。突合できない取引はゼロにする。</p>
+    </div>
+    <div class="card">
+      <h3>3. 二人体制の徹底</h3>
+      <p>引き出し・大口支払い・現金取扱は必ず2名以上で実行する。</p>
+    </div>
+  </div>
+
+  <div class="info-box-warn">
+    <strong>⚠️ 「自分1人で抱え込む」を最初から拒否する</strong>
+    <p>「忙しいから副会計に頼まずに自分でやった方が早い」という選択を続けると、年度後半に取り返しのつかない記録不足に陥ります。会計担当の最初の仕事は、副会計・会長・監査役員との役割分担を明示的に合意することです。詳細は本ページ第2章で扱います。</p>
+  </div>
+</section>
+
+<details class="chapter-details">
+<summary><h2>2. 4月の初動（任期開始から3週間）</h2><span class="summary-text">前任者からの引き継ぎ・口座と通帳の権限確認・初回の記帳・予算執行開始までを完了させる。</span></summary>
+<section id="april">
+
+<p>4月の3週間は、年度全体の運用品質を決定する期間です。初動を雑に進めると、5月以降に必ず修復作業が発生します。</p>
+
+<h3>2-1. Day 1〜3: 前任者からの引き継ぎ</h3>
+<ol>
+  <li><strong>通帳・キャッシュカード・印鑑の物理的引き渡し</strong>。会計と会長の前で実施し、引き渡し記録を作成。</li>
+  <li><strong>銀行口座の届出代表者変更</strong>。金融機関により手続きが異なるため、引き渡し当日に銀行支店窓口で確認。</li>
+  <li><strong>過去3年分の会計帳簿のアクセス確認</strong>。Google Sheetsの編集権限を確認し、過去データが閲覧可能であることを確認。</li>
+  <li><strong>未払い・未収の継続案件の引き継ぎ</strong>。年度をまたぐ取引（業者への分割支払い・滞納会費等）の一覧を文書化。</li>
+  <li><strong>監査役員との顔合わせ</strong>。年度初めから監査役員と関係性を構築。</li>
+</ol>
+
+<div class="info-box-warn">
+  <strong>⚠️ 通帳と印鑑は必ず別の役員が管理</strong>
+  <p>通帳と印鑑を同一人物が保管している状態は、横領発生時の最大のリスク要因です。実際に金沢市PTAでは2024年に約1,541万円の横領事件が発生しています（出典: <a href="https://news.yahoo.co.jp/articles/e2afb4e3e810b6c1befc6028985e24b61ceda763" rel="noopener">Yahoo!ニュース</a>）。会計が通帳、会長が印鑑、と物理的に分離してください。詳細は<a href="../governance/antipatterns.html#accounting">失敗事例集 第3章</a>参照。</p>
+</div>
+
+<h3>2-2. Day 4〜10: 帳簿環境の整備</h3>
+<ol>
+  <li><strong>新年度シートの作成</strong>: 前年度のテンプレートを「コピーを作成」し、明細データを削除、ヘッダー・関数・予算シートのみ残す。</li>
+  <li><strong>シート保護の再設定</strong>: 残高列・予算シートの保護を再適用。編集権限は会計・副会計のみに設定。</li>
+  <li><strong>領収書ファイルの新年度分作成</strong>: 物理クリアファイルに「R7年度 領収書」のラベル、ID連番カウンターを「R7-001」から開始。</li>
+  <li><strong>会長・副会長・監査役員に閲覧権限付与</strong>: 「特定のユーザー」でのみ共有。「リンクを知っている全員」は絶対に使わない。</li>
+</ol>
+
+<p>具体的なシート構築の手順は <a href="../tools/sheets.html#accounting">Google Sheets完全ガイド 第3章</a>を参照してください。</p>
+
+<h3>2-3. Day 11〜21: 役割分担と運用ルールの合意</h3>
+<p>会計担当が単独で抱える業務範囲を、明示的に分散します。以下のような形で書面化することを推奨します。</p>
+
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>業務</th><th>主担当</th><th>副担当</th><th>承認者</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>日次の記帳</td><td>会計</td><td>副会計</td><td>—</td></tr>
+      <tr><td>1万円未満の支払い</td><td>会計</td><td>—</td><td>副会計に事後報告</td></tr>
+      <tr><td>1万〜5万円の支払い</td><td>会計</td><td>—</td><td>会長承認</td></tr>
+      <tr><td>5万円以上の支払い</td><td>会計</td><td>副会計同行</td><td>役員会承認</td></tr>
+      <tr><td>銀行引き出し</td><td>会計</td><td>副会計同行（必須）</td><td>—</td></tr>
+      <tr><td>会費徴収</td><td>会計</td><td>学級委員</td><td>—</td></tr>
+      <tr><td>編集履歴の月次確認</td><td>—</td><td>—</td><td>会長</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="info-box-tip">
+  <strong>💡 金額閾値は団体規模に合わせる</strong>
+  <p>上記の金額閾値は年間予算100万〜300万円規模のPTAを想定しています。予算規模が大きいPTAでは閾値を上げ、小規模PTAでは下げる調整を行ってください。重要なのは「金額に応じて承認者が変わる」という構造であり、絶対値ではありません。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>3. 月次運用のリズム</h2><span class="summary-text">月初・月中・月末の定型タスクを習慣化し、会計の遅延を構造的に防ぐ。</span></summary>
+<section id="monthly">
+
+<p>会計の破綻は「気が付いたら3ヶ月分の領収書が未記帳」という状態から始まります。月次タスクを固定化することで、遅延の累積を構造的に防ぎます。</p>
+
+<h3>3-1. 月初（前月締めと初動）</h3>
+<ul>
+  <li><strong>前月の通帳記帳</strong>: 銀行ATMまたはオンラインバンキングで通帳を最新化</li>
+  <li><strong>通帳と帳簿の残高突合</strong>: 月末日時点の残高が一致しているかを確認。1円でも違えば原因特定が完了するまで次月の処理を進めない</li>
+  <li><strong>前月の月次サマリー出力</strong>: PDFで保存し、共通Driveの「月次レポート」フォルダに格納</li>
+  <li><strong>会長・副会長への月次共有</strong>: 月次サマリーPDFをLINE WORKSで共有</li>
+</ul>
+
+<h3>3-2. 月中（記帳の継続と進捗確認）</h3>
+<ul>
+  <li><strong>取引発生日の即日記帳</strong>: 領収書を受け取ったその日に Google Sheets に入力</li>
+  <li><strong>領収書の物理ファイリング</strong>: ID連番でクリアファイルに保管</li>
+  <li><strong>予算消化率の確認</strong>: 月次サマリーで予算対比をチェック、超過懸念の項目があれば会長に報告</li>
+</ul>
+
+<h3>3-3. 月末（月次クロージング）</h3>
+<ul>
+  <li><strong>未記帳の取引が残っていないかの確認</strong>: 物理領収書とシート明細の件数突合</li>
+  <li><strong>翌月の支払い予定の整理</strong>: 定期支払い（保険料・連合費等）を翌月のリマインダーに登録</li>
+  <li><strong>編集履歴の自己点検</strong>: 月内の自分の編集が想定通りであることを確認</li>
+</ul>
+
+<h3>3-4. 会長による月次チェック</h3>
+<p>会計担当の作業に加えて、会長が月1回行うべきチェックがあります。これは会計担当への不信ではなく、組織として正しく機能しているかの確認プロセスです。</p>
+
+<details>
+  <summary>📋 会長の月次チェック項目（クリックで展開）</summary>
+  <ul>
+    <li>☐ 月次サマリーの受領（毎月X日までに会計から共有されているか）</li>
+    <li>☐ 通帳と帳簿の残高一致を会計担当に確認</li>
+    <li>☐ Google Sheetsの編集履歴を確認（異常な深夜編集・想定外ユーザーアクセスがないか）</li>
+    <li>☐ アクティビティダッシュボードで閲覧履歴を確認</li>
+    <li>☐ 予算消化率が想定範囲か</li>
+    <li>☐ 未承認の支払い（5万円以上）が発生していないか</li>
+  </ul>
+  <p>このチェックは10〜15分で完了する作業です。「会計を信頼している」と「会計を確認している」は両立可能です。</p>
+</details>
+
+<div class="info-box-warn">
+  <strong>⚠️ 「忙しい月」ほど月次クロージングを省略しない</strong>
+  <p>月次タスクを「今月は忙しいから来月まとめて」と先送りするのは、最も典型的な破綻パターンです。10件の取引なら20分で記帳できますが、3ヶ月分30件を一度に処理すると2時間以上かかり、その間に次月の取引が発生する負の連鎖が始まります。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>4. 行事ごとの収支管理</h2><span class="summary-text">行事専用の予算枠管理・立替支払いの運用・行事終了後の収支確定までを場面別に整理。</span></summary>
+<section id="event">
+
+<p>PTAの会計トラブルの多くは行事収支で発生します。日常の会費収入・経常支出と異なり、行事は短期間に集中して大量の取引が発生するため、運用ルールが曖昧だと記録漏れが頻発します。</p>
+
+<h3>4-1. 行事ごとの予算枠管理</h3>
+<p>運動会・バザー・卒業を祝う会等の主要行事は、それぞれ独立した予算枠として管理します。</p>
+
+<ol>
+  <li><strong>行事担当者と予算上限を合意</strong>: 役員会で正式に決定し、議事録に記録</li>
+  <li><strong>シート上で行事専用の費目コードを設定</strong>: 例「運動会-備品」「運動会-飲食」「運動会-雑費」</li>
+  <li><strong>行事担当者にシートの閲覧権限を付与</strong>: 自分の行事に関する支出を担当者がリアルタイム確認できる状態にする</li>
+  <li><strong>予算消化が80%を超えた時点で会長に通知</strong>: 担当者に追加支出の事前承認を求める仕組み</li>
+</ol>
+
+<h3>4-2. 立替支払いの運用ルール</h3>
+<p>行事担当役員が個人で立て替えて、後から精算する運用は最も漏れが発生しやすい場面です。以下のルールを徹底してください。</p>
+
+<ul>
+  <li><strong>立替の事前申請</strong>: 立替予定があれば事前に会計に連絡（金額・用途・想定日）</li>
+  <li><strong>領収書は宛名「PTA」で取得</strong>: 個人名宛名の領収書は経費として処理しにくい</li>
+  <li><strong>精算申請は行事終了から2週間以内</strong>: 期限を超過した精算は原則受け付けない運用にする</li>
+  <li><strong>精算用フォーマットの統一</strong>: Google Forms で立替精算フォームを作成し、領収書写真と金額・用途を入力する形式に</li>
+  <li><strong>振込精算が原則・現金渡しは例外</strong>: 振込なら銀行記録が残るため事後確認が容易</li>
+</ul>
+
+<details>
+  <summary>📋 立替精算フォームの推奨項目（クリックで展開）</summary>
+  <ul>
+    <li>立替者氏名・連絡先メールアドレス</li>
+    <li>立替日</li>
+    <li>金額</li>
+    <li>用途（行事名・購入品目）</li>
+    <li>領収書の写真添付（画像アップロード）</li>
+    <li>振込先口座情報（毎回入力させる方が誤振込防止になる）</li>
+    <li>承認状況（会計記入欄）</li>
+  </ul>
+  <p>このフォームの回答はスプレッドシートに自動連携されるため、立替精算の進捗が一覧で把握できます。Google Forms の作り方は<a href="../tools/forms.html">Google Forms完全ガイド</a>参照。</p>
+</details>
+
+<h3>4-3. 行事終了後の収支確定（2週間以内）</h3>
+<ol>
+  <li>行事担当者から最終的な領収書一式を回収</li>
+  <li>立替精算フォームの未処理分を全て処理</li>
+  <li>シート上で行事専用費目の最終集計を確認</li>
+  <li>当初予算との比較表を作成（実績／予算／差異／差異理由）</li>
+  <li>役員会で行事収支を報告し議事録に記録</li>
+  <li>収支報告を改善ノートに残し、翌年の予算策定材料とする</li>
+</ol>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>5. 現金取扱の現場運用（バザー等）</h2><span class="summary-text">当日現金が発生する行事で、紛失・盗難・記録漏れを構造的に防ぐ運用設計。</span></summary>
+<section id="cash">
+
+<p>事実: 現金は最も追跡が困難な資産です。PTAバザー等で現金が動く場面では、「数えた人の記憶」だけが記録となるリスクがあるため、構造的な防止策が必要です。</p>
+
+<p>推測: PTAでは「保護者間の信頼」が前提のため、現金管理を厳格にすると「疑っているのか」という反発が起きやすいですが、これは逆です。厳格な仕組みは特定個人を疑うためではなく、全員を疑念から守るために存在します。役員会の冒頭でこの位置付けを明示してください。</p>
+
+<h3>5-1. バザー前日までに準備するもの</h3>
+<ul>
+  <li><strong>つり銭の準備</strong>: 必要なつり銭額を見積もり、銀行で前日までに引き出し</li>
+  <li><strong>つり銭袋（ブースごと）</strong>: 各ブースに渡す現金を袋に分け、内訳を記載</li>
+  <li><strong>現金記録用紙</strong>: 各ブースで時間帯ごとの売上を手書きで記録するフォーマット</li>
+  <li><strong>金庫または鍵付きキャッシュボックス</strong>: 当日の本部用</li>
+  <li><strong>計算機・両替用小銭</strong></li>
+  <li><strong>2名同行の役員配置計画</strong>: 現金の引き渡し・回収は必ず2名以上</li>
+</ul>
+
+<h3>5-2. 当日の現金フロー</h3>
+<div class="browser-mockup">
+  <div class="browser-bar">
+    <span class="browser-dot red"></span>
+    <span class="browser-dot yellow"></span>
+    <span class="browser-dot green"></span>
+    <span class="browser-url">バザー当日の現金フロー</span>
+  </div>
+  <div class="browser-content">
+    <div class="mock-flow">
+      <div class="mock-flow-section">
+        <div class="mock-flow-label">朝: つり銭引き渡し</div>
+        <div class="mock-flow-q">本部 → 各ブース / 受け渡し記録に2名サイン</div>
+      </div>
+      <div class="mock-flow-arrow">↓</div>
+      <div class="mock-flow-section">
+        <div class="mock-flow-label">昼: 中間回収</div>
+        <div class="mock-flow-q">各ブース → 本部 / 中間時点の売上を集計、本部で保管</div>
+      </div>
+      <div class="mock-flow-arrow">↓</div>
+      <div class="mock-flow-section">
+        <div class="mock-flow-label">夕方: 最終回収</div>
+        <div class="mock-flow-q">残金とつり銭を本部に集約 / ブースごと最終集計</div>
+      </div>
+      <div class="mock-flow-arrow">↓</div>
+      <div class="mock-flow-section">
+        <div class="mock-flow-label">終了後: 本部での集計</div>
+        <div class="mock-flow-q">2名同席で全現金カウント / 集計表作成 / 翌営業日に銀行入金</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>5-3. 「お金が合わない」を防ぐ4つのルール</h3>
+<ol>
+  <li><strong>受け渡しは必ず2名で確認</strong>: 渡す側・受け取る側の双方が金額を声に出して確認、用紙にサイン</li>
+  <li><strong>ブースごとに「期首在高」を記録</strong>: つり銭で渡した時点の金額を起点とし、最終回収時の差額を売上として算定</li>
+  <li><strong>現金から支払いをしない</strong>: 当日の追加備品購入も、本部から経費精算扱いとし、ブース現金からは支出しない</li>
+  <li><strong>当日のうちに集計表を完成させる</strong>: 翌日に持ち越すと記憶が曖昧になり、ズレの原因特定が不能に</li>
+</ol>
+
+<h3>5-4. 売上の銀行入金</h3>
+<p>原則として、回収した現金は<strong>翌営業日中に銀行へ入金</strong>します。土日のバザーであれば月曜の朝一番に。手元保管期間が長くなると盗難・紛失のリスクが累積します。入金時もATMではなく窓口を使用し、入金記録を必ず保管してください。</p>
+
+<div class="info-box-warn">
+  <strong>⚠️ 「自宅で一晩保管」を最初から拒否する</strong>
+  <p>「日曜の夜に銀行が開いていないから自宅保管」が最も一般的なリスクです。可能な限り、土日に行事を実施する場合は、土曜開催→月曜入金、または夜間金庫の利用を検討してください。やむを得ず一晩保管する場合は、自宅金庫または鍵付きの場所に保管し、保管者を明文化します。</p>
+</div>
+
+<h3>5-5. 前売券方式の検討</h3>
+<p>事実: 当日現金を扱う方式に対して、事前に前売券を販売する方式は、当日の現金量が大幅に減るため運用負荷が下がります。前売券販売の集計は Google Forms と連携させることで電子的に管理可能です。</p>
+
+<p>推測: 規模の大きい行事（来場者300名超等）では、前売券方式の方が当日のトラブルが少なく、会計担当の負荷も低減します。ただし当日参加分は現金対応せざるを得ないため、混合運用となるケースが大半です。</p>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>6. 決算と監査（1月〜3月）</h2><span class="summary-text">年度末3ヶ月で決算書類を確定し、監査を経て総会で承認を得るまでの実務フロー。</span></summary>
+<section id="year-end">
+
+<p>事実: 年度末の決算・監査・総会承認は、PTA会計担当の任期最大の山場です。1月から準備を始めれば余裕を持って3月総会に間に合いますが、2月から始めると確実に短期化します。</p>
+
+<h3>6-1. 1月: 決算準備の開始</h3>
+<ul>
+  <li><strong>残り3ヶ月の支出予定を洗い出し</strong>: 1月〜3月に確定している支払いを一覧化</li>
+  <li><strong>未収・未払いの整理</strong>: 滞納会費・未払い業者・繰越予定の取引を確認</li>
+  <li><strong>決算報告書のテンプレート準備</strong>: 前年度の決算報告書をコピーしてテンプレート化</li>
+  <li><strong>監査役員との日程調整</strong>: 2月後半〜3月前半の監査日を仮決め</li>
+</ul>
+
+<h3>6-2. 2月: 決算書類の作成</h3>
+
+<h4>6-2-1. 総会で配布する3点セット</h4>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>書類</th><th>内容</th><th>承認</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>決算報告書</td><td>当年度の収入・支出・残高を費目別に集計</td><td>総会で承認</td></tr>
+      <tr><td>予算実績比較表</td><td>当初予算に対する実績と差異を一覧化</td><td>総会で説明</td></tr>
+      <tr><td>監査報告書</td><td>監査役員による監査結果の証明</td><td>監査役員が署名</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h4>6-2-2. 決算報告書の作成手順</h4>
+<ol>
+  <li>3月末日時点（または会計年度末日時点）の残高を確定</li>
+  <li>費目別の収入合計・支出合計を Google Sheets の関数で集計</li>
+  <li>前年度との比較を含む形式で書類化</li>
+  <li>大きな差異がある費目には注釈をつける（「行事規模拡大により増加」等）</li>
+  <li>会長と副会長に事前確認を取る</li>
+</ol>
+
+<h3>6-3. 2月後半〜3月前半: 監査</h3>
+
+<h4>6-3-1. 監査役員に提示する書類</h4>
+<ul>
+  <li>決算報告書（草案）</li>
+  <li>予算実績比較表</li>
+  <li>通帳（または通帳のコピー）</li>
+  <li>領収書ファイル（年度分の物理ファイル）</li>
+  <li>Google Sheets の帳簿（閲覧権限を付与）</li>
+  <li>役員会議事録（支出承認の証跡）</li>
+  <li>PTA規約</li>
+</ul>
+
+<h4>6-3-2. 監査の典型的なチェック項目</h4>
+<details>
+  <summary>📋 監査役員が確認する項目（クリックで展開）</summary>
+  <ul>
+    <li><strong>残高の一致</strong>: 通帳残高と帳簿残高の一致</li>
+    <li><strong>領収書と帳簿の突合</strong>: 抜き取りで数件の領収書ID／金額／日付の一致確認</li>
+    <li><strong>費目別集計の正確性</strong>: 関数による自動集計の検算</li>
+    <li><strong>予算超過の有無</strong>: 役員会承認なしの予算超過がないか</li>
+    <li><strong>不自然な取引の有無</strong>: 同日の同額複数取引・休日深夜の入力等</li>
+    <li><strong>個人立替精算の正確性</strong>: 立替精算が領収書と一致しているか</li>
+    <li><strong>規約に基づく支出か</strong>: PTA規約で定められた目的内の支出か</li>
+  </ul>
+</details>
+
+<h4>6-3-3. 指摘事項への対応</h4>
+<p>監査役員から指摘があった場合、修正は以下の3パターンに分類されます。</p>
+<ol>
+  <li><strong>記載ミスの訂正</strong>: 数字の誤り・費目の分類修正など、その場で訂正</li>
+  <li><strong>追加説明が必要な事項</strong>: 監査報告書に注記として記載</li>
+  <li><strong>規約違反の疑いがある事項</strong>: 役員会で協議し、対応方針を決定。総会で説明する。</li>
+</ol>
+
+<h3>6-4. 3月: 総会準備</h3>
+<ul>
+  <li><strong>総会資料の最終化</strong>: 決算報告書・予算実績比較表・監査報告書の3点セットを確定</li>
+  <li><strong>新年度予算案の作成</strong>: 当年度実績を踏まえた次年度予算案を作成（後任会計と協議）</li>
+  <li><strong>総会での質疑想定</strong>: 大きな差異が出た費目への質問を想定して準備</li>
+  <li><strong>議事録への記録</strong>: 総会で承認された決算・予算を議事録に記録</li>
+</ul>
+
+<div class="info-box-tip">
+  <strong>💡 「総会で承認」が会計担当の最終目的地</strong>
+  <p>会計担当の1年は「総会での決算承認」で完結します。承認されれば、その時点で当年度の会計責任が組織として承認されたことになります。逆に、承認前の段階で会計担当が一方的に「終わり」と判断するのは誤りです。承認まで気を抜かないでください。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>7. 後任への引き継ぎ</h2><span class="summary-text">引き継ぎは年度末ではなく1月から始める。テンプレート整理・暗黙知の文書化・並行運用期間。</span></summary>
+<section id="handover">
+
+<p>会計担当の引き継ぎは、scenarios/handover.html の会長引き継ぎと並行して進める必要があります。後任会計が決まった時点（多くの場合1月〜2月）から、計画的に進めます。</p>
+
+<h3>7-1. 引き継ぎスケジュール</h3>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>時期</th><th>タスク</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1月</td><td>後任候補の打診・会計引き継ぎ計画の合意</td></tr>
+      <tr><td>2月</td><td>後任との初回引き継ぎミーティング（1時間）</td></tr>
+      <tr><td>2月</td><td>後任に過去帳簿の閲覧権限付与（編集権限はまだ）</td></tr>
+      <tr><td>3月初</td><td>新年度シートのテンプレート整備</td></tr>
+      <tr><td>3月中</td><td>後任との同行作業（記帳・領収書ファイリングの実演）</td></tr>
+      <tr><td>3月末</td><td>通帳・印鑑の物理引き渡し（後任就任日に実施）</td></tr>
+      <tr><td>4月初</td><td>後任の初回記帳に同席（1〜2回）</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>7-2. 後任に渡すべきドキュメント</h3>
+<ol>
+  <li><strong>会計マニュアル</strong>: 月次タスク・行事処理・現金取扱の標準手順</li>
+  <li><strong>取引先一覧</strong>: 業者名・連絡先・取引履歴・支払い条件</li>
+  <li><strong>定期支払いカレンダー</strong>: 保険料・連合費等の支払い時期</li>
+  <li><strong>監査履歴</strong>: 過去の監査指摘事項と対応</li>
+  <li><strong>「触らない方がいい」タブーリスト</strong>: 過去のトラブル経緯と現在の運用方針</li>
+  <li><strong>改善ノート</strong>: 任期中に気づいた改善案（実施できなかったものを含む）</li>
+</ol>
+
+<h3>7-3. 並行運用期間の設計</h3>
+<p>3月最終週から4月第2週までの2週間程度、新旧会計が並行して動く期間を設けます。これにより以下が担保されます。</p>
+<ul>
+  <li>4月の初回記帳・初回支払いを後任が実体験できる</li>
+  <li>不明点が発生した際にすぐ前任に質問できる</li>
+  <li>銀行口座・各種ツールの権限移譲が混乱なく進む</li>
+</ul>
+
+<div class="info-box-warn">
+  <strong>⚠️ 退任後の問い合わせ対応の境界を明示</strong>
+  <p>「いつでも聞いてね」という曖昧な約束は、退任者の生活を侵食します。「4月末まではいつでも、5〜6月は週1回まで、7月以降は緊急時のみメールで」のように、段階的に距離を取る境界を最初に合意してください。これは冷たい対応ではなく、後任が自立するための健全な設計です。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>8. よくある質問</h2><span class="summary-text">少額現金の扱い・領収書がもらえない取引・前任者の不備への対応など、現場の実務疑問。</span></summary>
+<section id="faq">
+
+<details>
+  <summary>Q1. 100円・200円の少額取引も領収書が必要か</summary>
+  <p>原則として全ての支出に領収書を取得します。少額だから不要とすると、その判断基準が曖昧になり、徐々に金額閾値が上がる傾向があります。コンビニ・スーパーでのレシートも領収書ファイルに保管してください。それが面倒な場合は、行事担当者に「物販ではなく事前見積購入」を促す方が現実解です。</p>
+</details>
+
+<details>
+  <summary>Q2. 領収書がもらえない取引（自販機・電車賃等）はどうするか</summary>
+  <p>「支払証明書」または「立替報告書」を本人が作成し、それを領収書の代替として保管します。記載項目は日付・金額・用途・本人署名。これがあれば監査時の説明が可能です。ただし頻発する場合は、運用ルールを見直してください（PASMO・SUICA一括チャージで電車賃をまとめる等）。</p>
+</details>
+
+<details>
+  <summary>Q3. 前任者の帳簿に不備が見つかった場合</summary>
+  <p>事実: 前任会計の帳簿に記載漏れ・残高ズレ・不明な取引がある場合があります。これに直面したとき、新会計として取れる選択肢は3つです。一つ目は「前任者に確認を依頼する」（多くは協力的）、二つ目は「会長と相談し、新年度開始時点の残高を確定させて以降を正常化する」、三つ目は「不備が大きい場合は監査役員と会長に正式報告し、組織として対応を協議する」。三つ目は最終手段ですが、不備の規模によっては必要です。一人で抱え込まず、会長・監査役員と早期に共有してください。</p>
+</details>
+
+<details>
+  <summary>Q4. 役員から「自分のクラスだけ会費を後払いで良いか」と言われた</summary>
+  <p>原則として個別の例外を作ると、運用が破綻します。家計事情等の正当な理由がある場合は、「PTA会費の減免・分割払いの規約」が組織として整備されているかを確認し、規約に従って対応してください。会計担当が個別に判断する範囲を超えるため、会長・役員会に判断を委ねます。</p>
+</details>
+
+<details>
+  <summary>Q5. オンラインバンキングを導入すべきか</summary>
+  <p>事実: オンラインバンキングは振込・残高確認・取引明細取得が容易になり、月次クロージングの工数が大幅に下がります。一方、不正アクセス・誤送金のリスクがあるため、導入時は2要素認証の徹底・実行者と承認者の分離が必須です（出典: <a href="https://zen-p.net/tp/p414.html" rel="noopener">全国PTA連絡協議会</a>）。導入判断は、年度途中ではなく次年度予算と合わせて役員会で議決するのが現実的です。</p>
+</details>
+
+<details>
+  <summary>Q6. 任期中にミスが発覚した場合</summary>
+  <p>個人で抱え込まず、判明した時点で会長に報告してください。早期報告は組織として対応する余地が大きく、隠蔽は最も問題を悪化させます。報告後は、ミスの内容・影響範囲・修正方針を文書化し、役員会・必要に応じて監査役員にも共有します。深刻な精神的負荷を感じる場合は、信頼できる相談先の利用を検討してください。</p>
+</details>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>9. 関連ページ・チェックリスト</h2><span class="summary-text">本ページと併読すべきガイドと、会計担当として年度を通じて参照する各時期のチェック項目。</span></summary>
+<section id="related">
+
+<h3>9-1. 必読の関連ページ</h3>
+<ul>
+  <li><a href="../tools/sheets.html">Google Sheets完全ガイド</a> - 帳簿の3シート構成・関数・シート保護</li>
+  <li><a href="../governance/antipatterns.html#accounting">失敗事例集 第3章</a> - 横領・立替不透明・現金管理の失敗実例</li>
+  <li><a href="../governance/security.html">セキュリティガイド</a> - 個人情報・アクセス権限の4層モデル</li>
+  <li><a href="handover.html">新会長・役員交代の引き継ぎ実践</a> - 会計と並行する会長引き継ぎ</li>
+</ul>
+
+<h3>9-2. 推奨の関連ページ</h3>
+<ul>
+  <li><a href="../tools/forms.html">Google Forms完全ガイド</a> - 立替精算フォーム・前売券販売フォーム</li>
+  <li><a href="../tools/lineworks.html">LINE WORKS完全ガイド</a> - 月次サマリーの共有経路</li>
+  <li><a href="../governance/handover-design.html">引き継ぎ設計ガイド</a> - 共通アカウント設計</li>
+</ul>
+
+<h3>9-3. 時期別チェックリスト</h3>
+<details>
+  <summary>✅ 4月初動チェック（クリックで展開）</summary>
+  <ul>
+    <li>☐ 通帳・キャッシュカード・印鑑の物理引き渡し完了</li>
+    <li>☐ 銀行口座の届出代表者変更</li>
+    <li>☐ Google Sheets 過去3年分のアクセス確認</li>
+    <li>☐ 新年度シートのテンプレート作成</li>
+    <li>☐ シート保護の再設定</li>
+    <li>☐ 領収書ファイル新年度分の作成</li>
+    <li>☐ 会長・副会長・監査役員に閲覧権限付与</li>
+    <li>☐ 役割分担表の合意・文書化</li>
+    <li>☐ 副会計との顔合わせ・運用ルール合意</li>
+  </ul>
+</details>
+
+<details>
+  <summary>✅ 月次クロージングチェック（クリックで展開）</summary>
+  <ul>
+    <li>☐ 通帳記帳と最新化</li>
+    <li>☐ 通帳と帳簿の残高一致確認</li>
+    <li>☐ 月次サマリーPDF出力</li>
+    <li>☐ 共通Driveへの保管</li>
+    <li>☐ 会長・副会長への共有</li>
+    <li>☐ 物理領収書とシート明細の件数突合</li>
+    <li>☐ 翌月支払い予定の整理</li>
+  </ul>
+</details>
+
+<details>
+  <summary>✅ 年度末（決算・監査・総会）チェック（クリックで展開）</summary>
+  <ul>
+    <li>☐ 1月: 残り3ヶ月の支出予定洗い出し</li>
+    <li>☐ 1月: 監査日程の仮決め</li>
+    <li>☐ 2月: 決算報告書草案作成</li>
+    <li>☐ 2月: 予算実績比較表作成</li>
+    <li>☐ 2月後半: 監査実施</li>
+    <li>☐ 3月初: 監査指摘の修正対応</li>
+    <li>☐ 3月: 総会資料3点セット確定</li>
+    <li>☐ 3月: 新年度予算案作成（後任と協議）</li>
+    <li>☐ 3月: 総会での承認獲得</li>
+    <li>☐ 3月: 議事録に承認内容を記録</li>
+  </ul>
+</details>
+
+<details>
+  <summary>✅ 引き継ぎチェック（クリックで展開）</summary>
+  <ul>
+    <li>☐ 1月: 後任への打診</li>
+    <li>☐ 2月: 後任との初回ミーティング</li>
+    <li>☐ 2月: 後任に過去帳簿の閲覧権限付与</li>
+    <li>☐ 3月初: 新年度シートのテンプレート整備</li>
+    <li>☐ 3月中: 後任との同行作業</li>
+    <li>☐ 3月末: 通帳・印鑑の物理引き渡し</li>
+    <li>☐ 3月末: 銀行口座の届出代表者変更手続き開始</li>
+    <li>☐ 4月初: 後任の初回記帳に同席</li>
+    <li>☐ 退任後の問い合わせ対応の境界を文書化</li>
+  </ul>
+</details>
+
+</section>
+</details>
+
 </main>
 
-<div data-related></div>
+<footer class="site-footer">
+  <p>PTA・地域活動 デジタル活用統合ガイド | CC BY 4.0</p>
+  <p><a href="../index.html">ホームに戻る</a></p>
+</footer>
+
 <script src="../assets/nav.js"></script>
 </body>
 </html>
