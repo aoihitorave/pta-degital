@@ -1656,3 +1656,96 @@ main > section button:focus-visible {
     margin-top: 4px;
   }
 }
+/* ============================================================
+   Chapter-level accordion (scenarios pages)
+   章レベルのアコーディオン: タイトル＋1行サマリーを常時表示
+   ============================================================ */
+
+.chapter-details {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  background: #fff;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.chapter-details[open] {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.chapter-details > summary {
+  padding: 16px 20px;
+  cursor: pointer;
+  list-style: none;
+  background: linear-gradient(to right, #f9fafb, #fff);
+  border-left: 4px solid #06c755;
+  transition: background 0.15s ease;
+  position: relative;
+}
+
+.chapter-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.chapter-details > summary:hover {
+  background: linear-gradient(to right, #f3f4f6, #f9fafb);
+}
+
+.chapter-details > summary::before {
+  content: "▶";
+  display: inline-block;
+  margin-right: 12px;
+  color: #06c755;
+  font-size: 0.85em;
+  transition: transform 0.2s ease;
+}
+
+.chapter-details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.chapter-details > summary > h2 {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 1.25em;
+  color: #1f2937;
+  vertical-align: middle;
+}
+
+.chapter-details > summary > .summary-text {
+  display: block;
+  margin-top: 8px;
+  margin-left: 24px;
+  font-size: 0.9em;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.chapter-details[open] > summary {
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 0;
+}
+
+.chapter-details > section {
+  padding: 8px 24px 24px;
+}
+
+@media (max-width: 768px) {
+  .chapter-details > summary {
+    padding: 14px 16px;
+  }
+  .chapter-details > summary > h2 {
+    font-size: 1.1em;
+  }
+  .chapter-details > summary > .summary-text {
+    margin-left: 18px;
+    font-size: 0.85em;
+  }
+  .chapter-details > section {
+    padding: 8px 16px 20px;
+  }
+}
