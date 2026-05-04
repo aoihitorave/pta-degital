@@ -1,51 +1,504 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="Canvaでチラシ・広報誌・ポスターを作る完全ガイド。テンプレート活用とネット印刷連携。">
-  <title></title>
-  <link rel="stylesheet" href="../assets/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canva完全ガイド | PTA・地域活動 デジタル活用統合ガイド</title>
+<meta name="description" content="PTA役員のためのCanva活用完全ガイド。お便り・チラシ・ポスター・名札・しおりの5大制作物をデザイン非専門者でも作れる工程設計で解説。ChatGPTで文案、Canvaでレイアウト、LINE WORKSで配布の3ツール連携、著作権・商用利用の注意点まで。">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
-<body data-page-id="tool-canva">
+<body data-page="tools/canva">
+<main class="container">
 
-<div data-breadcrumb></div>
-
-<header class="hero">
-  <span class="hero-badge">COMING SOON · TOOL</span>
-  <h1>🎨 <span class="accent">Canva</span> ガイド</h1>
-  <p class="lead">テンプレートからのデザイン、共同編集、QRコード、ネット印刷入稿までを準備中です。</p>
+<header class="page-header">
+  <div class="page-tag">TOOLS · 完全版</div>
+  <h1 class="page-title">Canva完全ガイド</h1>
+  <p class="page-lead">PTAのお便り・チラシ・ポスターは、デザイン経験ゼロでもCanvaで「それなりに見える」品質まで到達できます。重要なのは「センス」ではなく「工程の分解」です。本ガイドは、デザイン非専門者がやりがちな失敗を構造的に回避するための判断基準と作業手順を、画面操作ではなく設計思想として解説します。</p>
+  <div class="page-meta">
+    <span>📖 想定読了時間: 25分</span>
+    <span>🎯 対象: 広報・行事担当・お便り作成を担う全役員</span>
+    <span>🔄 最終更新: 2026年5月</span>
+  </div>
 </header>
 
-<main>
-  <section class="block">
-    <h2><span class="num">📝</span>このページで書く予定の内容</h2>
-    <ul>
-      <li>無料プランで足りる範囲と、有料版（Canva Pro）の判断基準</li>
-      <li>テンプレートの選び方と、PTAらしいトーンへの調整</li>
-      <li>テキスト・画像・QRコードの基本操作</li>
-      <li>ブランドキット機能でのトーン統一（色・フォント）</li>
-      <li>共同編集の運用</li>
-      <li>PDF入稿とラクスル・プリントパック等への発注手順</li>
-      <li>著作権・商用利用の注意点</li>
-    </ul>
-  </section>
+<nav aria-label="パンくず" class="breadcrumb">
+  <a href="../index.html">ホーム</a> &gt; <a href="../index.html#tools">ツールガイド</a> &gt; <span>Canva完全ガイド</span>
+</nav>
 
-  <section class="block">
-    <h2><span class="num">💡</span>いまできる代替策</h2>
-    <ul>
-      <li><a href="../scenarios/event.html#step-flyer">イベント運営の「告知チラシ」</a>（公開済み）：Canvaでのチラシ作成例</li>
-      <li>Canva公式：<a href="https://www.canva.com/ja_jp/learn/" target="_blank" rel="noopener">使い方ガイド</a></li>
-    </ul>
-  </section>
+<section id="how-to-read">
+  <h2>0. このページの読み方</h2>
+  <p>担当業務に応じて3つのルートを用意しました。Canvaの操作方法そのものは公式ヘルプとYouTube解説が充実しているため、本ページでは「PTA特有の判断基準」に絞って記述します。</p>
+  <div class="card-row">
+    <div class="card">
+      <h3>📄 お便り作成ルート（10分）</h3>
+      <p>毎月のお便りを継続的に作る役員向け。</p>
+      <p><a href="#newsletter">→ 第3章 お便り作成へ</a></p>
+    </div>
+    <div class="card">
+      <h3>🎉 行事広報ルート（15分）</h3>
+      <p>運動会・バザー等の単発広報担当向け。</p>
+      <p><a href="#flyer">→ 第4章 チラシ・ポスターへ</a></p>
+    </div>
+    <div class="card">
+      <h3>📚 完全版（25分）</h3>
+      <p>会長・広報部長向け。著作権・3ツール連携まで。</p>
+      <p><a href="#workflow">→ 第8章 ツール連携へ</a></p>
+    </div>
+  </div>
+</section>
 
-  <section class="block">
-    <h2><span class="num">📮</span>先行公開リクエスト</h2>
-    <p>「広報誌でこういうレイアウトを実現したい」等、具体的な作例リクエストを歓迎します。</p>
-  </section>
+<section id="why-canva">
+  <h2>1. なぜPTAでCanvaか</h2>
+  <p>事実: 2026年5月時点で、Canva無料版でもPTA活動に必要な機能はほぼ揃います。テンプレート数は数十万点、PTA向けテンプレートだけでも数千点が無料で利用可能です。</p>
+
+  <p>推測: PTAのお便り作成で「Wordでレイアウトに何時間も格闘する」作業の本質的な問題は、Wordがそもそもレイアウトツールではないことにあります。Canvaは「テンプレート選択→文字差し替え→出力」というレイアウト前提の道具のため、同じ品質のお便りを5分の1〜10分の1の時間で作成できます。</p>
+
+  <div class="comparison-table">
+    <table>
+      <caption>制作物別の時間比較（経験的目安）</caption>
+      <thead>
+        <tr><th>制作物</th><th>Word/手書き</th><th>Canva</th><th>削減率</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>月次お便り（A4 1枚）</td><td>2〜4時間</td><td>20〜30分</td><td>約85%</td></tr>
+        <tr><td>運動会チラシ（A4 両面）</td><td>4〜8時間</td><td>1〜2時間</td><td>約75%</td></tr>
+        <tr><td>ポスター（A3）</td><td>4〜6時間</td><td>1時間</td><td>約80%</td></tr>
+        <tr><td>名札（一括20枚）</td><td>2〜3時間</td><td>30分</td><td>約80%</td></tr>
+        <tr><td>SNS投稿画像</td><td>1〜2時間</td><td>10分</td><td>約90%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box-tip">
+    <strong>💡 「センス」ではなく「テンプレート選択」</strong>
+    <p>デザイン非専門者がCanvaで失敗する最大の原因は「ゼロから作ろうとする」ことです。Canvaの真価は「PTAという文脈に9割合致するテンプレートが既に存在する」点にあります。本ガイドはテンプレート選択の判断基準に重心を置きます。</p>
+  </div>
+</section>
+
+<section id="plan">
+  <h2>2. 無料版・有料版・特別プランの選択</h2>
+
+  <h3>2-1. 3つの選択肢</h3>
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>プラン</th><th>料金</th><th>主要機能</th><th>PTAでの位置づけ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>無料版</td><td>0円</td><td>テンプレート数十万点・基本機能</td><td>第1選択</td></tr>
+        <tr><td>Canva Pro</td><td>1,500円/月（個人）</td><td>有料素材・背景透過・1億点超素材</td><td>個人負担での加入は不要</td></tr>
+        <tr><td>Canva for Nonprofits</td><td>0円（要審査）</td><td>Pro機能を50人まで無料</td><td>申請可能性あり</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>2-2. Canva for Nonprofitsの申請可否</h3>
+  <p>事実: Canva for Nonprofits は「登録された非営利団体」が対象で、認定されると50人以下のチーム1つに対しPro機能が無料提供されます。日本のPTAは法人格を持たない任意団体が大半のため、申請通過は団体の登録状況に依存します。</p>
+
+  <p>推測: 任意団体のPTAでは申請が通らない可能性が高いと思われます。確実に通過するには、まずはNPO法人格の取得や、認定NPO法人「日本ファンドレイジング協会」等を通じた申請ルートを検討する必要があり、PTA単体での申請は現実的ではないケースが多いです。</p>
+
+  <div class="info-box-tip">
+    <strong>💡 結論: 無料版で十分</strong>
+    <p>PTAのお便り・チラシ・ポスター程度の用途であれば、無料版で機能不足はほぼ発生しません。Pro限定の有料素材を使いたい場合のみ検討すれば良く、個人課金で会費を立て替える運用は推奨しません（引き継ぎで断絶するため）。</p>
+  </div>
+
+  <h3>2-3. 個人アカウントではなくPTA共通アカウントで使う</h3>
+  <p>Canvaのアカウント設計は他ツールと同様、「PTA共通アカウント（共通Gmail）でログインし、過去のデザインを年度を超えて資産化する」が鉄則です。個人アカウントで作成したデザインは退任時に閲覧不能になります。詳細は<a href="../governance/handover-design.html#common-account">引き継ぎ設計ガイド第3章</a>参照。</p>
+</section>
+
+<section id="design-principles">
+  <h2>3. デザイン非専門者のための4つの原則</h2>
+  <p>「センスがないから作れない」と感じる方の多くは、実は4つの原則を知らないだけです。これらは1990年代にRobin Williamsが提唱したCRAP原則として広く知られている設計知識で、Canvaでもそのまま適用できます。</p>
+
+  <div class="card-row">
+    <div class="card">
+      <h3>1. 近接（Proximity）</h3>
+      <p>関連する情報は近づけ、無関係なものは離す。「日時・場所・連絡先」を別々の場所に散らさず1ブロックにまとめる。</p>
+    </div>
+    <div class="card">
+      <h3>2. 整列（Alignment）</h3>
+      <p>すべての要素を見えない線に揃える。中央揃えと左揃えを混在させない。Canvaの「グリッドにスナップ」機能を有効化。</p>
+    </div>
+    <div class="card">
+      <h3>3. 反復（Repetition）</h3>
+      <p>同じ役割の要素は同じスタイルで。見出しの色・フォント・サイズを統一する。年度を通じて同じテンプレートを使う。</p>
+    </div>
+    <div class="card">
+      <h3>4. コントラスト（Contrast）</h3>
+      <p>重要な情報は他と明確に差をつける。中途半端な強調はかえって読みにくい。タイトルは本文の2倍以上のサイズに。</p>
+    </div>
+  </div>
+
+  <h3>3-1. PTA配布物で守るべき具体ルール</h3>
+  <ul>
+    <li><strong>フォントは2種類まで</strong>（見出し用と本文用）</li>
+    <li><strong>色は3色まで</strong>（メイン色・サブ色・差し色）</li>
+    <li><strong>本文サイズは10pt以上</strong>（A4印刷時に高齢者が読める下限）</li>
+    <li><strong>余白は紙端から最低15mm確保</strong>（家庭用プリンタで端が切れる事故防止）</li>
+    <li><strong>背景に画像を敷く場合は透過率を上げる</strong>（文字が読めなくなる失敗の最頻原因）</li>
+  </ul>
+
+  <div class="info-box-warn">
+    <strong>⚠️ 「もっと派手にしたい」誘惑への対処</strong>
+    <p>役員会で「もっと目立つように」「もっと色を増やして」という意見が出やすいですが、これはほぼ常に逆効果です。情報量過多の配布物は読まれません。「派手にする」ではなく「重要な情報を1つだけ目立たせる」が正しい方向性です。</p>
+  </div>
+</section>
+
+<section id="newsletter">
+  <h2>4. 月次お便りの作り方</h2>
+
+  <h3>4-1. テンプレート選択の判断基準</h3>
+  <p>Canvaの検索窓で「PTA」「お便り」「学校」「ニュースレター」のいずれかで検索します。出てきたテンプレートから選ぶ際の判断基準は以下です。</p>
+
+  <ol>
+    <li><strong>情報密度が自分の用途と合致しているか</strong>（記事3本構成のテンプレートに記事1本だけ載せると不自然）</li>
+    <li><strong>色数が3色以内か</strong>（4色以上のテンプレートは派手で読みにくい）</li>
+    <li><strong>フォントが日本語に対応しているか</strong>（英語専用フォントは日本語化で崩れる）</li>
+    <li><strong>無料素材だけで構成されているか</strong>（王冠マークがついた素材は有料）</li>
+  </ol>
+
+  <h3>4-2. 月次お便りの工程表</h3>
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">月次お便り作成工程</span>
+    </div>
+    <div class="browser-content">
+      <div class="mock-flow">
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">工程1: 文案準備（5分）</div>
+          <div class="mock-flow-q">ChatGPTで文案下書き → 役員確認 → 確定文を箇条書きでメモ</div>
+        </div>
+        <div class="mock-flow-arrow">↓</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">工程2: テンプレート選択（5分）</div>
+          <div class="mock-flow-q">前年度と同じテンプレートを「コピーを作成」（年度通じて反復原則）</div>
+        </div>
+        <div class="mock-flow-arrow">↓</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">工程3: 文字差し替え（10分）</div>
+          <div class="mock-flow-q">タイトル・日付・本文を順に差し替え、レイアウトは触らない</div>
+        </div>
+        <div class="mock-flow-arrow">↓</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">工程4: 出力・配布（5分）</div>
+          <div class="mock-flow-q">PDF出力 → LINE WORKSで配布 / 紙印刷分は学校経由</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>4-3. 「テンプレートのコピー」を年度資産にする</h3>
+  <p>毎月ゼロからテンプレートを選び直すのは非効率かつ反復原則違反です。年度初めに「PTAお便りマスター」を1つ確定させ、毎月「コピーを作成」してから差し替える運用が正解です。これによりブランドの一貫性も担保されます。</p>
+
+  <details>
+    <summary>📝 PTAお便りマスター作成の手順（クリックで展開）</summary>
+    <ol>
+      <li>4月号を作成する際、テンプレートを慎重に選ぶ（ここに時間をかける）</li>
+      <li>4月号完成後、「コピーを作成」して「マスター_PTAお便り」とリネーム</li>
+      <li>マスター内の本文をすべて「ここに本文」のような汎用文言に置換</li>
+      <li>マスターをPTA共通DriveのCanva連携フォルダ（実体はCanva上のフォルダ）に保管</li>
+      <li>5月号以降は、マスターを「コピーを作成」して新しい号として作業</li>
+      <li>引き継ぎ時、新会長にマスターの場所を共有</li>
+    </ol>
+  </details>
+</section>
+
+<section id="flyer">
+  <h2>5. 行事チラシ・ポスター</h2>
+
+  <h3>5-1. チラシとポスターの設計差</h3>
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>観点</th><th>チラシ（配布前提）</th><th>ポスター（掲示前提）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>サイズ</td><td>A4・B5</td><td>A3・A2</td></tr>
+        <tr><td>読まれる距離</td><td>30cm（手元）</td><td>1〜3m（離れて）</td></tr>
+        <tr><td>情報量</td><td>多め可（詳細記載可）</td><td>絞り込み必須</td></tr>
+        <tr><td>タイトル文字サイズ</td><td>本文の2倍程度</td><td>本文の4〜6倍</td></tr>
+        <tr><td>核となる情報</td><td>日時・場所・申込方法・連絡先</td><td>イベント名・日時のみで十分</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>5-2. 「日時・場所・申込方法・連絡先」を1ブロックにまとめる</h3>
+  <p>近接の原則の最重要適用例です。これら4要素が散らばっているチラシは、必要な情報を読み取るのに時間がかかり、結果として申込み率が下がります。1つの目立つボックスにまとめてください。</p>
+
+  <h3>5-3. 写真を使う際の3つの判断</h3>
+  <ol>
+    <li><strong>子どもの顔が映る写真の使用には、保護者全員の同意が必要</strong>。同意取得状況が不明な写真は使用不可。</li>
+    <li><strong>Canvaの素材ライブラリの写真は商用利用可</strong>だが、有料素材（王冠マーク）は無料版では透かしが残る。</li>
+    <li><strong>外部サイトから写真を持ち込む場合は出典・ライセンスを必ず確認</strong>。「Google画像検索で見つけた」は最も危険。</li>
+  </ol>
+
+  <p>子どもの写真使用の同意取得テンプレートは<a href="../governance/security.html#consent">セキュリティガイド第5章</a>を参照してください。</p>
+
+  <div class="info-box-warn">
+    <strong>⚠️ よくある失敗: 行事直前の写真権利問題</strong>
+    <p>運動会前日にチラシを完成させてから、特定家庭から「自分の子の顔が映っている写真を使わないでほしい」と申し出があった事例があります。写真使用は撮影時点で個別同意を取得し、同意済み写真のみを「使用可フォルダ」に分けて運用する設計が必要です。</p>
+  </div>
+</section>
+
+<section id="other-items">
+  <h2>6. 名札・しおり・SNS画像</h2>
+
+  <h3>6-1. 名札（一括作成）</h3>
+  <p>役員会・行事スタッフの名札は、Canvaの「一括作成」機能で名簿CSVから自動生成できます。</p>
+  <ul>
+    <li>名札テンプレートを1枚作成し、氏名・役職を変数化</li>
+    <li>名簿をCSV形式でアップロード</li>
+    <li>20枚分が自動生成される</li>
+    <li>1枚ずつ作る作業時間を実質ゼロに</li>
+  </ul>
+
+  <h3>6-2. しおり（多ページ）</h3>
+  <p>修学旅行・宿泊行事のしおりは、Canvaのプレゼンテーション形式（横向き）または書籍形式（縦向き）テンプレートが使えます。</p>
+  <ul>
+    <li>表紙・目次・各日程・持ち物・連絡先を1ページずつ構成</li>
+    <li>同じ見出しスタイルを全ページで使う（反復原則）</li>
+    <li>PDF出力時は「印刷向け」設定で出力（解像度確保）</li>
+  </ul>
+
+  <h3>6-3. SNS投稿画像</h3>
+  <p>PTA公式SNS（Instagram・X等）の運用がある場合、Canvaの「Instagram投稿」「Xポスト」テンプレートを使えば、サイズ調整不要で作成できます。</p>
+  <ul>
+    <li>Instagram投稿: 正方形（1080×1080px）</li>
+    <li>Xポスト: 横長（1600×900px推奨）</li>
+    <li>同じデザインを「サイズ変更」機能で各種SNSに展開可能（無料版でも一部対応）</li>
+  </ul>
+</section>
+
+<section id="copyright">
+  <h2>7. 著作権・商用利用の整理</h2>
+
+  <h3>7-1. PTAは「商用利用」に該当するか</h3>
+  <p>事実: Canvaの利用規約上、「商用利用」は無加工の販売・有料配布が主に問題視されており、PTAのチラシ印刷・無料配布は商用利用の制限に抵触しません。Canva公式FAQでも「Canva内のテンプレートを使用したチラシの印刷配布は問題ない」と明記されています（出典: <a href="https://www.canva.com/ja_jp/help/using-canva-to-create-products-for-sale/" rel="noopener">Canva公式ヘルプ</a>）。</p>
+
+  <p>推測: ただし以下の用途は注意が必要です。</p>
+  <ul>
+    <li>バザーで販売する商品のラベル・パッケージへの使用 → 有料素材は使用不可の可能性</li>
+    <li>PTAロゴの作成と商標登録 → Canva素材を組み合わせたロゴは商標登録不可</li>
+    <li>PTA会費を徴収して配布物を作る → 「販売」には該当しないと一般的に解釈される</li>
+  </ul>
+
+  <h3>7-2. 素材ライセンスの3層</h3>
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>素材種別</th><th>無料版での扱い</th><th>商用利用</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>無料素材（Canva提供）</td><td>制限なし</td><td>原則可（販売目的の無加工転用は不可）</td></tr>
+        <tr><td>有料素材（王冠マーク）</td><td>透かし入り</td><td>Pro契約後は可</td></tr>
+        <tr><td>外部アップロード素材</td><td>使用可</td><td>アップロード者の責任で確認</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>7-3. 安全な運用ルール</h3>
+  <ul>
+    <li>王冠マーク付き素材は無料版では使わない（透かしを残したまま印刷する事故を防ぐ）</li>
+    <li>外部サイトの画像をアップロードする際は、出典URLとライセンスを「画像ファイル名」に記録</li>
+    <li>子どもの写真は同意取得済みのもののみアップロード</li>
+    <li>過去のお便りを引用する際は出典を明記</li>
+  </ul>
+</section>
+
+<section id="workflow">
+  <h2>8. ChatGPT × Canva × LINE WORKSの3ツール連携</h2>
+  <p>Canva単体では「文案を考える」「配布する」のいずれも担えません。本サイトの推奨は、3ツールでの役割分担です。</p>
+
+  <div class="browser-mockup">
+    <div class="browser-bar">
+      <span class="browser-dot red"></span>
+      <span class="browser-dot yellow"></span>
+      <span class="browser-dot green"></span>
+      <span class="browser-url">3ツール連携フロー</span>
+    </div>
+    <div class="browser-content">
+      <div class="mock-flow">
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">ChatGPT: 文案作成</div>
+          <div class="mock-flow-q">役員会議事録から要旨抽出 / お便り文案ドラフト / お礼文の調整</div>
+        </div>
+        <div class="mock-flow-arrow">↓ 確定文をコピー</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">Canva: レイアウト・装飾</div>
+          <div class="mock-flow-q">テンプレートに文案を流し込み / 画像配置 / PDF出力</div>
+        </div>
+        <div class="mock-flow-arrow">↓ PDF/画像化</div>
+        <div class="mock-flow-section">
+          <div class="mock-flow-label">LINE WORKS: 配布</div>
+          <div class="mock-flow-q">全体トーク投稿 / 必要な保護者群への限定配布 / 紙印刷は学校経由</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comparison-table">
+    <table>
+      <caption>3ツールの役割分担</caption>
+      <thead>
+        <tr><th>ツール</th><th>得意領域</th><th>苦手領域</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>ChatGPT</td><td>文章生成・要約・推敲</td><td>レイアウト・配布</td></tr>
+        <tr><td>Canva</td><td>レイアウト・視覚化・出力</td><td>文章生成・配布</td></tr>
+        <tr><td>LINE WORKS</td><td>配布・既読確認・問い合わせ対応</td><td>制作・大容量ファイル長期保管</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>各ツールの詳細は<a href="chatgpt.html">ChatGPT完全ガイド</a>・<a href="lineworks.html">LINE WORKS完全ガイド</a>を参照してください。</p>
+</section>
+
+<section id="anti-patterns">
+  <h2>9. PTAでよくある失敗パターン</h2>
+
+  <details>
+    <summary>❌ 失敗1: 個人アカウントで作成し、退任時にデザインが孤立</summary>
+    <p>事象: 広報担当が個人Googleアカウント連携でCanvaを使い、退任時に過去2年分のお便りデザインが新担当からアクセス不能に。</p>
+    <p>対策: PTA共通アカウントでCanvaにログイン。過去デザインは共通アカウント配下のフォルダに集約。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗2: 王冠マーク付き素材を使い、透かし入りで印刷配布</summary>
+    <p>事象: 無料版では使用できない有料素材を選び、PDF出力時に透かしが残ったまま100部印刷。再印刷でコスト発生。</p>
+    <p>対策: 素材検索時に「無料」フィルタを有効化。PDF出力前に必ずプレビューで透かしの有無を確認。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗3: 子どもの顔写真を同意確認なしで使用</summary>
+    <p>事象: 過去の運動会写真を「みんな写ってるから」とチラシに使用。後日特定家庭から肖像権上の指摘。</p>
+    <p>対策: 写真は撮影時点で個別同意を取得し、同意済み写真のみを使用可フォルダで管理。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗4: フォント・色を毎号変えて統一感喪失</summary>
+    <p>事象: 担当者の好みで毎月フォントと色を変更し、保護者から「PTAのお便りか分からない」との指摘。</p>
+    <p>対策: マスターテンプレートを年度通じて固定。フォント・色はブランドキット機能で固定化。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗5: 印刷時に端が切れる</summary>
+    <p>事象: 紙端ギリギリにテキストを配置したA4チラシが、家庭用プリンタで端が切れて読めない状態に。</p>
+    <p>対策: 紙端から最低15mmの余白を確保。Canvaの「印刷用」テンプレートは塗り足し設定済み。</p>
+  </details>
+
+  <details>
+    <summary>❌ 失敗6: 「もっと派手に」の要望に応え続けて情報過多に</summary>
+    <p>事象: 役員会で「もっと目立つように」と毎回要素追加され、最終的に色8色・フォント5種の読みにくいチラシに。</p>
+    <p>対策: ガイド冒頭で「色3色・フォント2種」のルールを役員間で合意し、変更要望時はその枠内で対応。</p>
+  </details>
+</section>
+
+<section id="comparison">
+  <h2>10. 他デザインツールとの比較</h2>
+  <div class="comparison-table">
+    <table>
+      <thead>
+        <tr><th>ツール</th><th>料金</th><th>強み</th><th>PTAでの位置づけ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Canva</td><td>無料〜</td><td>テンプレート豊富・初心者向け</td><td>第1選択</td></tr>
+        <tr><td>Adobe Express</td><td>無料〜</td><td>Adobeフォント・連携</td><td>第2選択</td></tr>
+        <tr><td>Microsoft Designer</td><td>無料</td><td>Microsoft 365連携</td><td>学校MS環境なら検討</td></tr>
+        <tr><td>Word</td><td>有料</td><td>慣れた操作</td><td>レイアウトには不向き</td></tr>
+        <tr><td>Photoshop / Illustrator</td><td>有料</td><td>プロ品質</td><td>PTAには過剰・学習コスト高</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>推測: PTAの広報物制作では、Canvaの代替を検討する実益はほぼ無いと考えられます。Adobe Expressは機能的に近いですが、テンプレート数の差でCanvaが優位です。</p>
+</section>
+
+<section id="handover">
+  <h2>11. 引き継ぎ・資産化</h2>
+  <p>Canvaのデザインは「作って出力して終わり」ではなく、翌年の役員が再利用できる形で残すことで価値が倍加します。</p>
+
+  <h3>11-1. フォルダ構造の例</h3>
+  <ul>
+    <li>00_マスターテンプレート（編集禁止・コピー元）</li>
+    <li>01_お便り（年度別 / 月別）</li>
+    <li>02_行事チラシ（運動会・バザー・卒業式等）</li>
+    <li>03_名札・しおり</li>
+    <li>04_SNS投稿（年度別）</li>
+    <li>99_アーカイブ（過去年度・参考用）</li>
+  </ul>
+
+  <h3>11-2. 引き継ぎ時の3ステップ</h3>
+  <ol>
+    <li>Canva共通アカウントのログイン情報を、共有パスワード管理ツールで新担当に引き渡す</li>
+    <li>マスターテンプレートの場所と編集ルールを口頭+ドキュメントで説明</li>
+    <li>過去1年分の代表的デザインを「なぜこの構成にしたか」とともにレビュー</li>
+  </ol>
+
+  <p>引き継ぎ全体のフローは<a href="../governance/handover-design.html#documents">引き継ぎ設計ガイド第4章</a>を参照してください。</p>
+</section>
+
+<section id="faq">
+  <h2>12. FAQ</h2>
+  <details>
+    <summary>Q1. スマホアプリでも編集できる？</summary>
+    <p>iOS/Androidアプリで主要機能は使えます。ただし精密なレイアウト調整はPCの方が圧倒的に効率的です。スマホは確認用、PCは編集用と使い分けるのが現実解です。</p>
+  </details>
+  <details>
+    <summary>Q2. 印刷会社にデータを渡したい</summary>
+    <p>Canvaの「ダウンロード」→「PDF（印刷用）」を選択。塗り足し・トリムマークも有効化できます。一部印刷会社はCanva非対応のため、入稿前にデータ形式の事前確認を推奨。</p>
+  </details>
+  <details>
+    <summary>Q3. 複数人で同時編集できる？</summary>
+    <p>共有リンクで同時編集可能です。ただし複数人が同じ要素を同時に動かすと競合するため、編集領域を分担するか時間をずらす運用が現実的です。</p>
+  </details>
+  <details>
+    <summary>Q4. 過去のデザインの再利用範囲は？</summary>
+    <p>同じPTAアカウント内であれば、過去デザインの「コピーを作成」で自由に再利用できます。他校PTAへ譲渡する場合は、Canva素材のライセンス上、デザインファイル自体の譲渡は不可（再現方法の共有は可）。</p>
+  </details>
+  <details>
+    <summary>Q5. AI機能（Magic Studio等）は使うべき？</summary>
+    <p>Canva無料版でも一部のAI機能（マジック作成・背景透過等）が使えます。便利ですが、生成された画像が本当に著作権上問題ないか、現時点では完全には保証されません。重要な配布物では従来の素材ライブラリを優先してください。</p>
+  </details>
+</section>
+
+<section id="summary">
+  <h2>13. まとめ</h2>
+  <ul>
+    <li>PTAの広報物作成はCanvaを第1選択とする（無料版で十分）</li>
+    <li>必ずPTA共通アカウントで作成し、退任時のデザイン孤立を防ぐ</li>
+    <li>「センス」ではなく「テンプレート選択+CRAP原則（近接・整列・反復・コントラスト）」で品質担保</li>
+    <li>マスターテンプレートを年度通じて固定し、毎号「コピーを作成」で運用</li>
+    <li>色は3色まで・フォントは2種類まで・余白は紙端から15mm</li>
+    <li>子どもの写真は撮影時点で個別同意を取得した分のみ使用</li>
+    <li>有料素材（王冠マーク）は無料版では使わない</li>
+    <li>ChatGPT(文案)→Canva(レイアウト)→LINE WORKS(配布)の3ツール連携で完結</li>
+  </ul>
+
+  <div class="related-pages">
+    <h3>📚 関連ページ</h3>
+    <ul>
+      <li><a href="chatgpt.html">ChatGPT完全ガイド</a> - お便り文案・お礼文の生成</li>
+      <li><a href="lineworks.html">LINE WORKS完全ガイド</a> - 制作物の配布経路</li>
+      <li><a href="forms.html">Google Forms完全ガイド</a> - 行事申込フォームとの連携</li>
+      <li><a href="../governance/security.html#consent">セキュリティガイド第5章</a> - 写真使用の同意取得</li>
+      <li><a href="../governance/handover-design.html#common-account">引き継ぎ設計ガイド第3章</a> - PTA共通アカウントの運用</li>
+      <li><a href="../governance/antipatterns.html">失敗事例集</a> - 写真権利・著作権トラブル実例</li>
+    </ul>
+  </div>
+</section>
+
 </main>
 
-<div data-related></div>
+<footer class="site-footer">
+  <p>PTA・地域活動 デジタル活用統合ガイド | CC BY 4.0</p>
+  <p><a href="../index.html">ホームに戻る</a></p>
+</footer>
+
 <script src="../assets/nav.js"></script>
 </body>
 </html>
