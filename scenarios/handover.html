@@ -1,53 +1,557 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="PTA役員の年度引き継ぎを、4月に集中させる前提で漏れなく実施する手順。">
-  <title></title>
-  <link rel="stylesheet" href="../assets/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新会長・役員交代の引き継ぎ実践 | PTA・地域活動 デジタル活用統合ガイド</title>
+<meta name="description" content="新会長として就任が決まった方が、任期前3ヶ月から最初の1ヶ月までに何を読み・何を確認し・何を実行するかを時系列で示す実践ガイド。governance/handover-design.htmlの方針を、明日から手を動かせるレベルまで具体化した運用版。">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
-<body data-page-id="sc-handover">
+<body data-page="scenarios/handover">
+<main class="container">
 
-<div data-breadcrumb></div>
-
-<header class="hero">
-  <span class="hero-badge">COMING SOON · SCENARIO</span>
-  <h1>🎓 <span class="accent">役員引き継ぎ</span> ガイド</h1>
-  <p class="lead">新年度4月の最重要タスクを、抜け漏れなく実行するためのチェックリストつき手順を準備中です。</p>
+<header class="page-header">
+  <div class="page-tag">SCENARIOS · 実践ガイド</div>
+  <h1 class="page-title">新会長・役員交代の引き継ぎ実践</h1>
+  <p class="page-lead">「来年度の会長をお願いします」と打診された日から、新年度の最初の役員会までに何をすべきかを時系列で示します。governance/handover-design.html が「設計思想」を扱うのに対し、本ページは「明日から具体的に何のボタンを押すか」を扱います。各章のタイトル横の▶を押すと内容が展開されます。全体感を眺めたい場合は閉じたままで構いません。</p>
+  <div class="page-meta">
+    <span>📖 想定読了時間: 章ごとに3〜5分（合計25分）</span>
+    <span>🎯 対象: 新会長・新副会長・引き継ぎ担当者</span>
+    <span>🔄 最終更新: 2026年5月</span>
+  </div>
 </header>
 
-<main>
-  <section class="block">
-    <h2><span class="num">📝</span>このページで書く予定の内容</h2>
-    <ul>
-      <li>引き継ぎを「シナリオ」として捉える視点（年度内最大プロジェクト）</li>
-      <li>3月の準備フェーズ：退任予定者がやるべきこと</li>
-      <li>4月の実行フェーズ：新旧役員合同会議のアジェンダ</li>
-      <li>5月の安定化フェーズ：新役員のみで運用が回ることの確認</li>
-      <li>引き継ぎチェックリスト（アカウント・ファイル・契約・連絡先）</li>
-    </ul>
-    <div class="box info">
-      <span class="label">💡 関連</span>
-      設計の理論部分は <a href="../governance/handover-design.html">年度引き継ぎ設計（組織運営）</a>（準備中）に書きます。本ページは「実行手順」に特化します。
+<nav aria-label="パンくず" class="breadcrumb">
+  <a href="../index.html">ホーム</a> &gt; <a href="../index.html#scenarios">業務シナリオ</a> &gt; <span>引き継ぎ実践</span>
+</nav>
+
+<section id="how-to-read">
+  <h2>0. このページの読み方</h2>
+  <p>就任が決まったタイミングに応じて、3つの入り口を用意しました。第0章と第1章のみ最初から開いた状態にしてあります。第2章以降は▶を押して必要な章だけ展開してください。</p>
+  <div class="card-row">
+    <div class="card">
+      <h3>📅 打診を受けたばかり</h3>
+      <p>就任前3ヶ月の準備フェーズから読みます。</p>
+      <p><a href="#before">→ 第2章 任期前3ヶ月へ</a></p>
     </div>
-  </section>
+    <div class="card">
+      <h3>🚀 任期初日が見えてきた</h3>
+      <p>2週間プロトコルから読みます。</p>
+      <p><a href="#protocol">→ 第3章 2週間プロトコルへ</a></p>
+    </div>
+    <div class="card">
+      <h3>📚 任期中盤・後半</h3>
+      <p>年間運用と次期への引き継ぎを参照します。</p>
+      <p><a href="#annual">→ 第4章 年間運用へ</a></p>
+    </div>
+  </div>
+</section>
 
-  <section class="block">
-    <h2><span class="num">💡</span>いまできる代替策</h2>
-    <ul>
-      <li><a href="../governance/handover-design.html">年度引き継ぎ設計</a>（準備中）：理論と設計図</li>
-      <li><a href="../tools/notion.html">Notion</a>（準備中）：引き継ぎノートの作り方</li>
-    </ul>
-  </section>
+<section id="core-message">
+  <h2>1. 引き継ぎは「個人の頑張り」では成立しない</h2>
+  <p>事実: PTA役員は1〜2年で交代する設計のため、「前任者の熱意」「新任者の頑張り」だけに依存する引き継ぎは構造的に破綻します。毎年同じ問題が再発する組織は、引き継ぎが個人技になっています。</p>
 
-  <section class="block">
-    <h2><span class="num">📮</span>先行公開リクエスト</h2>
-    <p>引き継ぎは年度をまたいだ計画が必要なため、執筆優先度を高めに設定しています。</p>
-  </section>
+  <p>推測: 多くの新会長が任期初期に消耗する原因は、能力不足ではなく「前任者しか知らない情報」にアクセスできないためです。これは前任者の責任ではなく、組織として情報を仕組み化していないことの帰結です。</p>
+
+  <p>本ページの基本方針は以下の3点です。詳細な設計思想は<a href="../governance/handover-design.html">引き継ぎ設計ガイド</a>を参照してください。</p>
+
+  <div class="card-row">
+    <div class="card">
+      <h3>1. 個人依存からの脱却</h3>
+      <p>個人Gmailではなく PTA共通アカウントで全資産を管理する。</p>
+    </div>
+    <div class="card">
+      <h3>2. 即時アクセスの担保</h3>
+      <p>任期初日に必要な情報がすべて揃って閲覧可能である。</p>
+    </div>
+    <div class="card">
+      <h3>3. 失敗の蓄積</h3>
+      <p>「なぜそう決めたか」「何を試して何が失敗したか」を残す。</p>
+    </div>
+  </div>
+
+  <div class="info-box-warn">
+    <strong>⚠️ 「前任者に聞けばいい」を最初から捨てる</strong>
+    <p>新会長として最初に捨てるべき発想は「分からなくなったら前任者に聞けばいい」です。前任者は退任後、ご自身の生活に戻ります。引き継ぎ期間中に「ドキュメント化されていない情報」を網羅的に引き出しきることが新会長の最初の仕事です。</p>
+  </div>
+</section>
+
+<details class="chapter-details">
+<summary><h2>2. 任期前3ヶ月でやること</h2><span class="summary-text">就任打診〜年度切替までに、共通アカウントの引き継ぎ・資産棚卸し・前任者ヒアリングを完了させる。</span></summary>
+<section id="before">
+
+<p>「来年度お願いします」と打診を受けた瞬間から、新年度開始までの3ヶ月は、任期中の労力を半分以下に減らせる絶好の機会です。前任者が現役で動いているうちに、できる限りの情報を引き出します。</p>
+
+<h3>2-1. 打診直後にやる3つのこと（24時間以内）</h3>
+<ol>
+  <li><strong>受諾／辞退の判断</strong>を24時間以内に明確にする。曖昧な状態を続けると組織全体の動きが止まります。</li>
+  <li>受諾の場合、<strong>前任者と1対1の引き継ぎミーティング</strong>を最低3回（30分×3）設定する。1回で済まそうとしない。</li>
+  <li><strong>家族の合意</strong>を明示的に取る。任期中の予期しない時間外活動が必ず発生します。</li>
+</ol>
+
+<h3>2-2. 任期前3ヶ月のスケジュール</h3>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>時期</th><th>主なアクション</th><th>所要時間</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>3ヶ月前</td><td>前任者ヒアリング1回目（組織概要・主要関係者・現在進行中の課題）</td><td>1時間</td></tr>
+      <tr><td>2.5ヶ月前</td><td>過去議事録・引き継ぎ書を読破（読むだけ）</td><td>合計5〜8時間</td></tr>
+      <tr><td>2ヶ月前</td><td>前任者ヒアリング2回目（疑問点・暗黙知の言語化）</td><td>1時間</td></tr>
+      <tr><td>1.5ヶ月前</td><td>共通アカウント・各ツールの権限確認</td><td>2〜3時間</td></tr>
+      <tr><td>1ヶ月前</td><td>前任者ヒアリング3回目（年間スケジュール・対外関係者）</td><td>1時間</td></tr>
+      <tr><td>2週間前</td><td>新副会長・新会計と顔合わせ・役割分担合意</td><td>2時間</td></tr>
+      <tr><td>1週間前</td><td>4月行事の事前準備確認</td><td>1〜2時間</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>2-3. 前任者ヒアリングで必ず聞くべき30の質問</h3>
+<details>
+  <summary>📋 ヒアリング質問リスト全文（クリックで展開）</summary>
+  <p><strong>【組織・人間関係】</strong></p>
+  <ul>
+    <li>現在進行中の問題・揉め事の有無と背景</li>
+    <li>「この人とは事前に相談すべき」というキーパーソン（学校側・地域側・PTA連合側）</li>
+    <li>過去にトラブルがあった保護者・関係者の記録の有無</li>
+    <li>校長・副校長・教頭との関係性と打診ルール</li>
+    <li>地域連合PTAとの連絡頻度・主担当者</li>
+  </ul>
+  <p><strong>【お金】</strong></p>
+  <ul>
+    <li>銀行口座の名義・通帳の保管者・印鑑の保管者</li>
+    <li>会費徴収の方法と滞納家庭の対応履歴</li>
+    <li>過去3年の決算書・予算書の保管場所</li>
+    <li>監査の時期・監査役員の連絡先</li>
+    <li>定期的な支払い（保険料・連合費等）のスケジュール</li>
+  </ul>
+  <p><strong>【ツール・データ】</strong></p>
+  <ul>
+    <li>共通Gmailアカウントの引き渡し方法</li>
+    <li>各種ツール（LINE WORKS / Drive / Canva / Notion 等）の権限移譲手順</li>
+    <li>過去の議事録・お便り・写真の保管場所</li>
+    <li>Webサイト・SNSアカウントの有無と管理者</li>
+    <li>パスワード管理ツールの利用状況</li>
+  </ul>
+  <p><strong>【行事・年間運用】</strong></p>
+  <ul>
+    <li>年間行事カレンダー（特に直近3ヶ月）</li>
+    <li>各行事の責任者・準備開始時期</li>
+    <li>過去に中止・縮小した行事とその理由</li>
+    <li>業者・備品レンタル先の連絡先と取引履歴</li>
+    <li>学校行事との連携が必要な場面</li>
+  </ul>
+  <p><strong>【規約・ルール】</strong></p>
+  <ul>
+    <li>PTA規約の最新版の保管場所と直近の改定履歴</li>
+    <li>個人情報の同意書の保管状況</li>
+    <li>任意加入の運用実態</li>
+    <li>役員選出ルールの実態と建前のズレ</li>
+    <li>会員からの問い合わせ・苦情の典型例</li>
+  </ul>
+  <p><strong>【暗黙知】</strong></p>
+  <ul>
+    <li>「これだけは触らない方がいい」というタブー</li>
+    <li>「やった方がいいけど誰もやっていない」改善案</li>
+    <li>前任者として後悔している意思決定</li>
+    <li>後任に伝えていない「ヒヤリハット」</li>
+    <li>前任者から見て、現状で最も脆弱な部分</li>
+  </ul>
+</details>
+
+<div class="info-box-tip">
+  <strong>💡 ヒアリングは録音するか、3人体制で</strong>
+  <p>ヒアリング内容は1人では全て覚えきれません。前任者の同意を取ったうえで録音するか、新副会長・新書記と3人体制で臨み、書記担当が議事録を作る運用が現実的です。録音はPTA共通Drive配下に保管し、退任後は1年で削除するルールにします。</p>
+</div>
+
+<h3>2-4. 過去資料の読み方</h3>
+<p>過去議事録・引き継ぎ書を「全部読まなければ」と完璧主義に陥ると、心が折れて何も読まないまま任期が始まります。以下の優先順で読むことで、限られた時間で本質を掴めます。</p>
+<ol>
+  <li><strong>最直近の総会資料</strong>（決算・予算・議題） — 1時間</li>
+  <li><strong>過去1年の役員会議事録</strong>（決定事項のみピックアップ） — 2時間</li>
+  <li><strong>過去3年の規約改定履歴</strong> — 30分</li>
+  <li><strong>失敗事例・トラブル対応記録</strong>（あれば最優先で読む） — 1時間</li>
+  <li><strong>引き継ぎ書本体</strong> — 2〜3時間</li>
+</ol>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>3. 任期初日からの2週間プロトコル</h2><span class="summary-text">権限移譲・チーム形成・初動の3つを2週間で完了させる、最重要フェーズ。</span></summary>
+<section id="protocol">
+
+<p>任期開始から2週間は、以後1年間の運用効率を決定づける期間です。引き継ぎ設計ガイド第6章の2週間プロトコルを、具体的な操作レベルまで落とし込みます。</p>
+
+<h3>3-1. Day 1〜3: 権限移譲の完了</h3>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>Day</th><th>タスク</th><th>確認方法</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Day 1</td><td>共通Gmailのログイン情報受領・パスワード変更・2段階認証の電話番号変更</td><td>新会長スマホで受信確認</td></tr>
+      <tr><td>Day 1</td><td>共通アカウントへのログインを副会長と並列で確認</td><td>2名同時ログイン</td></tr>
+      <tr><td>Day 2</td><td>Google Drive 全フォルダのアクセス確認</td><td>主要フォルダ10箇所を実際に開く</td></tr>
+      <tr><td>Day 2</td><td>LINE WORKS 管理者権限の移譲</td><td>新規メンバー追加テスト</td></tr>
+      <tr><td>Day 2</td><td>Canva ・ Notion 等のサブツール権限確認</td><td>各ツールでログイン</td></tr>
+      <tr><td>Day 3</td><td>銀行口座・通帳・印鑑の引き渡し</td><td>会計と会長の2名で確認</td></tr>
+      <tr><td>Day 3</td><td>過去メンバー（前年度役員）のアクセス権削除</td><td>各ツールのメンバー一覧を確認</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="info-box-warn">
+  <strong>⚠️ 退任者のアクセス権は3日以内に削除</strong>
+  <p>退任した役員のアクセス権を残したままにすると、退任者の私的利用・意図しない情報閲覧・退任後のトラブル時の証拠保全困難という3つのリスクが生じます。「お世話になったから」という心情的理由で権限を残すのは組織としての規律違反です。詳細は<a href="../governance/security.html#access-control">セキュリティガイド第6章</a>参照。</p>
+</div>
+
+<h3>3-2. Day 4〜7: ドキュメント整備</h3>
+<ol>
+  <li><strong>4つの必須ドキュメントの最新化</strong>（組織図・運営マニュアル・決定ログ・改善ノート）。詳細は<a href="../governance/handover-design.html#documents">引き継ぎ設計ガイド第4章</a>参照。</li>
+  <li><strong>役員一覧の作成</strong>: 新役員全員の氏名・役職・連絡先・所属委員会を1シートに集約</li>
+  <li><strong>年間スケジュールの確定</strong>: 4月から翌年3月までの全行事・会議をGoogleカレンダーに登録</li>
+  <li><strong>緊急連絡網の更新</strong>: 学校・地域連合・業者・救急の連絡先リスト更新</li>
+</ol>
+
+<h3>3-3. Day 8〜14: チーム形成と初動</h3>
+<ol>
+  <li><strong>第1回役員会の開催</strong>: 新メンバー全員の顔合わせ、年間方針の共有</li>
+  <li><strong>役割分担の合意</strong>: 各役員の主担当・副担当を明文化し、Notion または Sheets に記録</li>
+  <li><strong>コミュニケーションルールの合意</strong>: LINE WORKS の投稿可能時間帯・返信期限の合意（推奨: 21時〜翌7時投稿禁止、24時間以内返信目標）</li>
+  <li><strong>セキュリティチェックリスト30項目の確認</strong>: <a href="../governance/security.html">セキュリティガイド</a>末尾のチェックリストを役員会で確認</li>
+  <li><strong>4月行事への着手</strong>: 4月総会・歓迎会等の準備開始</li>
+</ol>
+
+<h3>3-4. 2週間プロトコル完了の判定</h3>
+<details>
+  <summary>✅ 完了判定チェックリスト全25項目（クリックで展開）</summary>
+  <p><strong>権限・アカウント</strong></p>
+  <ul>
+    <li>☐ 共通Gmailのパスワード変更完了</li>
+    <li>☐ 共通Gmailの2段階認証電話番号を新会長のものに変更完了</li>
+    <li>☐ Google Drive 主要10フォルダを実際に開いて確認</li>
+    <li>☐ LINE WORKS 管理者として新規メンバー追加テスト完了</li>
+    <li>☐ Canva / Notion / Forms 等のサブツール全てでログイン確認</li>
+    <li>☐ 銀行口座の通帳・印鑑の保管者を会計と会長で分けて指定済み</li>
+    <li>☐ 退任役員全員のアクセス権削除完了</li>
+  </ul>
+  <p><strong>ドキュメント</strong></p>
+  <ul>
+    <li>☐ 4つの必須ドキュメントを最新化（組織図・マニュアル・決定ログ・改善ノート）</li>
+    <li>☐ 新役員一覧（氏名・役職・連絡先）を作成</li>
+    <li>☐ 年間スケジュールをGoogleカレンダーに登録</li>
+    <li>☐ 緊急連絡網を更新</li>
+    <li>☐ PTA共通Driveの最上位ディレクトリ構造を確認・整備</li>
+  </ul>
+  <p><strong>チーム・運用</strong></p>
+  <ul>
+    <li>☐ 第1回役員会を実施し、議事録を作成・保管</li>
+    <li>☐ 全役員の役割分担表を共有</li>
+    <li>☐ LINE WORKS の投稿時間帯ルールを合意</li>
+    <li>☐ 返信期限ルールを合意</li>
+    <li>☐ 雨天判断・緊急時の意思決定者を明文化</li>
+    <li>☐ セキュリティチェックリスト30項目を会長が一読</li>
+  </ul>
+  <p><strong>対外関係</strong></p>
+  <ul>
+    <li>☐ 校長・副校長・教頭への就任挨拶完了</li>
+    <li>☐ 地域連合PTAへの就任報告完了</li>
+    <li>☐ 主要業者・備品レンタル先への連絡先変更通知完了</li>
+    <li>☐ 銀行口座の届出代表者変更（必要な場合）の手続き開始</li>
+  </ul>
+  <p><strong>初動</strong></p>
+  <ul>
+    <li>☐ 4月行事（総会等）の準備状況を確認</li>
+    <li>☐ 5月以降の行事担当者の決定を開始</li>
+    <li>☐ 任期中の改善目標を3つ以内に絞って文書化</li>
+  </ul>
+</details>
+
+<div class="info-box-tip">
+  <strong>💡 「全部完璧」を目指さない</strong>
+  <p>25項目のうち、Day 14時点で20項目以上完了していれば合格です。残りは1ヶ月以内に消化すれば問題ありません。完璧を目指して2週間プロトコルが3週間・4週間と伸びる方が、組織全体の動きを止める害が大きいです。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>4. 年間運用のリズム</h2><span class="summary-text">月次・四半期・年次の定型タスクを習慣化し、属人的な「思い出して動く」を排除する。</span></summary>
+<section id="annual">
+
+<p>2週間プロトコル完了後は、年間を通じた定型タスクを習慣化します。これにより「あれをやらなきゃ」と毎週思い出す精神的負荷が消え、本来注力すべき改善活動に時間を使えます。</p>
+
+<h3>4-1. 月次タスク</h3>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>頻度</th><th>タスク</th><th>担当</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>月初</td><td>会計帳簿の編集履歴を確認</td><td>会長</td></tr>
+      <tr><td>月初</td><td>役員会の議題候補を集約</td><td>書記</td></tr>
+      <tr><td>月中</td><td>定例役員会の開催</td><td>会長</td></tr>
+      <tr><td>月末</td><td>月次お便りの配布</td><td>広報</td></tr>
+      <tr><td>月末</td><td>共通DriveのNotionブロック数を確認</td><td>書記</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>4-2. 四半期タスク</h3>
+<ul>
+  <li>役員間での運用の振り返り（うまくいっていること・困っていることの共有）</li>
+  <li>セキュリティチェックリストの再確認（30項目のうち抜けが出ていないか）</li>
+  <li>過去議事録の整理（不要な草稿の削除、決定事項の検索性向上）</li>
+  <li>パスワード管理ツールのメンテナンス</li>
+</ul>
+
+<h3>4-3. 年次タスク</h3>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>時期</th><th>タスク</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>4月</td><td>年度総会・新役員体制発足</td></tr>
+      <tr><td>5月</td><td>年間スケジュール確定・予算執行開始</td></tr>
+      <tr><td>7月</td><td>1学期振り返り・夏の行事準備</td></tr>
+      <tr><td>10月</td><td>下半期の重点活動の見直し</td></tr>
+      <tr><td>12月</td><td>来年度役員候補の打診開始</td></tr>
+      <tr><td>1月</td><td>後任への引き継ぎ準備開始</td></tr>
+      <tr><td>2月</td><td>決算準備・監査調整</td></tr>
+      <tr><td>3月</td><td>引き継ぎ完了・退任</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>4-4. 改善ノートの蓄積</h3>
+<p>任期中に経験した「うまくいったこと」「失敗したこと」「次の人に伝えたいこと」を、その都度改善ノートに記録します。記憶に頼って任期末にまとめて書こうとすると、必ず重要な情報が抜け落ちます。</p>
+
+<details>
+  <summary>📝 改善ノートの記載項目（クリックで展開）</summary>
+  <ul>
+    <li><strong>事象</strong>: 何が起きたか（事実のみ、5W1H）</li>
+    <li><strong>背景</strong>: なぜそうなったか（推測も明示して可）</li>
+    <li><strong>影響</strong>: 結果として何が起きたか</li>
+    <li><strong>対応</strong>: その場でどう対処したか</li>
+    <li><strong>学び</strong>: 次に同じ状況になったらどうすべきか</li>
+    <li><strong>担当者個人名は記録しない</strong>: 「会計担当」「広報担当」のように役割で記録（個人攻撃を避ける）</li>
+  </ul>
+</details>
+
+<div class="info-box-warn">
+  <strong>⚠️ 「忙しい」を理由に改善ノートをサボらない</strong>
+  <p>改善ノートを書く時間が惜しいと感じる週ほど、本来書くべき内容が発生しています。「忙しさ」自体が改善対象の兆候です。月1回30分の「振り返り時間」をスケジュールに固定で入れる運用が現実的です。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>5. 役員間トラブルへの初動</h2><span class="summary-text">対立・離脱・モチベーション低下の典型パターンと、こじれる前の介入手順。</span></summary>
+<section id="trouble">
+
+<p>事実: PTA運営で会長が直面する困難の多くは「業務の難しさ」ではなく「役員間の人間関係」に起因します。これに対する初動を誤ると、年度の残り期間が著しく消耗的になります。</p>
+
+<h3>5-1. 典型的な3パターン</h3>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>パターン</th><th>典型的な発端</th><th>悪化させる対応</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>役員間の対立</td><td>役割分担の認識ずれ</td><td>当事者抜きで第三者に相談</td></tr>
+      <tr><td>役員の離脱検討</td><td>家庭・仕事の事情</td><td>引き留めの説得</td></tr>
+      <tr><td>モチベーション低下</td><td>負荷の不均衡</td><td>「みんな大変だから」での同調圧力</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>5-2. 共通する初動原則</h3>
+<ol>
+  <li><strong>当事者と1対1で話す</strong>（役員会の場ではなく個別に）</li>
+  <li><strong>事実を聞き、解釈を分離する</strong>（「あの人がこう言った」と「あの人はこう思っている」を分ける）</li>
+  <li><strong>会長個人の意見を保留する</strong>（最初に意見を述べると相手は本音を出さなくなる）</li>
+  <li><strong>解決策は当事者から出してもらう</strong>（押し付けない）</li>
+  <li><strong>合意した内容は文書化する</strong>（後の認識ずれを防ぐ）</li>
+</ol>
+
+<h3>5-3. 役員離脱への対応</h3>
+<p>推測: 役員が離脱を申し出た際の最大の判断は「引き留めるか、円満に離脱を受け入れるか」です。家庭・健康・仕事を理由とする離脱は原則として受け入れる方が、組織と本人双方の長期的利益になります。引き留めて続けてもらった結果、後にメンタル不調や対立に発展する事例が多数あります。</p>
+
+<ul>
+  <li>離脱の申し出は2回以上面談してから判断（衝動的な辞意ではないかの確認）</li>
+  <li>離脱を受け入れる場合、業務の引き継ぎ先を会長が責任を持って手配</li>
+  <li>離脱者へのアクセス権削除を3日以内に完了（前述）</li>
+  <li>残ったメンバーへの説明は「事実」のみ、離脱者の事情の詳細は共有しない</li>
+</ul>
+
+<div class="info-box-tip">
+  <strong>💡 「会長は孤独」を構造的に緩和する</strong>
+  <p>会長は他役員に弱音を吐きにくい立場です。これを精神論で乗り切ろうとすると消耗します。前任会長との月1回の30分電話、地域連合PTAでの会長同士の繋がり、家族への定期的な共有、これら3つの相談ラインを任期初期に確保してください。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>6. 次期会長への引き継ぎ準備</h2><span class="summary-text">12月から準備を始め、1月打診・2月ヒアリング・3月権限移譲のリズムで完了させる。</span></summary>
+<section id="next">
+
+<p>任期最終月に焦って引き継ぎをすると、必ず情報が抜け落ちます。任期8ヶ月目の12月から準備を始めるのが現実的なリズムです。</p>
+
+<h3>6-1. 逆算スケジュール</h3>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>時期</th><th>タスク</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>12月</td><td>後任候補の検討開始・現役員の継続意向確認</td></tr>
+      <tr><td>1月</td><td>後任候補への打診・改善ノートの整理</td></tr>
+      <tr><td>1月末</td><td>後任内定・引き継ぎ計画の合意</td></tr>
+      <tr><td>2月</td><td>後任との1対1ヒアリング3回（任期前3ヶ月の逆側）</td></tr>
+      <tr><td>2月末</td><td>4つの必須ドキュメントの最終更新</td></tr>
+      <tr><td>3月初</td><td>過去年度資産のアーカイブ化</td></tr>
+      <tr><td>3月中</td><td>共通アカウントの権限移譲準備</td></tr>
+      <tr><td>3月末</td><td>退任・新会長の任期開始</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>6-2. 後任に渡すべき5つのドキュメント</h3>
+<ol>
+  <li><strong>4つの必須ドキュメント</strong>（組織図・運営マニュアル・決定ログ・改善ノート）</li>
+  <li><strong>本ページのヒアリング質問リスト30項目への回答</strong></li>
+  <li><strong>「触らない方がいい」タブーリスト</strong>（口頭ではなく文書で）</li>
+  <li><strong>未完了の継続案件一覧</strong>（誰に引き継ぐかを明示）</li>
+  <li><strong>退任会長としての連絡可能期間</strong>（例: 退任後3ヶ月は緊急時のみ電話可、それ以降はメールのみ）</li>
+</ol>
+
+<h3>6-3. 「自分が辞めても回る」状態を作る</h3>
+<p>退任直前の最重要タスクは「自分しか知らない情報をゼロにすること」です。これができていれば、新会長は前任者に頼らずに任期を始められます。逆に、退任後に頻繁に問い合わせが来る状態は、引き継ぎの失敗を意味します。</p>
+
+<details>
+  <summary>📋 「自分しか知らない情報」発見ワーク（クリックで展開）</summary>
+  <p>退任2ヶ月前に、以下の問いに紙またはドキュメントで答えてください。</p>
+  <ul>
+    <li>過去1年で「自分が判断しなかったら止まっていた」場面はどこか</li>
+    <li>その判断の前提知識は文書化されているか</li>
+    <li>「あの業者は◯◯さんに相談すれば早い」のような関係性情報は記録されているか</li>
+    <li>過去のトラブル対応で「公式な記録に残していない事情」はあるか</li>
+    <li>退任後に問い合わせが来そうな質問を10個書き出すと、どれが文書化できていないか</li>
+  </ul>
+  <p>このワークで浮かび上がった項目こそが、改善ノート・決定ログ・タブーリストに最後に追加すべき内容です。</p>
+</details>
+
+<div class="info-box-warn">
+  <strong>⚠️ 「お疲れ様会」の前に引き継ぎを完了させる</strong>
+  <p>3月末のお疲れ様会・退任慰労会を引き継ぎ完了の節目に置くと、それに向けて駆け込み的にドキュメント整備が進みます。慰労会を「ご苦労様でした」のセレモニーではなく、「引き継ぎ完了報告会」と位置付けることで、最後の1週間の動きが変わります。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>7. よくある質問</h2><span class="summary-text">就任打診への対応・前任者との関係・任期中のメンタル維持に関するFAQ。</span></summary>
+<section id="faq">
+
+<details>
+  <summary>Q1. 打診を断ることは可能か</summary>
+  <p>原則として断ることは可能です。家庭・健康・仕事の事情を率直に伝えれば、強要は組織として不適切です。ただし「なんとなく不安」程度の理由で断ると、後年に役員候補が枯渇する循環的な問題を組織に残します。受諾するか辞退するかの判断は、本ページ第2章の前任者ヒアリング1回目を経てから行うのが現実的です。</p>
+</details>
+
+<details>
+  <summary>Q2. 前任者の引き継ぎが不十分な場合はどうするか</summary>
+  <p>事実: 前任者の引き継ぎ品質が低い場合があります。これに直面したとき、新会長として取れる選択肢は3つです。一つ目は「前任者に追加ヒアリングを依頼する」（多くの前任者は協力的です）、二つ目は「過去議事録から逆算して再構築する」（時間はかかるが確実）、三つ目は「自分の任期中に引き継ぎ書を作り直し、次の人に渡す」（負の連鎖を自分で止める）。三つ目が最も望ましい姿勢です。</p>
+</details>
+
+<details>
+  <summary>Q3. 任期中に何度も「辞めたい」と思ったときの対処</summary>
+  <p>推測: 多くの会長が任期中に複数回「辞めたい」と感じます。これは異常ではなく、責任ある立場の自然な反応です。即断せず、最低2週間の「保留期間」を設けることで、衝動的な決断を避けられます。それでも辞意が変わらない場合は、副会長と相談のうえ、組織として対応を協議してください。一人で抱え込まないことが何より重要です。深刻な精神的負荷を感じる場合は、信頼できる医療・相談窓口の利用を検討してください。</p>
+</details>
+
+<details>
+  <summary>Q4. 役員の中に問題行動を取る人がいる場合</summary>
+  <p>個別具体的な状況に依存するため一律の解はありませんが、以下の原則は共通します。一つ目に、当事者と1対1で話し、事実を確認する。二つ目に、副会長・他役員の認識と突き合わせ、自分の判断が偏っていないか検証する。三つ目に、是正を求めるなら具体的な行動レベルで合意する（「もっと協力して」ではなく「次回会議までに◯◯を完了させる」）。四つ目に、改善が見られない場合の対応を事前に当事者と合意しておく。詳細は<a href="../governance/antipatterns.html">失敗事例集</a>の役員間トラブル章を参照してください。</p>
+</details>
+
+<details>
+  <summary>Q5. 任期短縮や交代は可能か</summary>
+  <p>PTA規約で任期が定められている場合、規約に沿った手続きが必要です。健康上・家庭上の理由による中途交代は多くのPTAで前例があるため、絶望的に思える状況でも組織として対応可能なケースが大半です。一人で「辞められない」と抱え込む前に、副会長・前任会長・地域連合PTAに相談してください。</p>
+</details>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>8. 関連ページ・チェックリスト</h2><span class="summary-text">本ページと併読すべきガイドと、新会長として最初の1週間で確認すべき項目の一覧。</span></summary>
+<section id="related">
+
+<h3>8-1. 必読の関連ページ</h3>
+<ul>
+  <li><a href="../governance/handover-design.html">引き継ぎ設計ガイド</a> - 設計思想・4つの必須ドキュメントの詳細</li>
+  <li><a href="../governance/security.html">セキュリティガイド</a> - 個人情報保護・アクセス権限の4層モデル</li>
+  <li><a href="../governance/antipatterns.html">失敗事例集</a> - 引き継ぎ・人間関係・会計の失敗パターン</li>
+</ul>
+
+<h3>8-2. 推奨の関連ページ</h3>
+<ul>
+  <li><a href="../tools/lineworks.html">LINE WORKS完全ガイド</a> - 役員グループの運用ルール</li>
+  <li><a href="../tools/sheets.html">Google Sheets完全ガイド</a> - 会計帳簿・名簿の堅牢な管理</li>
+  <li><a href="../tools/notion.html">Notion完全ガイド</a> - ナレッジベース構築</li>
+  <li><a href="../tools/forms.html">Google Forms完全ガイド</a> - 各種申込・アンケート</li>
+  <li><a href="../tools/canva.html">Canva完全ガイド</a> - 広報物作成</li>
+  <li><a href="../tools/chatgpt.html">ChatGPT完全ガイド</a> - 文書作成・要約</li>
+</ul>
+
+<h3>8-3. 新会長 最初の1週間チェックリスト</h3>
+<details>
+  <summary>✅ Day 1〜7 必須項目（クリックで展開）</summary>
+  <p><strong>Day 1（任期初日）</strong></p>
+  <ul>
+    <li>☐ 共通Gmailにログインできる</li>
+    <li>☐ パスワードを自分しか知らないものに変更した</li>
+    <li>☐ 2段階認証の電話番号を自分のものに変更した</li>
+    <li>☐ 副会長と並列で共通アカウントにログインできる状態を確認した</li>
+  </ul>
+  <p><strong>Day 2〜3</strong></p>
+  <ul>
+    <li>☐ Google Drive 主要フォルダを開いて中身を確認した</li>
+    <li>☐ LINE WORKS 管理者として動作することを確認した</li>
+    <li>☐ Canva・Notion 等のサブツールにログインできた</li>
+    <li>☐ 通帳・印鑑・キャッシュカードの保管者を会計と分けて指定した</li>
+  </ul>
+  <p><strong>Day 4〜5</strong></p>
+  <ul>
+    <li>☐ 退任役員のアクセス権を全ツールで削除した</li>
+    <li>☐ 新役員一覧を作成し共通Driveに保管した</li>
+    <li>☐ 校長・副校長・教頭への就任挨拶を完了した</li>
+  </ul>
+  <p><strong>Day 6〜7</strong></p>
+  <ul>
+    <li>☐ 第1回役員会を実施し議事録を保管した</li>
+    <li>☐ 役員間のコミュニケーションルール（時間帯・返信期限）を合意した</li>
+    <li>☐ セキュリティガイドのチェックリスト30項目を一読した</li>
+    <li>☐ 任期中の改善目標を3つ以内に絞って文書化した</li>
+  </ul>
+</details>
+
+</section>
+</details>
+
 </main>
 
-<div data-related></div>
+<footer class="site-footer">
+  <p>PTA・地域活動 デジタル活用統合ガイド | CC BY 4.0</p>
+  <p><a href="../index.html">ホームに戻る</a></p>
+</footer>
+
 <script src="../assets/nav.js"></script>
 </body>
 </html>
