@@ -1,52 +1,740 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="PTAのお便り（手紙）を、生成AIとGoogleドキュメント、Canvaで効率的に作成・配布する方法。">
-  <title></title>
-  <link rel="stylesheet" href="../assets/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お便り・広報物作成の年間運用 | PTA・地域活動 デジタル活用統合ガイド</title>
+<meta name="description" content="PTA広報担当が月次お便り・行事案内・広報誌・お礼文を効率よく作るための実践ガイド。ChatGPTで文案、Canvaでレイアウト、LINE WORKS/紙併用で配布の3ツール連携を年間運用レベルに落とし込む。個人情報の伏字化、写真使用の同意、引き継ぎ可能なテンプレート設計まで網羅。">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
-<body data-page-id="sc-letter">
+<body data-page="scenarios/letter">
+<main class="container">
 
-<div data-breadcrumb></div>
-
-<header class="hero">
-  <span class="hero-badge">COMING SOON · SCENARIO</span>
-  <h1>✉️ <span class="accent">お便り作成</span> ガイド</h1>
-  <p class="lead">下書きから共同編集、PDF配布までを30分で完結させる手順を準備中です。</p>
+<header class="page-header">
+  <div class="page-tag">SCENARIOS · 実践ガイド</div>
+  <h1 class="page-title">お便り・広報物作成の年間運用</h1>
+  <p class="page-lead">月次お便り・行事案内・お礼文・広報誌の作成は、tools/chatgpt.html と tools/canva.html に分散した知識を「いつ・どう連携させて・誰に届けるか」という運用フローに統合することで初めて実用品質に達します。本ページは広報担当者が任期を通じて参照する実装ハンドブックです。各章はアコーディオンで折り畳まれており、必要な章だけ展開してください。</p>
+  <div class="page-meta">
+    <span>📖 想定読了時間: 章ごとに3〜5分（合計25分）</span>
+    <span>🎯 対象: 広報担当・会長・お便り作成役員</span>
+    <span>🔄 最終更新: 2026年5月</span>
+  </div>
 </header>
 
-<main>
-  <section class="block">
-    <h2><span class="num">📝</span>このページで書く予定の内容</h2>
-    <ul>
-      <li>生成AIによる初稿作成（プロンプト例つき）</li>
-      <li>Googleドキュメントでの共同編集と提案モード活用</li>
-      <li>装飾が必要な場合のCanvaへの転記手順</li>
-      <li>PDF書き出しと、紙・LINE WORKSでの両系統配布</li>
-      <li>定型お便り（行事案内・お礼・お知らせ）のテンプレ集</li>
-    </ul>
-  </section>
+<nav aria-label="パンくず" class="breadcrumb">
+  <a href="../index.html">ホーム</a> &gt; <a href="../index.html#scenarios">業務シナリオ</a> &gt; <span>お便り・広報物作成</span>
+</nav>
 
-  <section class="block">
-    <h2><span class="num">💡</span>いまできる代替策</h2>
-    <p>本ページの公開を待たずに、以下の組み合わせで実用可能です。</p>
-    <ul>
-      <li><a href="../tools/chatgpt.html">ChatGPT・生成AIガイド</a>（準備中）：お便り作成プロンプト例</li>
-      <li><a href="../tools/docs.html">Googleドキュメント</a>（準備中）：共同編集の操作</li>
-      <li><a href="../tools/canva.html">Canva</a>（準備中）：デザイン化</li>
-      <li><a href="../scenarios/event.html#step-after">イベント運営シナリオの「振り返り」セクション</a>：お礼お便りの実例</li>
-    </ul>
-  </section>
+<section id="how-to-read">
+  <h2>0. このページの読み方</h2>
+  <p>作成するお便りの種類に応じて、3つの入り口を用意しました。第0章と第1章のみ最初から開いた状態にしてあります。第2章以降は▶を押して必要な章だけ展開してください。</p>
+  <div class="card-row">
+    <div class="card">
+      <h3>📝 月次お便り担当</h3>
+      <p>毎月のお便り作成フローから読みます。</p>
+      <p><a href="#monthly">→ 第3章 月次お便りへ</a></p>
+    </div>
+    <div class="card">
+      <h3>🎉 行事案内・お礼文</h3>
+      <p>行事ごとの単発配布物から読みます。</p>
+      <p><a href="#event-letter">→ 第4章 行事案内・お礼文へ</a></p>
+    </div>
+    <div class="card">
+      <h3>📰 広報誌担当</h3>
+      <p>年1〜2回の広報誌作成から読みます。</p>
+      <p><a href="#magazine">→ 第5章 広報誌作成へ</a></p>
+    </div>
+  </div>
+</section>
 
-  <section class="block">
-    <h2><span class="num">📮</span>先行公開リクエスト</h2>
-    <p>このページの優先度を上げてほしい場合は、GitHubリポジトリのIssueでお知らせください。リクエストが集まったページから順次公開していきます。</p>
-  </section>
+<section id="core-message">
+  <h2>1. お便り作成の3つの原則</h2>
+
+  <p>事実: PTAのお便りは「情報を伝える」だけでなく「PTA活動の存在証明」「会費の使途報告」「組織への信頼形成」という複数の役割を同時に担います。これを意識せずに作ると、内容が空疎な「お便りのためのお便り」になります。</p>
+
+  <p>推測: 広報担当者が消耗する最大の原因は「センスが必要だ」という思い込みです。実際には、原則を3つ守るだけで読まれる品質に到達できます。本ページは「センス」ではなく「工程と判断基準」として広報業務を分解します。</p>
+
+  <p>本ページの基本方針は以下の3点です。具体的なツール操作は <a href="../tools/chatgpt.html">ChatGPT完全ガイド</a> および <a href="../tools/canva.html">Canva完全ガイド</a> を参照してください。</p>
+
+  <div class="card-row">
+    <div class="card">
+      <h3>1. 文案とレイアウトを分離</h3>
+      <p>ChatGPTで文案、Canvaでレイアウト。同じツールで両方やろうとすると品質が落ちる。</p>
+    </div>
+    <div class="card">
+      <h3>2. テンプレートの年度資産化</h3>
+      <p>毎号ゼロから作らない。マスターテンプレートを固定し、毎月コピーして差し替える。</p>
+    </div>
+    <div class="card">
+      <h3>3. 個人情報の最小化</h3>
+      <p>氏名・写真の使用は最小限。同意取得済みの素材のみ。判別可能な情報は伏字化。</p>
+    </div>
+  </div>
+
+  <div class="info-box-warn">
+    <strong>⚠️ 「凝ったデザイン」より「読まれる構造」</strong>
+    <p>派手なレイアウトのお便りより、見出しが整理され重要情報が一目で分かるシンプルなお便りの方が読まれます。「もっと目立たせて」という役員会の意見に毎号応えると、情報量過多で読まれない配布物が完成します。デザイン原則の詳細は<a href="../tools/canva.html#design-principles">Canva完全ガイド第3章</a>参照。</p>
+  </div>
+</section>
+
+<details class="chapter-details">
+<summary><h2>2. 4月の初動（年度開始の3週間）</h2><span class="summary-text">マスターテンプレートの確定・配布経路の整備・年間計画の作成・個人情報運用ルールの合意までを完了させる。</span></summary>
+<section id="april">
+
+<p>広報担当の4月は、年度全体の運用効率を左右する期間です。最初にテンプレートと運用ルールを固めれば、5月以降は「文案を流し込む作業」に集中できます。</p>
+
+<h3>2-1. Day 1〜7: 過去資産の棚卸し</h3>
+<ol>
+  <li><strong>過去2年分のお便り・広報誌の閲覧確認</strong>: PTA共通Driveの広報フォルダで過去資産にアクセス可能であることを確認</li>
+  <li><strong>マスターテンプレートの有無確認</strong>: 前任が用意したテンプレートが残っているか、ない場合は作成計画を立てる</li>
+  <li><strong>使用中のCanvaアカウントを確認</strong>: 共通アカウントでログインでき、過去デザインが閲覧できる状態にする</li>
+  <li><strong>過去の写真使用同意の状況確認</strong>: 写真フォルダの整理状況、同意取得済みフラグの管理方法</li>
+</ol>
+
+<h3>2-2. Day 8〜14: マスターテンプレートの確定</h3>
+<p>4月号を作成するタイミングで、同時に「マスターテンプレート」を1つ確定させます。マスターは年度を通じて使い続けるため、ここでの選択が広報業務の8割を決めます。</p>
+
+<ol>
+  <li>Canvaで「PTA」「お便り」「学校」「ニュースレター」のいずれかを検索</li>
+  <li>以下の判断基準で5〜10個に絞る
+    <ul>
+      <li>情報密度が月次お便り（A4 1〜2枚）に合致しているか</li>
+      <li>色数が3色以内か</li>
+      <li>日本語フォント対応か</li>
+      <li>無料素材だけで構成されているか</li>
+    </ul>
+  </li>
+  <li>4月号として実際に流し込み、3つほど試作</li>
+  <li>役員会で1つに絞り込む（マスターは1つに統一する）</li>
+  <li>確定後、コピーを「マスター_PTAお便り」として共通Drive連携フォルダに保管</li>
+</ol>
+
+<div class="info-box-tip">
+  <strong>💡 「ここで時間をかけて、後で楽をする」</strong>
+  <p>4月のマスター確定にかける時間は、その後11ヶ月の作業時間を半減させます。逆にマスターを決めずに「毎号好きなテンプレート」で進めると、毎月3〜4時間の選択コストが累積します。役員会での合意も含めて、4月に2〜3時間を確保してください。</p>
+</div>
+
+<h3>2-3. Day 15〜21: 配布経路と年間計画</h3>
+
+<h4>2-3-1. 配布経路の合意</h4>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>経路</th><th>主な対象</th><th>作成形式</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>LINE WORKS全体トーク</td><td>役員・委員</td><td>PDF・PNG画像</td></tr>
+      <tr><td>学校経由の紙配布</td><td>全保護者</td><td>PDF印刷</td></tr>
+      <tr><td>PTA共通メール一斉送信</td><td>会員全員</td><td>PDF添付</td></tr>
+      <tr><td>PTA Webサイト掲載</td><td>会員＋外部</td><td>PDF・公開可情報のみ</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h4>2-3-2. 年間お便りカレンダー</h4>
+<p>月次お便り・行事案内・お礼文・広報誌を1つのカレンダーに統合し、Googleカレンダーまたは Sheets で管理します。</p>
+
+<details>
+  <summary>📅 標準的な年間お便り計画（クリックで展開）</summary>
+  <ul>
+    <li><strong>4月</strong>: 新年度のごあいさつ・年間活動計画</li>
+    <li><strong>5月</strong>: 総会報告・新役員紹介</li>
+    <li><strong>6月</strong>: 各委員会活動報告・運動会告知</li>
+    <li><strong>7月</strong>: 1学期振り返り・夏休み中の連絡</li>
+    <li><strong>9月</strong>: 2学期スタート・行事告知</li>
+    <li><strong>10月</strong>: 行事レポート・写真</li>
+    <li><strong>11月</strong>: バザー報告・お礼文</li>
+    <li><strong>12月</strong>: 年末のごあいさつ・冬休み連絡</li>
+    <li><strong>1月</strong>: 新年のごあいさつ・3学期予定</li>
+    <li><strong>2月</strong>: 卒業を祝う会告知・次年度役員募集</li>
+    <li><strong>3月</strong>: 1年間の活動報告・引き継ぎ</li>
+    <li><strong>広報誌（年1〜2回）</strong>: 7月号 / 3月号</li>
+  </ul>
+</details>
+
+<h3>2-4. 個人情報運用ルールの合意</h3>
+<p>年度初めに役員会で合意し、文書化しておくべき5項目です。任期途中で個別判断するとブレが生じます。</p>
+
+<ul>
+  <li><strong>児童氏名の掲載可否</strong>: 原則不掲載、表彰等で掲載する場合は事前に保護者個別同意</li>
+  <li><strong>児童写真の使用ルール</strong>: 同意取得済みの写真のみ。名札・体操服等で氏名が判別できる場合はモザイク処理</li>
+  <li><strong>役員氏名の掲載範囲</strong>: フルネームか姓のみか、連絡先掲載の可否</li>
+  <li><strong>外部公開時の追加配慮</strong>: PTA Webサイト等への掲載時は会員限定版より配慮を強化</li>
+  <li><strong>同意取得方法</strong>: 入会時の同意書・行事ごとの同意書のいずれを使うか</li>
+</ul>
+
+<p>個人情報の取り扱いの詳細は<a href="../governance/security.html#consent">セキュリティガイド第5章</a>を参照してください。</p>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>3. 月次お便りの標準フロー</h2><span class="summary-text">前月末に文案準備、月初に作成、月中に配布。3ツール連携で1号あたり30〜40分に短縮。</span></summary>
+<section id="monthly">
+
+<p>月次お便りは「毎月発生する定型業務」のため、フローを固定化することで作業時間を大幅に短縮できます。理想形は1号あたり30〜40分です。これを超える場合は、フローのどこかにボトルネックがあります。</p>
+
+<h3>3-1. 標準フローのタイムライン</h3>
+<div class="browser-mockup">
+  <div class="browser-bar">
+    <span class="browser-dot red"></span>
+    <span class="browser-dot yellow"></span>
+    <span class="browser-dot green"></span>
+    <span class="browser-url">月次お便り 標準フロー</span>
+  </div>
+  <div class="browser-content">
+    <div class="mock-flow">
+      <div class="mock-flow-section">
+        <div class="mock-flow-label">前月末（5分）</div>
+        <div class="mock-flow-q">役員会議事録から掲載候補項目をピックアップ・LINE WORKSで「次号ネタ」スレッドに集約</div>
+      </div>
+      <div class="mock-flow-arrow">↓</div>
+      <div class="mock-flow-section">
+        <div class="mock-flow-label">配布2週間前（10分）</div>
+        <div class="mock-flow-q">ChatGPTで各記事の文案ドラフトを生成・役員に共有して確認依頼</div>
+      </div>
+      <div class="mock-flow-arrow">↓</div>
+      <div class="mock-flow-section">
+        <div class="mock-flow-label">配布1週間前（15分）</div>
+        <div class="mock-flow-q">マスターテンプレートをコピー → 文案を流し込み → 画像配置 → PDF出力</div>
+      </div>
+      <div class="mock-flow-arrow">↓</div>
+      <div class="mock-flow-section">
+        <div class="mock-flow-label">配布3日前（5分）</div>
+        <div class="mock-flow-q">会長・副会長による最終確認 → 微修正 → 確定版PDF</div>
+      </div>
+      <div class="mock-flow-arrow">↓</div>
+      <div class="mock-flow-section">
+        <div class="mock-flow-label">配布日（5分）</div>
+        <div class="mock-flow-q">LINE WORKS全体トーク投稿 → 紙印刷分は学校経由で配布</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>3-2. 文案作成の効率化</h3>
+
+<h4>3-2-1. ChatGPTへの基本プロンプト</h4>
+<pre class="code-block">
+あなたはPTA広報担当として、月次お便りの記事文案を作成します。
+
+【記事のテーマ】
+[例: 6月の運動会開催のお知らせ]
+
+【条件】
+・対象読者: 小学校保護者全員
+・トーン: 丁寧だが親しみやすい
+・分量: 250〜300字
+・含めるべき情報:
+  - 開催日時・場所
+  - 雨天時の判断（前日19:00までに連絡）
+  - 服装・持ち物の注意
+  - 問い合わせ先（広報部）
+・避けるべき表現: 児童の固有名詞、過度な専門用語
+
+短い案を3つ出してください。
+</pre>
+
+<h4>3-2-2. ChatGPT利用時の注意</h4>
+<div class="info-box-warn">
+  <strong>⚠️ ChatGPTに個人情報を入力しない</strong>
+  <p>記事の文案作成において、児童氏名・保護者氏名・連絡先・住所等を ChatGPT に入力しないでください。テンプレート部分のみ生成させ、個人情報は最終工程で広報担当者が手動で挿入します。詳細は<a href="../tools/chatgpt.html#privacy">ChatGPT完全ガイド第5章</a>参照。</p>
+</div>
+
+<h3>3-3. レイアウトの効率化</h3>
+<ol>
+  <li>マスターテンプレートを開き、右上「ファイル」→「コピーを作成」</li>
+  <li>新しいデザインを「YYYY年MM月号_PTAお便り」とリネーム</li>
+  <li>テンプレート内の文言を、ChatGPTで作成した文案に差し替え</li>
+  <li>レイアウトには触らない（マスターを尊重する）</li>
+  <li>右上「共有」→「ダウンロード」→「PDF（標準）」で出力</li>
+</ol>
+
+<h3>3-4. 配布前の最終チェック</h3>
+<details>
+  <summary>✅ 配布前チェックリスト（クリックで展開）</summary>
+  <p><strong>内容チェック</strong></p>
+  <ul>
+    <li>☐ 日付・時刻・場所の数字に誤りがないか</li>
+    <li>☐ 連絡先（電話番号・メールアドレス）が正しいか</li>
+    <li>☐ 児童氏名・写真の同意取得が確認できているか</li>
+    <li>☐ 役員氏名の表記揺れがないか</li>
+    <li>☐ 外部の固有名詞（業者名等）に誤字がないか</li>
+  </ul>
+  <p><strong>レイアウトチェック</strong></p>
+  <ul>
+    <li>☐ 紙端から15mm以上の余白が確保されているか</li>
+    <li>☐ 本文サイズが10pt以上か</li>
+    <li>☐ Canvaの王冠マーク（有料素材）の透かしが残っていないか</li>
+    <li>☐ 印刷プレビューで文字切れ・画像切れがないか</li>
+  </ul>
+  <p><strong>承認チェック</strong></p>
+  <ul>
+    <li>☐ 会長・副会長の事前確認を取得済み</li>
+    <li>☐ 役員会または該当委員会で内容確認済み</li>
+  </ul>
+</details>
+
+<div class="info-box-tip">
+  <strong>💡 「3人原則」</strong>
+  <p>お便りの誤字脱字・事実誤認は、作成者本人では発見できません。配布前に必ず3人以上が確認する運用にしてください。役員会全員で回覧する必要はなく、会長・副会長・もう1人の役員で十分です。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>4. 行事案内・お礼文の作成</h2><span class="summary-text">単発配布物は告知（行事前）と御礼（行事後）の2タイミング。タイミングを逃すと価値が激減する。</span></summary>
+<section id="event-letter">
+
+<p>行事に関わる広報物は、告知と御礼の2タイミングで作成します。月次お便りと違い「タイミングを逃すと価値が激減する」性質があるため、行事の準備フェーズの早い段階で配信スケジュールを確定させる必要があります。</p>
+
+<h3>4-1. 告知（行事前）</h3>
+
+<h4>4-1-1. 配信タイミングの設計</h4>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>タイミング</th><th>目的</th><th>含める情報</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>4〜6週間前</td><td>予告・日程確保依頼</td><td>日時・場所・申込予定日</td></tr>
+      <tr><td>2〜3週間前</td><td>申込開始</td><td>申込フォーム・申込締切・参加条件</td></tr>
+      <tr><td>1週間前</td><td>リマインド</td><td>持ち物・服装・雨天判断</td></tr>
+      <tr><td>前日</td><td>最終確認</td><td>当日連絡先・集合時刻</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h4>4-1-2. 告知文の必須項目</h4>
+<ul>
+  <li>行事名</li>
+  <li>日時（曜日・開始/終了時刻）</li>
+  <li>場所（地図リンクまたは集合場所の詳細）</li>
+  <li>対象（学年・参加条件）</li>
+  <li>持ち物・服装</li>
+  <li>雨天時の判断（誰が・いつまでに・どう連絡）</li>
+  <li>申込方法（フォームURL・締切）</li>
+  <li>問い合わせ先（部署・連絡経路）</li>
+</ul>
+
+<h4>4-1-3. ChatGPTを使った告知文の効率化</h4>
+<pre class="code-block">
+あなたはPTA広報担当として、行事の告知文を作成します。
+
+【行事】
+[例: 2026年10月18日(土) 13:00〜16:00 秋祭り（◯◯小学校 校庭・体育館）]
+
+【条件】
+・対象: 小学校保護者全員
+・分量: 400〜500字
+・含めるべき情報:
+  - 開催趣旨（児童・保護者・地域の交流促進）
+  - 日時・場所
+  - 雨天時の判断（10/17 19:00までにLINE WORKS連絡）
+  - 申込フォームURL（末尾に[URL]として置く）
+  - 申込締切（10/10）
+  - 問い合わせ先（広報部）
+・トーン: 親しみやすく、参加意欲を高める
+
+短い案を3つ出してください。
+</pre>
+
+<h3>4-2. お礼文（行事後）</h3>
+
+<h4>4-2-1. 配信タイミング</h4>
+<p>行事終了から1週間以内が原則です。2週間以上経過すると感謝の鮮度が落ち、形式的な印象になります。</p>
+
+<h4>4-2-2. お礼文の必須要素</h4>
+<ul>
+  <li>参加人数（具体的な数字）</li>
+  <li>協力者・ボランティアへの感謝</li>
+  <li>印象に残った場面の具体的描写（児童氏名は避ける）</li>
+  <li>反省点・改善点（あれば率直に）</li>
+  <li>来年度への意気込み</li>
+  <li>写真フォルダのリンク（あれば）</li>
+</ul>
+
+<h4>4-2-3. ChatGPTを使ったお礼文の生成</h4>
+<pre class="code-block">
+あなたはPTA広報担当として、行事終了後の保護者向けお礼文を作成します。
+
+【行事】
+[例: 2026年10月18日 秋祭り 参加者約380名]
+
+【条件】
+・トーン: あたたかく、感謝が伝わる
+・分量: 400〜500字
+・盛り込む要素:
+  - 参加者数（約380名）
+  - ボランティア協力者への感謝
+  - 印象に残った場面（具体的なエピソードは仮で可、後で差し替え前提）
+  - 来年度への意気込み
+・末尾に写真フォルダのリンク案内を入れる
+・児童の固有名詞は使わない
+
+短い案を3つ出してください。
+</pre>
+
+<div class="info-box-tip">
+  <strong>💡 反省点を書く効用</strong>
+  <p>お礼文に率直な反省点を1〜2行入れると、保護者からの信頼が高まります。「全て成功でした」より「混雑時の動線で課題が残りました。来年度に向け改善します」の方が誠実に映り、改善ノートとしての記録にもなります。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>5. 広報誌の作成（年1〜2回）</h2><span class="summary-text">月次お便りより大型で多面的な広報誌は、企画・取材・編集・配布の4フェーズで3〜4ヶ月かけて作成。</span></summary>
+<section id="magazine">
+
+<p>事実: PTA広報誌は月次お便りと位置付けが異なります。一般的にA4・8〜16ページ程度で、年1〜2回発行。年度の活動の集大成として、新聞のようなレイアウトで複数の記事を組み合わせます。</p>
+
+<p>推測: 広報誌の制作期間は3〜4ヶ月が現実的です。これを1ヶ月で作ろうとすると品質が著しく低下し、関わった役員も消耗します。年度初めに発行スケジュールを逆算で確定させるのが鍵です。</p>
+
+<h3>5-1. 広報誌の役割</h3>
+<ul>
+  <li>1年間の活動記録としての側面</li>
+  <li>会費の使途報告（決算と並ぶ重要文書）</li>
+  <li>外部に対する PTA活動の存在証明</li>
+  <li>翌年度以降の歴史資料</li>
+</ul>
+
+<h3>5-2. 4フェーズの工程</h3>
+
+<h4>5-2-1. フェーズ1: 企画（発行2.5ヶ月前）</h4>
+<ol>
+  <li>編集会議の開催（広報担当全員）</li>
+  <li>テーマ・特集記事の決定</li>
+  <li>ページ構成（台割）の作成</li>
+  <li>取材対象・記事担当者の割り当て</li>
+  <li>発行日・印刷スケジュールの確定</li>
+</ol>
+
+<h4>5-2-2. フェーズ2: 取材・原稿作成（発行2ヶ月〜1ヶ月前）</h4>
+<ol>
+  <li>各記事担当者が取材・写真撮影を実施</li>
+  <li>ChatGPTを補助に使いつつ、各自が原稿を作成</li>
+  <li>原稿の相互レビュー（広報担当2名以上で確認）</li>
+  <li>写真の選別と肖像権確認</li>
+</ol>
+
+<h4>5-2-3. フェーズ3: 編集・レイアウト（発行1ヶ月〜2週間前）</h4>
+<ol>
+  <li>Canvaで広報誌テンプレート（A4 8〜16ページ）を作成・選択</li>
+  <li>各記事を流し込み</li>
+  <li>レイアウト調整（見出し・本文・画像のバランス）</li>
+  <li>会長・校長への確認依頼（学校行事への記述がある場合）</li>
+  <li>最終校正</li>
+</ol>
+
+<h4>5-2-4. フェーズ4: 印刷・配布（発行2週間前〜発行日）</h4>
+<ol>
+  <li>PDF出力（印刷用設定で塗り足し有効化）</li>
+  <li>印刷会社への入稿または校内印刷</li>
+  <li>納品確認</li>
+  <li>学校経由での配布またはLINE WORKS配信</li>
+</ol>
+
+<h3>5-3. 広報誌の標準的な構成</h3>
+<details>
+  <summary>📰 8ページ広報誌の標準構成例（クリックで展開）</summary>
+  <ul>
+    <li><strong>P1（表紙）</strong>: タイトル・発行号数・発行日・特集タイトル・象徴的な写真1枚</li>
+    <li><strong>P2</strong>: 会長挨拶・編集後記</li>
+    <li><strong>P3〜4</strong>: 特集記事（年度の主要活動を深掘り）</li>
+    <li><strong>P5</strong>: 各委員会活動報告</li>
+    <li><strong>P6</strong>: 行事レポート（運動会・バザー等）</li>
+    <li><strong>P7</strong>: 児童・保護者の声（コメント・寄稿）</li>
+    <li><strong>P8（裏表紙）</strong>: 役員紹介・次号予告・問い合わせ先</li>
+  </ul>
+</details>
+
+<h3>5-4. 印刷の選択肢</h3>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>選択肢</th><th>費用感</th><th>強み・弱み</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>校内コピー機（白黒）</td><td>1部数円</td><td>最安・カラー不可</td></tr>
+      <tr><td>校内コピー機（カラー）</td><td>1部数十円</td><td>カラー可だが品質に限界</td></tr>
+      <tr><td>ネット印刷（ラクスル等）</td><td>500部1〜2万円</td><td>カラー・高品質・納期1週間</td></tr>
+      <tr><td>地元印刷会社</td><td>500部2〜4万円</td><td>相談しやすい・若干高価</td></tr>
+      <tr><td>デジタル配信のみ</td><td>無料</td><td>紙の温度感が出ない・閲覧率が低下</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="info-box-tip">
+  <strong>💡 紙とデジタルの併用が現実解</strong>
+  <p>2026年5月時点で、PTA広報誌の配布形態は紙とデジタルの併用が主流です。紙のみ・デジタルのみのいずれにも限界があり、紙印刷を縮小（300〜500部）しつつデジタル配信（PDF）で全保護者に届ける運用が多くのPTAで採用されています。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>6. 個人情報・写真の扱い</h2><span class="summary-text">児童氏名の伏字化、写真の同意管理、外部公開時の追加配慮を、運用レベルで具体化する。</span></summary>
+<section id="privacy">
+
+<p>事実: PTAの広報物は、性質上、児童・保護者の個人情報を扱う場面が多発します。2024年以降、PTAの個人情報取扱不備による事故・指摘事例が複数報道されており、広報担当として最低限の運用ルールを把握しておく必要があります。</p>
+
+<p>2025年9月時点で、静岡市内20の小中学校で約9,200名の児童情報が保護者の同意なくPTAに提供されていた事例が報道されています（出典: <a href="https://news.yahoo.co.jp/articles/aec803a33d21104996e07e4137a5fdb74034dabc" rel="noopener">Yahoo!ニュース</a>）。</p>
+
+<h3>6-1. 児童氏名の掲載</h3>
+<ul>
+  <li>原則として児童氏名は掲載しない</li>
+  <li>表彰・コメント等で掲載が必要な場合は、必ず保護者の事前同意を個別取得</li>
+  <li>同意取得の証跡（紙・電子）を必ず保管</li>
+  <li>同意の有効期限を明示（例: 当該号のみ・当年度のみ）</li>
+</ul>
+
+<h3>6-2. 写真の使用</h3>
+
+<h4>6-2-1. 同意取得の3パターン</h4>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>取得タイミング</th><th>方式</th><th>有効範囲</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>入会時</td><td>包括同意書</td><td>在籍期間中の広報物全般</td></tr>
+      <tr><td>行事申込時</td><td>行事ごとの同意</td><td>当該行事の広報物のみ</td></tr>
+      <tr><td>掲載直前</td><td>個別確認</td><td>当該掲載のみ</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h4>6-2-2. 写真フォルダの運用</h4>
+<p>tools/sheets.html や governance/security.html と一貫した運用として、写真は以下の3層管理を推奨します。</p>
+
+<ul>
+  <li><strong>05_当日写真_未確認</strong>: 撮影直後の生写真。役員のみアクセス可</li>
+  <li><strong>05_当日写真_使用可</strong>: 同意済み・伏字処理済みの写真。広報担当アクセス可</li>
+  <li><strong>05_当日写真_公開可</strong>: 外部公開可能な写真のみ。Webサイト等で利用</li>
+</ul>
+
+<h4>6-2-3. 体操服・名札のモザイク処理</h4>
+<p>事実: 児童・保護者が身につけているもの（体操服・名札・帽子等）で氏名が判別できる写真は、名前部分にモザイクを入れる処理を行います（出典: <a href="https://pta-yokosuka.com/wp-content/uploads/Pdf/koho-guideline/koho-guideline20240906.pdf" rel="noopener">横須賀市PTA広報紙ガイドライン</a>）。</p>
+
+<details>
+  <summary>🎨 Canvaでモザイク処理を行う方法（クリックで展開）</summary>
+  <ol>
+    <li>該当写真をCanvaにアップロード</li>
+    <li>写真をクリック → 上部メニュー「エフェクト」</li>
+    <li>「ぼかし」または「ピクセル化」を選択</li>
+    <li>名前部分のみ範囲選択（背景全体ではなく該当部位のみ）</li>
+    <li>強度を「強」に設定し、判別不能な状態にする</li>
+    <li>処理後の写真を別名で保存し、元写真と区別</li>
+  </ol>
+  <p>または、画像編集アプリ（無料のSnapseed等）で処理した上で Canva に取り込む方法も有効です。</p>
+</details>
+
+<h3>6-3. 役員氏名の扱い</h3>
+<ul>
+  <li>役職と氏名（フルネームまたは姓のみ）の組み合わせは、本人同意があれば掲載可</li>
+  <li>個人連絡先（電話番号・メール）の掲載は原則PTA共通連絡先のみ</li>
+  <li>役員写真の掲載は本人同意を都度確認</li>
+</ul>
+
+<h3>6-4. 外部公開（Webサイト・SNS）時の追加配慮</h3>
+<p>PTA Webサイトや公式SNSへの掲載は、紙やLINE WORKS配信より配慮を強化します。</p>
+<ul>
+  <li>会員限定の情報は掲載しない</li>
+  <li>児童写真は同意レベルが「外部公開可」のもののみ</li>
+  <li>役員氏名は姓のみ・または役職表記のみを推奨</li>
+  <li>連絡先はPTA共通アドレスのみ</li>
+  <li>掲載前に役員会または広報部内での承認プロセスを必ず通す</li>
+</ul>
+
+<div class="info-box-warn">
+  <strong>⚠️ 「みんな映っているから問題ない」は危険</strong>
+  <p>「全員が同意しているはずだから」「みんな映っているから」という暗黙の前提は、後日のトラブルを生みます。同意取得の有無を写真ごとにフラグで管理し、不明な写真は使わない運用を徹底してください。詳細は<a href="../tools/canva.html#anti-patterns">Canva完全ガイド第9章 失敗パターン</a>参照。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>7. 後任への引き継ぎ</h2><span class="summary-text">マスターテンプレート・年間計画・写真資産・取材先連絡先を整理し、ゼロから作り直す負担を排除する。</span></summary>
+<section id="handover">
+
+<p>広報業務は「ゼロから作り直すと毎年同じ消耗が発生する」典型的な領域です。後任が任期初日からマスターテンプレートを使ってお便りを作れる状態にすることが、引き継ぎの最終目標です。</p>
+
+<h3>7-1. 引き継ぎスケジュール</h3>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr><th>時期</th><th>タスク</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1月</td><td>後任候補との顔合わせ・引き継ぎ計画合意</td></tr>
+      <tr><td>2月</td><td>後任に過去資産（共通Drive・Canva）の閲覧権限付与</td></tr>
+      <tr><td>2月</td><td>3月号お便りを後任と並行作業（OJT）</td></tr>
+      <tr><td>3月</td><td>マスターテンプレート・年間計画の最終整理</td></tr>
+      <tr><td>3月</td><td>取材先連絡先・写真資産の整理</td></tr>
+      <tr><td>3月末</td><td>権限の正式移譲・引き継ぎ完了報告</td></tr>
+      <tr><td>4月</td><td>4月号を後任が主担当・前任は確認役</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h3>7-2. 後任に渡す資産</h3>
+<ol>
+  <li><strong>マスターテンプレート</strong>: Canva上で「マスター_PTAお便り」「マスター_広報誌」等</li>
+  <li><strong>年間お便りカレンダー</strong>: 月別の発行予定・過去年度のテーマ履歴</li>
+  <li><strong>取材先連絡先一覧</strong>: 業者・印刷会社・地域連合PTAの担当者</li>
+  <li><strong>写真資産</strong>: 過去年度の使用可写真・同意取得状況のフラグ</li>
+  <li><strong>過去お便り・広報誌のアーカイブ</strong>: PDF形式で全号</li>
+  <li><strong>個人情報運用ルール文書</strong>: 役員会で合意した5項目</li>
+  <li><strong>改善ノート</strong>: 任期中の試行錯誤と次年度への提案</li>
+</ol>
+
+<h3>7-3. 並行運用期間の設計</h3>
+<p>3月号と4月号は、新旧広報担当が並行して作業する期間とします。これにより、ChatGPTのプロンプト・Canvaの操作・配布経路の実体験を後任が確実に習得できます。</p>
+
+<div class="info-box-tip">
+  <strong>💡 「マスター」を更新可能な資産として残す</strong>
+  <p>後任が4月にマスターを微調整することは歓迎すべきです。「前任が決めたから変えてはいけない」という運用は、年々の改善を止めます。マスターは「年度を通じて固定」だが「年度替わりで見直し可能」というルールが、長期的な品質向上を生みます。</p>
+</div>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>8. よくある質問</h2><span class="summary-text">手書き原稿の扱い・著作権の判断・苦情対応・アクセシビリティに関する実務疑問。</span></summary>
+<section id="faq">
+
+<details>
+  <summary>Q1. 手書きの寄稿原稿が来た場合の扱い</summary>
+  <p>校長や来賓からの寄稿は手書き原稿で届く場合があります。OCRアプリ（Google Lens 等）でテキスト化したうえで、Canvaに流し込むのが最速です。手書きの「温度感」を残したい場合は、原稿を画像として写真撮影し、画像ブロックとして広報誌に配置する選択肢もあります。寄稿者には事前に「電子化して掲載する旨」を確認しておくのが望ましいです。</p>
+</details>
+
+<details>
+  <summary>Q2. 著作権が心配な場合（イラスト・引用等）</summary>
+  <p>イラスト・写真は Canva 内の素材か、明確に「商用利用可・PTA配布物に使用可」と明示された素材のみ使用してください。Google画像検索で見つけた画像をそのまま使うのは最も危険です。書籍・新聞からの引用は「引用の要件」（出典明示・必要最小限・主従関係）を満たす範囲なら可能ですが、判断が難しい場合は使用を避けるのが安全です。詳細は<a href="../tools/canva.html#copyright">Canva完全ガイド第7章</a>参照。</p>
+</details>
+
+<details>
+  <summary>Q3. お便りの内容に苦情が来た場合</summary>
+  <p>苦情の内容を冷静に確認し、事実誤認・個人情報の誤掲載があれば速やかに訂正します。表現の好みに関する苦情は、役員会で協議のうえ、組織として方針を決定してください。広報担当個人で抱え込まないことが重要です。次号で訂正記事を掲載するか、該当者への個別連絡で対応するかは、内容の重要性に応じて判断します。</p>
+</details>
+
+<details>
+  <summary>Q4. 視覚障害・読字困難な方への配慮</summary>
+  <p>事実: アクセシビリティへの配慮として、PDF配布時にテキスト情報を保持する形式で出力する（画像化PDFを避ける）、本文サイズを大きめに設定する（10pt以上）、コントラスト比を確保する、等が基本です。デジタル配信時は読み上げソフト対応のため、画像内テキストではなく実テキストで構成することが望ましいです。重要な配布物は、要望があれば大きい文字版を別途用意する選択肢も検討してください。</p>
+</details>
+
+<details>
+  <summary>Q5. 月によってお便りを休んでもよいか</summary>
+  <p>事実: 8月（夏休み）は休刊するPTAが多いです。発行頻度は団体ごとに異なるため、年間計画段階で「年に何回発行するか」を役員会で合意してください。隔月発行・年6回発行のPTAも存在します。重要なのは「無理して毎月発行」より「決めた頻度を確実に守る」ことです。</p>
+</details>
+
+<details>
+  <summary>Q6. 過去のお便りが大量にあるが整理されていない</summary>
+  <p>過去資産の遡及整理は時間がかかるため、現任期中に全てを整理する必要はありません。「過去2年分のみ整理して、それ以前はアーカイブフォルダにそのまま保管」が現実的です。ファイル名規則（YYYYMM_種別.pdf）を統一すれば、検索性は確保できます。</p>
+</details>
+
+</section>
+</details>
+
+<details class="chapter-details">
+<summary><h2>9. 関連ページ・チェックリスト</h2><span class="summary-text">本ページと併読すべきガイドと、月次・行事・広報誌・引き継ぎ各場面のチェックリスト。</span></summary>
+<section id="related">
+
+<h3>9-1. 必読の関連ページ</h3>
+<ul>
+  <li><a href="../tools/chatgpt.html">ChatGPT完全ガイド</a> - 文案作成のプロンプト設計・個人情報の扱い</li>
+  <li><a href="../tools/canva.html">Canva完全ガイド</a> - レイアウト・テンプレート・著作権</li>
+  <li><a href="../tools/lineworks.html">LINE WORKS完全ガイド</a> - 配布経路としての活用</li>
+  <li><a href="../governance/security.html">セキュリティガイド</a> - 個人情報・写真使用の同意取得</li>
+</ul>
+
+<h3>9-2. 推奨の関連ページ</h3>
+<ul>
+  <li><a href="../governance/handover-design.html">引き継ぎ設計ガイド</a> - 共通アカウント設計・4つの必須ドキュメント</li>
+  <li><a href="../governance/antipatterns.html">失敗事例集</a> - 写真権利・著作権トラブル実例</li>
+  <li><a href="event.html">行事運営シナリオ</a> - 行事告知・お礼文の文脈</li>
+  <li><a href="handover.html">新会長・役員交代の引き継ぎ実践</a> - 並行する会長引き継ぎ</li>
+</ul>
+
+<h3>9-3. 場面別チェックリスト</h3>
+<details>
+  <summary>✅ 4月初動チェック（クリックで展開）</summary>
+  <ul>
+    <li>☐ 過去2年分のお便り・広報誌の閲覧確認</li>
+    <li>☐ Canva共通アカウントへのログイン確認</li>
+    <li>☐ マスターテンプレートの確定（または作成）</li>
+    <li>☐ 配布経路の合意（LINE WORKS / 紙 / メール / Web）</li>
+    <li>☐ 年間お便りカレンダーの作成</li>
+    <li>☐ 個人情報運用ルール5項目の役員会合意</li>
+    <li>☐ 写真フォルダの3層管理体制構築</li>
+  </ul>
+</details>
+
+<details>
+  <summary>✅ 月次お便りチェック（クリックで展開）</summary>
+  <ul>
+    <li>☐ 前月末: 役員会議事録から掲載候補ピックアップ</li>
+    <li>☐ 配布2週間前: ChatGPTで文案ドラフト・役員確認</li>
+    <li>☐ 配布1週間前: Canvaでレイアウト完成・PDF出力</li>
+    <li>☐ 配布3日前: 会長・副会長の最終確認</li>
+    <li>☐ 配布前: 内容・レイアウト・承認の3カテゴリチェック</li>
+    <li>☐ 配布日: LINE WORKS投稿・紙印刷分の学校連携</li>
+  </ul>
+</details>
+
+<details>
+  <summary>✅ 行事案内・お礼文チェック（クリックで展開）</summary>
+  <ul>
+    <li>☐ 4〜6週間前: 予告配信</li>
+    <li>☐ 2〜3週間前: 申込開始の告知</li>
+    <li>☐ 1週間前: リマインド配信</li>
+    <li>☐ 前日: 最終確認連絡</li>
+    <li>☐ 行事終了から1週間以内: お礼文配信</li>
+    <li>☐ 写真使用は同意済みのみ・伏字処理確認</li>
+  </ul>
+</details>
+
+<details>
+  <summary>✅ 広報誌チェック（クリックで展開）</summary>
+  <ul>
+    <li>☐ 発行2.5ヶ月前: 編集会議・テーマ確定・台割作成</li>
+    <li>☐ 発行2ヶ月〜1ヶ月前: 取材・原稿作成・写真選別</li>
+    <li>☐ 発行1ヶ月〜2週間前: レイアウト・校正・会長校長確認</li>
+    <li>☐ 発行2週間前: PDF出力・印刷入稿</li>
+    <li>☐ 発行日: 配布・デジタル配信</li>
+  </ul>
+</details>
+
+<details>
+  <summary>✅ 引き継ぎチェック（クリックで展開）</summary>
+  <ul>
+    <li>☐ 1月: 後任候補との顔合わせ</li>
+    <li>☐ 2月: 後任に過去資産の閲覧権限付与</li>
+    <li>☐ 2〜3月: 並行作業（OJT）</li>
+    <li>☐ 3月: マスターテンプレート整理</li>
+    <li>☐ 3月: 取材先・写真資産の整理</li>
+    <li>☐ 3月: 個人情報運用ルール文書の引き渡し</li>
+    <li>☐ 3月末: 権限の正式移譲</li>
+    <li>☐ 4月: 後任主担当・前任確認役</li>
+  </ul>
+</details>
+
+</section>
+</details>
+
 </main>
 
-<div data-related></div>
+<footer class="site-footer">
+  <p>PTA・地域活動 デジタル活用統合ガイド | CC BY 4.0</p>
+  <p><a href="../index.html">ホームに戻る</a></p>
+</footer>
+
 <script src="../assets/nav.js"></script>
 </body>
 </html>
