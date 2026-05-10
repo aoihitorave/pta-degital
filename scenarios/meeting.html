@@ -1,51 +1,785 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="PTA会議の日程調整から議事録作成までを、調整さん・Google Meet・NotebookLMで効率化する方法。">
-  <title></title>
-  <link rel="stylesheet" href="../assets/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会議運営の年間設計｜PTA・地域活動 デジタル活用統合ガイド</title>
+<meta name="description" content="PTAの定例役員会・委員会・全体会・対学校打ち合わせを、種類別に頻度・記録・参加者範囲から再設計。調整さん／Meet／Docs／NotebookLMの連携運用、議事録テンプレート、決議トラッキング、後任引き継ぎまで完全網羅。">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Cherry+Bomb+One&display=swap" rel="stylesheet">
 </head>
-<body data-page-id="sc-meeting">
+<body data-page="scenarios/meeting">
+<div id="site-header"></div>
+<main class="container">
 
-<div data-breadcrumb></div>
-
-<header class="hero">
-  <span class="hero-badge">COMING SOON · SCENARIO</span>
-  <h1>📅 <span class="accent">会議〜議事録</span> ガイド</h1>
-  <p class="lead">日程調整から会議運営、議事録の自動要約までを一気通貫で解説する予定です。</p>
+<header class="page-header">
+  <p class="breadcrumb-fallback"><a href="../index.html">ホーム</a> ＞ <a href="../index.html#scenarios">業務シナリオ</a> ＞ 会議運営の年間設計</p>
+  <h1 class="page-title">🗣️ 会議運営の年間設計</h1>
+  <p class="page-lead">PTA会議は「定例役員会・委員会・全体会・対学校・臨時」の5種類が並走する特殊な会議体です。<strong>会議の目的を3分類で明示し、議事録を会議中に書き終え、参加者の時間コスト合計を可視化する</strong>──この3原則で、会議が「儀式」から「意思決定の場」に戻ります。</p>
 </header>
 
-<main>
-  <section class="block">
-    <h2><span class="num">📝</span>このページで書く予定の内容</h2>
-    <ul>
-      <li>調整さんでの日程調整（最高の回答率を出すコツ）</li>
-      <li>Googleカレンダーへの予定登録とMeetリンクの自動発行</li>
-      <li>会議中のリアルタイム議事録共同編集</li>
-      <li>会議録音をNotebookLMにかけて自動要約・決定事項抽出</li>
-      <li>議事録の保管・年度引き継ぎへの活かし方</li>
-    </ul>
-  </section>
+<!-- ========== 章0: このページの読み方 ========== -->
+<section class="chapter-open" id="howto">
+<h2>0. このページの読み方</h2>
+<p>あなたの立場に応じて、3つの入り口を用意しました。第0章と第1章のみ最初から開いた状態にしてあります。第2章以降は▶を押して必要な章だけ展開してください。</p>
 
-  <section class="block">
-    <h2><span class="num">💡</span>いまできる代替策</h2>
-    <ul>
-      <li><a href="../tools/chouseisan.html">調整さん</a>（準備中）</li>
-      <li><a href="../tools/meet.html">Google Meet</a>（準備中）</li>
-      <li><a href="../tools/notebooklm.html">NotebookLM</a>（準備中）</li>
-      <li><a href="../scenarios/event.html#step-plan">イベント運営シナリオの「企画フェーズ」</a>：キックオフ会議の実例</li>
-    </ul>
-  </section>
+<div class="card-grid-3">
+  <div class="route-card">
+    <h3>🆕 新任役員・初めて会議に出る方</h3>
+    <p>会議の種類と最低限のマナーから読みます。</p>
+    <p><a href="#types">→ 第2章 会議の種類と頻度設計へ</a></p>
+    <p class="time-estimate">読了目安: 30分</p>
+  </div>
+  <div class="route-card">
+    <h3>📋 議事録・運営担当</h3>
+    <p>アジェンダ設計から議事録運用まで読みます。</p>
+    <p><a href="#agenda">→ 第4章 アジェンダ設計へ</a></p>
+    <p class="time-estimate">読了目安: 1時間</p>
+  </div>
+  <div class="route-card">
+    <h3>👔 会長・改革担当</h3>
+    <p>全文を順番に読み、会議体そのものを再設計します。</p>
+    <p><a href="#principles">→ 第1章から順に</a></p>
+    <p class="time-estimate">読了目安: 90分</p>
+  </div>
+</div>
 
-  <section class="block">
-    <h2><span class="num">📮</span>先行公開リクエスト</h2>
-    <p>本ページは執筆優先度が高い候補の1つです。リクエストはGitHub Issueへお寄せください。</p>
-  </section>
+<div class="info-box-tip">
+  <strong>💡 設計思想</strong>
+  本ページは「会議を上手に運営する技術」ではなく「不要な会議を削り、必要な会議の密度を上げる」ことを主目的としています。会議数を増やせば組織が強くなる、という前提を最初に疑ってください。
+</div>
+</section>
+
+<!-- ========== 章1: 3原則 ========== -->
+<section class="chapter-open" id="principles">
+<h2>1. PTA会議運営の3原則</h2>
+
+<p>事実: 会議は参加者の人数×所要時間ぶんの時間コストを瞬間的に消費します。20名×2時間の役員会は40人時の資源投入であり、これは保護者の可処分時間の希少性を考えると重い投資です。</p>
+
+<p>推測: PTA役員が任期中に最も消耗する原因の上位は「目的不明な会議への動員」と「決議事項が記録に残らないことによる蒸し返し」です。会議そのものを減らすのではなく、会議の構造を変えることでこの2つは同時に解決できます。</p>
+
+<p>本ページの基本方針は以下の3点です。具体的なツール操作は <a href="../tools/chouseisan.html">調整さんガイド</a>・<a href="../tools/meet.html">Google Meetガイド</a>・<a href="../tools/docs.html">Googleドキュメントガイド</a> を、不適切な会議運営の構造分析は <a href="../governance/antipatterns.html">失敗事例集</a> を参照してください。</p>
+
+<div class="principle-grid">
+  <div class="principle-card">
+    <h3>1. 目的の3分類</h3>
+    <p>全ての議題を「決める／共有する／議論する」のいずれかに事前分類する。混在させない。</p>
+  </div>
+  <div class="principle-card">
+    <h3>2. 議事録は会議中に書き終える</h3>
+    <p>会議終了時刻＝議事録完成時刻。後日清書は原則禁止。</p>
+  </div>
+  <div class="principle-card">
+    <h3>3. 時間コスト合計を可視化</h3>
+    <p>「参加者数×所要時間」をアジェンダ冒頭に明示。重い会議は議題を絞る。</p>
+  </div>
+</div>
+
+<div class="info-box-warn">
+  <strong>⚠️ 「とりあえず集まる」を最初から拒否する</strong>
+  目的が「決める」のか「共有する」のか「議論する」のか、招集者自身が答えられない会議は、原則として開催しないでください。共有だけならLINE WORKSの全体トーク投稿で代替可能です。判断のフローチャートは本ページ第2章で扱います。
+</div>
+</section>
+
+<!-- ========== 章2: 会議の種類と頻度設計 ========== -->
+<details id="types">
+<summary><span class="chapter-num">2.</span> <span class="chapter-title">会議の種類と頻度設計</span><span class="chapter-summary">5種類の会議体を比較し、適切な頻度・所要時間・参加者範囲を設計する。</span></summary>
+
+<p>事実: PTAには性質の異なる5種類の会議が並走します。それぞれ目的・参加者・記録の深さが異なるため、画一的に運用すると「全員参加・全員拘束・記録は曖昧」という最悪のパターンに収束します。</p>
+
+<h3>2-1. 5種類の会議体</h3>
+
+<table class="comparison-table">
+<thead>
+<tr><th>種類</th><th>主な目的</th><th>参加者</th><th>標準頻度</th><th>標準所要</th><th>記録の深さ</th></tr>
+</thead>
+<tbody>
+<tr><td>定例役員会</td><td>意思決定・進捗共有</td><td>本部役員（10〜20名）</td><td>月1回</td><td>90分</td><td>決議＋発言要旨</td></tr>
+<tr><td>委員会</td><td>担当業務の実務調整</td><td>委員（5〜15名）</td><td>行事前後に随時</td><td>60分</td><td>決議＋宿題</td></tr>
+<tr><td>全体会・総会</td><td>会員への報告・承認取得</td><td>全会員</td><td>年1〜2回</td><td>90〜120分</td><td>決議＋逐語に近い議事録</td></tr>
+<tr><td>対学校打ち合わせ</td><td>校長・教頭との連携</td><td>会長・副会長＋管理職</td><td>月1回または学期1回</td><td>30〜60分</td><td>決議＋共有事項</td></tr>
+<tr><td>臨時会議</td><td>緊急事態対応</td><td>関係役員のみ</td><td>必要時</td><td>30〜60分</td><td>決議＋経緯</td></tr>
+</tbody>
+</table>
+
+<div class="info-box-tip">
+  <strong>💡 規模の調整指針</strong>
+  上記の標準値は会員数100〜500名規模の都市部小学校PTAを想定しています。会員50名以下の小規模団体では、定例役員会と委員会を統合する運用が現実的です。会員1,000名超の大規模PTAでは、本部役員会と拡大役員会の2層構造を持つことが多くなります。
+</div>
+
+<h3>2-2. 開催判断のフローチャート</h3>
+
+<div class="flowchart">
+  <div class="flow-step"><strong>Step 1</strong>: この議題の目的は「決める」「共有する」「議論する」のどれか？</div>
+  <div class="flow-arrow">↓ 「共有のみ」なら</div>
+  <div class="flow-step alt">LINE WORKS全体トーク投稿で代替（会議不要）</div>
+  <div class="flow-arrow">↓ 「決める／議論する」なら次へ</div>
+  <div class="flow-step"><strong>Step 2</strong>: 関係者は何名か？</div>
+  <div class="flow-arrow">↓ 3名以下なら</div>
+  <div class="flow-step alt">Googleドキュメント上で非同期合意（会議不要）</div>
+  <div class="flow-arrow">↓ 4名以上なら次へ</div>
+  <div class="flow-step"><strong>Step 3</strong>: 緊急度はどうか？</div>
+  <div class="flow-arrow">↓ 次回定例まで待てるなら</div>
+  <div class="flow-step alt">次回定例役員会のアジェンダに追加</div>
+  <div class="flow-arrow">↓ 待てないなら</div>
+  <div class="flow-step">臨時会議を招集（参加者は最小限）</div>
+</div>
+
+<h3>2-3. 会議削減の判断基準</h3>
+
+<p>「前年度もやっていたから今年もやる」という慣性で続いている会議は、以下の基準で見直してください。</p>
+
+<ul class="checklist">
+<li>☐ 直近3回の会議で、決議事項が0件の会議</li>
+<li>☐ アジェンダが毎回ほぼ同じ「定例報告」のみで構成されている</li>
+<li>☐ 出席者の半数以上が「聞いているだけ」の状態</li>
+<li>☐ 議事録に「特になし」「○○委員会から報告あり」程度の記載しか残らない</li>
+</ul>
+
+<p>4項目のうち2つ以上に該当する会議は、頻度を半分にするか、共有のみの内容を非同期（LINE WORKS・Googleドキュメント）に移す候補です。</p>
+
+<div class="info-box-warn">
+  <strong>⚠️ 削減判断は会長単独で行わない</strong>
+  会議の削減は「権限の縮小」と受け取られやすい論点です。役員会で削減候補を提示し、関係役員の合意を取った上で実行してください。一方的な削減は組織内の信頼を損ないます。
+</div>
+
+<h3>2-4. 過剰会議のコスト試算</h3>
+
+<p>会議の時間コストを可視化すると、削減判断の根拠が共有しやすくなります。</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>会議</th><th>参加者</th><th>所要</th><th>人時合計</th><th>年間（12回）</th></tr>
+</thead>
+<tbody>
+<tr><td>定例役員会</td><td>15名</td><td>2時間</td><td>30人時</td><td>360人時</td></tr>
+<tr><td>委員会×4</td><td>各8名</td><td>1時間</td><td>32人時</td><td>384人時</td></tr>
+<tr><td>対学校打ち合わせ</td><td>4名</td><td>1時間</td><td>4人時</td><td>48人時</td></tr>
+<tr><td colspan="4" style="text-align:right"><strong>年間合計</strong></td><td><strong>792人時</strong></td></tr>
+</tbody>
+</table>
+
+<p>事実: 上記試算では、定例的な会議だけで年間約800人時（=月80時間相当）の保護者時間が投入されます。これに行事準備・実施を加えると、PTA役員の総拘束時間は相当な規模になります。会議体の設計は「総時間コストを下げつつ、決議事項の質を上げる」というトレードオフ最適化の問題として捉えてください。</p>
+
+</details>
+
+<!-- ========== 章3: 日程調整の実務 ========== -->
+<details id="schedule">
+<summary><span class="chapter-num">3.</span> <span class="chapter-title">日程調整の実務</span><span class="chapter-summary">調整さんを軸にした基本フロー、Googleカレンダー併用、リマインドのLINE WORKS活用。</span></summary>
+
+<h3>3-1. 日程調整の標準フロー</h3>
+
+<div class="flowchart">
+  <div class="flow-step"><strong>2週間前</strong>: 候補日を3〜5案に絞る</div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step"><strong>10日前</strong>: 調整さんで投票URLを発行、LINE WORKSで参加者に通知</div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step"><strong>7日前</strong>: 投票締切、確定日をGoogleカレンダーに登録</div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step"><strong>3日前</strong>: アジェンダ確定、Googleドキュメントで事前共有</div>
+  <div class="flow-arrow">↓</div>
+  <div class="flow-step"><strong>前日</strong>: LINE WORKSでリマインド（時間・場所・URL）</div>
+</div>
+
+<h3>3-2. 候補日の選び方</h3>
+
+<p>候補日選定で参加率が決まります。以下の制約条件を事前に確認してください。</p>
+
+<ul class="checklist">
+<li>☐ 学校行事カレンダーと衝突していないか（運動会前後・PTA行事と重複しないか）</li>
+<li>☐ 主要参加者（会長・副会長・該当委員会の委員長）の事前都合を確認済みか</li>
+<li>☐ 平日夜（19:30〜21:00）／土曜午前のどちらが多数派か</li>
+<li>☐ 学期末・年度末の繁忙期を避けられているか</li>
+</ul>
+
+<h3>3-3. 調整さんの実務</h3>
+
+<p>調整さんは PTAでの利用実績が多い無料の日程調整サービスです。アカウント登録不要・URL共有のみで参加者が回答できる点が、ITリテラシーのばらつきが大きいPTAに適しています。</p>
+
+<div class="info-box-tip">
+  <strong>💡 調整さん運用のコツ</strong>
+  候補日は5案以下に絞ってください。10案以上の候補を提示すると、参加者の回答負担が上がり、回答率が下がります。「3つ全部○の人が多い日」を選ぶより、「主要メンバーが○、他メンバーが△以上」の日を選ぶ方が実用的です。詳細は<a href="../tools/chouseisan.html">調整さんガイド</a>を参照。
+</div>
+
+<h3>3-4. Googleカレンダーへの連携</h3>
+
+<p>確定した日程は、PTA共通Googleカレンダーに登録します。これにより以下が実現します。</p>
+
+<ul>
+<li>役員全員がスマートフォンで会議予定を確認可能</li>
+<li>翌年度の引き継ぎ時に「年間会議カレンダー」がそのまま資産として残る</li>
+<li>Google Meet会議の場合、URLが自動発行されカレンダー予定に紐付く</li>
+</ul>
+
+<p>イベント作成時に「Google Meetのビデオ会議を追加」を選択すると、参加者はカレンダー予定からワンクリックで会議に入室できます。詳細は<a href="../tools/calendar.html">Googleカレンダーガイド</a>参照。</p>
+
+<h3>3-5. 欠席者への対応</h3>
+
+<p>欠席者が出ることは前提として運用設計します。</p>
+
+<ul>
+<li><strong>事前意見の回収</strong>: アジェンダ公開時に「議題に対する事前意見受付フォーム」（Google Forms）のURLを併記</li>
+<li><strong>議事録の即時共有</strong>: 会議終了直後に議事録URLをLINE WORKSで共有</li>
+<li><strong>決議事項への事後異議</strong>: 議事録共有から3営業日以内に異議がない場合は承認とみなす旨をルール化</li>
+</ul>
+
+</details>
+
+<!-- ========== 章4: アジェンダ設計と事前共有 ========== -->
+<details id="agenda">
+<summary><span class="chapter-num">4.</span> <span class="chapter-title">アジェンダ設計と事前共有</span><span class="chapter-summary">3区分（決議・共有・議論）と所要時間配分、コピペ可能なテンプレート。</span></summary>
+
+<h3>4-1. アジェンダの3区分</h3>
+
+<p>全ての議題を以下の3区分に明示分類します。混在させると、共有事項を延々と説明している間に決議の時間がなくなる、という典型的破綻が発生します。</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>区分</th><th>目的</th><th>運営方法</th><th>標準時間配分</th></tr>
+</thead>
+<tbody>
+<tr><td>🟦 決議事項</td><td>議決・承認を取る</td><td>提案者説明→質疑→採決</td><td>1議題あたり10〜15分</td></tr>
+<tr><td>🟨 共有事項</td><td>情報の伝達</td><td>提案者から1〜2分の口頭報告</td><td>1議題あたり3〜5分</td></tr>
+<tr><td>🟩 議論事項</td><td>結論を出さない意見交換</td><td>論点提示→自由発言</td><td>1議題あたり15〜20分</td></tr>
+</tbody>
+</table>
+
+<div class="info-box-warn">
+  <strong>⚠️ 共有事項が議論事項に化けると会議は破綻する</strong>
+  最も多い破綻パターンは「○○委員会から報告」（共有のはず）から派生して、その場で意見が出始め、議論事項に化けることです。共有事項の途中で意見が出た場合は、ファシリテーターが「これは次回の議論事項として扱いましょう」と介入し、その場では持ち越してください。
+</div>
+
+<h3>4-2. アジェンダのテンプレート</h3>
+
+<p>Googleドキュメントで以下の構造のテンプレートを作成し、毎回コピーして使用します。</p>
+
+<div class="code-block">
+<pre>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+○○PTA 第X回定例役員会 アジェンダ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+日時: 2026年X月X日（X） 19:30〜21:00（90分）
+場所: 学校1階会議室 ／ Google Meet（URL: ...）
+出席予定: 15名（時間コスト合計 22.5人時）
+ファシリテーター: ○○
+書記: ○○
+
+【🟦 決議事項】（合計30分）
+ 1. 秋祭り予算上限の承認 ……… 提案者: ○○ / 15分
+ 2. 印刷業者の選定 ……………… 提案者: ○○ / 15分
+
+【🟨 共有事項】（合計15分）
+ 3. 4月会費徴収状況 …………… 報告者: 会計 / 3分
+ 4. 広報誌5月号制作進捗 ……… 報告者: 広報 / 3分
+ 5. 連合PTAだより回覧 ………… 報告者: 副会長 / 3分
+ 6. 学校からの連絡事項 ………… 報告者: 校長 / 6分
+
+【🟩 議論事項】（合計30分）
+ 7. 来年度の役員選出方式の見直し … 論点提示: 会長 / 30分
+
+【その他】（15分）
+ 8. 次回日程調整・宿題確認
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+事前資料: [Googleドライブのフォルダリンク]
+事前意見受付フォーム: [Google FormsのURL]
+締切: 会議前日18:00
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</pre>
+</div>
+
+<h3>4-3. 事前共有のタイミング</h3>
+
+<p>アジェンダは会議の3日前までに参加者全員へ共有します。共有経路は以下の2層を併用します。</p>
+
+<ul>
+<li><strong>LINE WORKS全体トーク</strong>: アジェンダのURLと開催情報を投稿（即時通知性）</li>
+<li><strong>Googleドキュメントの編集権限</strong>: 参加者全員にコメント権限を付与（事前質問の書き込みが可能）</li>
+</ul>
+
+<h3>4-4. 事前資料の整備</h3>
+
+<p>決議事項には必ず事前資料を添付します。資料がない決議は、会議当日に提案者が口頭説明することになり、参加者の理解度に大きなばらつきが生じます。</p>
+
+<ul class="checklist">
+<li>☐ 提案の背景（なぜ今この議論が必要か）</li>
+<li>☐ 提案内容の具体（数字・期間・対象範囲）</li>
+<li>☐ 想定される代替案（なぜこの案を選ぶか）</li>
+<li>☐ 予算への影響（あれば）</li>
+<li>☐ リスクと対応策</li>
+</ul>
+
+<div class="info-box-tip">
+  <strong>💡 「資料は当日配布」を廃止する</strong>
+  資料を当日配布すると、参加者は資料を読む時間と議論に参加する時間を同時に取られ、結果として決議の質が下がります。事前共有を徹底すれば、会議時間そのものが30〜40%短縮できます。
+</div>
+
+</details>
+
+<!-- ========== 章5: 会議当日の運営 ========== -->
+<details id="facilitation">
+<summary><span class="chapter-num">5.</span> <span class="chapter-title">会議当日の運営</span><span class="chapter-summary">3役分担、決議の口頭確認プロトコル、対面／オンライン／ハイブリッドの設計差分。</span></summary>
+
+<h3>5-1. 3役分担（ファシリテーター・書記・タイムキーパー）</h3>
+
+<p>1人で全てを担うと会議の質が下がります。最低でも以下の3役を分担してください。</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>役割</th><th>主な仕事</th><th>推奨担当</th></tr>
+</thead>
+<tbody>
+<tr><td>ファシリテーター</td><td>議題進行・発言整理・決議の確認</td><td>会長または副会長</td></tr>
+<tr><td>書記</td><td>議事録の即時記録・決議事項の文言確定</td><td>固定担当または輪番</td></tr>
+<tr><td>タイムキーパー</td><td>議題ごとの時間管理・終了予告</td><td>当番制（毎回交代）</td></tr>
+</tbody>
+</table>
+
+<div class="info-box-tip">
+  <strong>💡 タイムキーパーは輪番制が望ましい</strong>
+  タイムキーパー役を経験すると「自分の発言が長すぎることに気づく」効果があります。役員全員が一度ずつ経験する輪番制にすると、組織全体の時間意識が向上します。
+</div>
+
+<h3>5-2. 決議事項の口頭確認プロトコル</h3>
+
+<p>決議は必ず以下の3ステップで確定させます。「なんとなく合意」を残すと、後日「そんな話だったか」という蒸し返しが発生します。</p>
+
+<ol>
+<li><strong>議論終結の宣言</strong>: ファシリテーターが「議論を終えて採決に入ります」と明示</li>
+<li><strong>決議文の読み上げ</strong>: 書記が決議文（一字一句）を読み上げ、参加者全員に確認を求める</li>
+<li><strong>承認の取得</strong>: 「異議のある方はいますか」と問い、なければ「承認とします」と宣言</li>
+</ol>
+
+<p>このプロトコルは形式的に見えますが、決議事項を「個人の記憶」から「組織の合意」に変換する重要な儀式です。</p>
+
+<h3>5-3. オンライン・ハイブリッド会議の設計差分</h3>
+
+<table class="comparison-table">
+<thead>
+<tr><th>項目</th><th>対面</th><th>オンライン（Meet）</th><th>ハイブリッド</th></tr>
+</thead>
+<tbody>
+<tr><td>所要時間</td><td>標準</td><td>15〜20%短縮可能</td><td>標準</td></tr>
+<tr><td>準備物</td><td>資料・ホワイトボード</td><td>会議URL・画面共有資料</td><td>両方＋カメラ・マイク</td></tr>
+<tr><td>発言の偏り</td><td>中</td><td>大（積極派が独占しやすい）</td><td>大（オンライン側が不利）</td></tr>
+<tr><td>記録の容易さ</td><td>標準</td><td>容易（録画・自動文字起こし可）</td><td>標準</td></tr>
+<tr><td>適した議題</td><td>議論・採決</td><td>共有・短い決議</td><td>大規模会議</td></tr>
+</tbody>
+</table>
+
+<h3>5-4. ハイブリッド会議の発言公平性</h3>
+
+<p>事実: ハイブリッド会議では、対面参加者の方が発言機会が多くなる傾向があります。オンライン参加者は割り込みのタイミングを掴みにくく、結果として「対面側が決め、オンライン側が追認する」構造になりやすいです。</p>
+
+<p>これを矯正する運用として、以下を推奨します。</p>
+
+<ul>
+<li>採決時は必ずオンライン参加者から先に意見を聞く</li>
+<li>議題ごとに「オンライン参加者から異議はありませんか」を明示確認</li>
+<li>カメラを必ずオンにする（誰が発言したいかを表情から読む）</li>
+<li>会議室側にも個人デバイスを置き、オンライン側のチャットを常時可視化</li>
+</ul>
+
+<p>Google Meetの操作詳細は<a href="../tools/meet.html">Google Meetガイド</a>参照。</p>
+
+<h3>5-5. 録画・自動文字起こしの利用</h3>
+
+<p>事実: 2026年5月時点で、Google MeetのGeminiによる文字起こし機能は、Google Workspaceの一部プランで利用可能です。無料アカウントでは利用できないため、PTAでは別の方法（録画→NotebookLMでの要約等）を併用します。</p>
+
+<div class="info-box-warn">
+  <strong>⚠️ 録画は必ず事前同意を取る</strong>
+  会議の録画は、参加者全員の事前同意が必要です。冒頭で「本日の会議は議事録作成補助のため録画します。録画は議事録確定後7日以内に削除します」と明示し、異議があれば録画しない運用にしてください。録画データの管理は<a href="../governance/security.html">セキュリティガイド</a>に準拠してください。
+</div>
+
+</details>
+
+<!-- ========== 章6: 議事録の標準フォーマット ========== -->
+<details id="minutes">
+<summary><span class="chapter-num">6.</span> <span class="chapter-title">議事録の標準フォーマット</span><span class="chapter-summary">即時記録の原則、3層構造、コピペ可能な雛形、AI要約の使いどころと限界。</span></summary>
+
+<h3>6-1. 即時記録の原則</h3>
+
+<p>議事録は会議終了時刻に完成しているのが理想形です。「後日清書」を許すと、書記の記憶劣化と他業務の発生で、議事録が1週間後・2週間後にずれ込み、最終的に出ないまま忘れられるという破綻に至ります。</p>
+
+<p>即時記録を実現する仕組みは以下です。</p>
+
+<ul>
+<li><strong>Googleドキュメントでアジェンダと議事録を同一文書に</strong>: アジェンダの各議題の下に、書記が発言要旨と決議文をその場で書き込む</li>
+<li><strong>編集権限を書記＋参加者に付与</strong>: 書記が見落とした発言を、本人が直接書き込める</li>
+<li><strong>会議終了5分前に議事録を全員で確認</strong>: 決議文・宿題事項の文言を最終確認</li>
+</ul>
+
+<h3>6-2. 議事録の3層構造</h3>
+
+<p>議事録は3つの層に明確に分けて記述します。</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>層</th><th>内容</th><th>記述粒度</th></tr>
+</thead>
+<tbody>
+<tr><td>1. 決議事項</td><td>承認された議案の文言</td><td>逐語に近い精度</td></tr>
+<tr><td>2. 宿題事項</td><td>担当者・期限・成果物</td><td>5W1Hを明示</td></tr>
+<tr><td>3. 発言要旨</td><td>議論の流れ</td><td>論点と立場を要約</td></tr>
+</tbody>
+</table>
+
+<h3>6-3. 議事録テンプレート</h3>
+
+<div class="code-block">
+<pre>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+○○PTA 第X回定例役員会 議事録
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+日時: 2026年X月X日（X） 19:30〜21:00
+場所: 学校1階会議室 ／ Google Meet
+出席: 13名（敬称略・氏名は姓のみ）
+  対面: 山田、佐藤、田中、鈴木、高橋、伊藤、渡辺、中村
+  オンライン: 小林、加藤、吉田、山本、松本
+欠席: 2名（事前意見回収済み）
+ファシリテーター: 山田（会長）
+書記: 佐藤（副会長）
+
+【🟦 決議事項】
+
+決議1: 秋祭り予算上限を25万円とする
+  提案者: 田中（行事委員長）
+  採決: 出席者全員の異議なしにより承認
+  根拠資料: [事前資料リンク]
+
+決議2: 印刷業者を○○印刷に決定する
+  提案者: 鈴木（広報委員長）
+  採決: 賛成12 / 反対1（吉田: 価格比較の追加調査を希望）/ 棄権0
+  → 賛成多数により承認
+
+【🟨 宿題事項】
+
+宿題1: 秋祭り業者見積もり3社取得
+  担当: 田中
+  期限: 2026年X月X日
+  成果物: 比較表（Googleスプレッドシート）
+
+宿題2: 印刷業者との契約締結
+  担当: 鈴木
+  期限: 2026年X月X日
+  成果物: 契約書（共通Driveに保管）
+
+【🟩 議論事項（結論なし・継続）】
+
+議論1: 来年度の役員選出方式
+  論点: 推薦制の継続か、立候補制への移行か
+  主な意見:
+    - 推薦継続派: 推薦の文化が地域に根付いている
+    - 立候補移行派: 推薦負担が一部の役員に集中している
+  次回までの宿題: 他校事例の調査（担当: 山田）
+
+【共有事項（要点のみ）】
+
+- 4月会費徴収率: 92%（前年同期+3pt）
+- 広報誌5月号: 校了済み・5/15配布予定
+- 連合PTAだより6月号: 6/1配布
+- 学校行事: 6月運動会、7月夏祭りの確認
+
+【次回】
+
+日時: 2026年X月X日 19:30〜
+場所: 学校1階会議室 ／ Google Meet
+事前意見受付締切: X月X日18:00
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+作成: 佐藤（副会長） 2026年X月X日 21:00
+確認: 山田（会長） 2026年X月X日 21:30
+公開: 役員全員にLINE WORKSで共有 2026年X月X日 22:00
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</pre>
+</div>
+
+<h3>6-4. AI要約の使いどころと限界</h3>
+
+<p>事実: NotebookLMやChatGPTを使った議事録要約は、長時間会議の振り返りや、議論の整理に有効です。一方で、決議文の確定・宿題事項の担当割り当てといった「責任を伴う記述」は、AI出力をそのまま使うと事故が発生します。</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>用途</th><th>AI活用の適否</th><th>理由</th></tr>
+</thead>
+<tbody>
+<tr><td>議論事項の論点整理</td><td>○ 適している</td><td>主観的解釈は許容範囲</td></tr>
+<tr><td>共有事項の要約</td><td>○ 適している</td><td>事実関係の要約は得意</td></tr>
+<tr><td>決議文の生成</td><td>× 不適</td><td>一字一句が組織合意の根拠</td></tr>
+<tr><td>宿題事項の担当割り当て</td><td>× 不適</td><td>責任の所在は人間が確定すべき</td></tr>
+<tr><td>個人発言の引用</td><td>△ 慎重に</td><td>誤引用のリスクが大きい</td></tr>
+</tbody>
+</table>
+
+<div class="info-box-warn">
+  <strong>⚠️ AI要約に個人情報を入力しない</strong>
+  会議録音やメモをAIに入力する際、参加者の氏名・連絡先・児童氏名等が含まれる場合があります。これらは事前に伏字化してから入力してください。AI要約の運用詳細は<a href="../tools/notebooklm.html">NotebookLMガイド</a>および<a href="../tools/chatgpt.html">ChatGPTガイド</a>参照。
+</div>
+
+<h3>6-5. 議事録の共有と保管</h3>
+
+<ul>
+<li><strong>共有経路</strong>: 会議終了直後にLINE WORKSで議事録URLを投稿</li>
+<li><strong>異議申立期限</strong>: 共有から3営業日以内</li>
+<li><strong>保管場所</strong>: 共通Driveの「03_議事録/YYYY年度/」フォルダ</li>
+<li><strong>保管期間</strong>: 最低5年（団体規約で定める）</li>
+<li><strong>権限</strong>: 役員のみ閲覧、外部公開分は別途公開版を作成</li>
+</ul>
+
+</details>
+
+<!-- ========== 章7: 決議事項のトラッキング ========== -->
+<details id="tracking">
+<summary><span class="chapter-num">7.</span> <span class="chapter-title">決議事項のトラッキング</span><span class="chapter-summary">Sheetsで宿題・決議を累積管理し、次回会議冒頭で進捗確認を儀式化する。</span></summary>
+
+<h3>7-1. なぜ累積管理が必要か</h3>
+
+<p>事実: 議事録に記載された宿題事項は、累積管理しないと「議事録に書いた時点で終わったような気分になる」現象が発生します。実際の進捗は誰も追跡せず、3ヶ月後に「あの件はどうなった」と蒸し返されることになります。</p>
+
+<p>推測: PTA運営における「決まったのに動かない」案件の8割は、決議の質ではなく、決議後のトラッキング不在が原因です。会議体の改善は議事録の改善で半分、トラッキング設計の追加でもう半分が完成します。</p>
+
+<h3>7-2. 決議・宿題トラッキングシートの設計</h3>
+
+<p>Googleスプレッドシートで以下のシートを1つ作成し、年度を通じて使い続けます。</p>
+
+<div class="code-block">
+<pre>列構成（推奨）:
+A: ID（連番）
+B: 種別（決議 / 宿題 / 議論継続）
+C: 議題
+D: 担当者
+E: 期限
+F: 状態（未着手 / 進行中 / 完了 / 持ち越し）
+G: 該当議事録URL
+H: 進捗メモ
+I: 完了日
+J: 備考
+
+数式例:
+- 期限超過のハイライト:
+  =IF(AND(E2&lt;TODAY(), F2&lt;&gt;"完了"), "🔴", "")
+- 状態別カウント:
+  =COUNTIF(F:F, "未着手")</pre>
+</div>
+
+<h3>7-3. 次回会議冒頭の進捗確認</h3>
+
+<p>定例役員会の冒頭5分を「前回宿題の進捗確認」に固定で割り当てます。これを儀式化することで、宿題が「次回までに動かす圧力」を持ちます。</p>
+
+<ul class="checklist">
+<li>☐ 前回議事録の宿題事項を1件ずつ読み上げる</li>
+<li>☐ 担当者から進捗を1分以内で報告</li>
+<li>☐ 完了案件はトラッキングシートで「完了」に更新</li>
+<li>☐ 期限超過案件は新たな期限を再合意</li>
+<li>☐ 持ち越し続ける案件は、本当に必要かを再検討</li>
+</ul>
+
+<div class="info-box-tip">
+  <strong>💡 「3回持ち越した宿題」は廃案候補</strong>
+  3回連続で持ち越される宿題は、誰も本気で必要としていない可能性が高いです。これを機械的に廃案候補とし、「廃案にしてよいか」を役員会で確認してください。トラッキングシートに「廃案」状態を追加し、廃案理由を残すことで、組織の意思決定の透明性が上がります。
+</div>
+
+</details>
+
+<!-- ========== 章8: 学校・外部団体との会議 ========== -->
+<details id="external">
+<summary><span class="chapter-num">8.</span> <span class="chapter-title">学校・外部団体との会議</span><span class="chapter-summary">校長・教頭との定例打ち合わせ、連合PTAへの出席、議事録の対外共有可否判断。</span></summary>
+
+<h3>8-1. 対学校打ち合わせの設計</h3>
+
+<p>事実: PTAは学校（校長・教頭）と独立した組織ですが、活動の多くが学校行事と連動するため、定期的な情報共有が必要です。一方で、学校側の業務負荷も限界がある現実があり、頻繁な打ち合わせ要請は教職員の働き方改革に逆行します。</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>頻度</th><th>適した規模</th><th>標準アジェンダ</th></tr>
+</thead>
+<tbody>
+<tr><td>月1回（30分）</td><td>会員500名超・行事多</td><td>近月の連携行事・要請事項・学校からの連絡</td></tr>
+<tr><td>学期1回（60分）</td><td>会員200〜500名</td><td>学期の振り返り・次学期計画</td></tr>
+<tr><td>必要時のみ</td><td>会員200名以下</td><td>都度連絡で代替</td></tr>
+</tbody>
+</table>
+
+<h3>8-2. 対学校会議の議事録</h3>
+
+<p>校長・教頭が出席する会議の議事録は、以下の追加配慮が必要です。</p>
+
+<ul>
+<li>校長・教頭の発言は、本人確認を取った上で記録</li>
+<li>学校側からの「公式見解」と「個人意見」は明示分離</li>
+<li>学校内部の運営事項に関する発言は、議事録から除外（学校の業務情報の外部流出防止）</li>
+<li>議事録は会長・副会長＋校長・教頭にのみ共有、他役員への展開は要約版で実施</li>
+</ul>
+
+<h3>8-3. 連合PTA・地域団体との会議</h3>
+
+<p>新宿区小学校PTA連合会のような上位組織や、地域の自治会・子ども会との合同会議では、自校の議事録運用と異なるルールが適用されることがあります。</p>
+
+<ul>
+<li><strong>議事録は連合側が作成</strong>: 自校で改めて作成する必要はないが、自校への持ち帰り事項は別途メモ</li>
+<li><strong>決議事項の自校への持ち帰り</strong>: 連合での決議が自校PTAの活動に影響する場合、次回定例役員会で報告・確認</li>
+<li><strong>個人情報の取扱注意</strong>: 連合会議の議事録に他校の個人情報が含まれる場合、自校での保管時に追加配慮</li>
+</ul>
+
+<h3>8-4. 議事録の対外共有可否</h3>
+
+<p>議事録を会員以外に共有する場面（学校HP掲載・地域回覧等）では、以下の判断基準で公開可否を決めます。</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>記載内容</th><th>会員限定</th><th>外部公開</th></tr>
+</thead>
+<tbody>
+<tr><td>決議事項（金額・行事計画）</td><td>○ 詳細</td><td>○ 概要のみ</td></tr>
+<tr><td>個人氏名（役員）</td><td>○ 姓＋役職</td><td>△ 役職のみ推奨</td></tr>
+<tr><td>個人氏名（一般会員）</td><td>△ 必要時のみ</td><td>× 不可</td></tr>
+<tr><td>児童氏名</td><td>× 原則不可</td><td>× 不可</td></tr>
+<tr><td>学校内部運営の言及</td><td>△ 校長確認</td><td>× 不可</td></tr>
+<tr><td>金融機関口座番号</td><td>× 不可</td><td>× 不可</td></tr>
+</tbody>
+</table>
+
+<p>個人情報保護の詳細は<a href="../governance/security.html">セキュリティガイド</a>を、対外公開の判断基準の応用は<a href="https://pta-yokosuka.com/wp-content/uploads/Pdf/koho-guideline/koho-guideline20240906.pdf">横須賀市PTA広報紙ガイドライン</a>を参照してください。</p>
+
+</details>
+
+<!-- ========== 章9: アンチパターン ========== -->
+<details id="antipatterns">
+<summary><span class="chapter-num">9.</span> <span class="chapter-title">アンチパターン（5つの破綻パターン）</span><span class="chapter-summary">議題なき定例・議事録遅延・口頭決議・全員参加強制・発言者固定。</span></summary>
+
+<p>会議運営の現場でよく観察される5つの破綻パターンと、その構造的原因・矯正策を整理します。</p>
+
+<h3>9-1. アンチパターン1: 議題なき定例会議</h3>
+
+<p><strong>症状</strong>: 「毎月第1水曜は役員会」と決まっているが、議題がほぼない月がある。「とりあえず開催」が続く。</p>
+
+<p><strong>構造的原因</strong>: 会議そのものが「役員としての活動証明」になっており、議題不足を「会議中止」ではなく「雑談化」で吸収している。</p>
+
+<p><strong>矯正策</strong>: 開催1週間前にアジェンダを確定し、決議事項が0件かつ議論事項が0件の場合は中止する運用を明文化。共有事項のみであればLINE WORKS投稿で代替。中止判断を会長単独でできるようルール化。</p>
+
+<h3>9-2. アンチパターン2: 議事録が会議翌週に届く</h3>
+
+<p><strong>症状</strong>: 議事録が会議終了から5日〜2週間後に共有される。記憶が薄れ、決議文の文言が曖昧。</p>
+
+<p><strong>構造的原因</strong>: 議事録を「会議後に書くもの」と捉えており、書記が会議中はメモ取りに徹し、後日清書する運用になっている。</p>
+
+<p><strong>矯正策</strong>: Googleドキュメント上でアジェンダと議事録を一体化させ、書記が会議中にリアルタイムで書き込む。会議終了5分前に全員で議事録を確認し、その時点で完成させる。</p>
+
+<h3>9-3. アンチパターン3: 決議が口頭のみで残らない</h3>
+
+<p><strong>症状</strong>: 「では、それで進めます」「皆さん、いいですね」で決議が終わり、議事録に決議文が明記されない。後日「そんな話だったか」が頻発。</p>
+
+<p><strong>構造的原因</strong>: 決議の確定を「空気を読む」運用で済ませており、決議文の読み上げプロトコルがない。</p>
+
+<p><strong>矯正策</strong>: 本ページ第5章のプロトコル（議論終結の宣言→決議文の読み上げ→承認の取得）を毎回実施。書記が決議文を文字に起こした時点で「これでよろしいですか」と全員確認を取る。</p>
+
+<h3>9-4. アンチパターン4: 全員参加を強制する</h3>
+
+<p><strong>症状</strong>: 議題が一部の委員会にしか関係しないのに、全役員の出席を求める。出席率を「真面目さ」の指標として扱う。</p>
+
+<p><strong>構造的原因</strong>: 「全員に共有しないと不公平」という心理が、参加者の時間コストを軽視する。共有手段が会議以外にない（情報インフラの不備）。</p>
+
+<p><strong>矯正策</strong>: アジェンダ公開時に「参加必須」「参加任意」「議事録共有のみで可」の3段階を明示。共有事項はLINE WORKS投稿に切り出し、会議への参加を強制しない。</p>
+
+<h3>9-5. アンチパターン5: オンライン会議で発言者が固定化する</h3>
+
+<p><strong>症状</strong>: ハイブリッド会議で対面参加者ばかりが発言し、オンライン側は事実上の傍観者になる。</p>
+
+<p><strong>構造的原因</strong>: 発言の割り込みタイミングが対面側に有利な物理的構造。ファシリテーターが対面側を見て進行している。</p>
+
+<p><strong>矯正策</strong>: 採決時はオンライン参加者から先に意見を聞く。議題ごとに「オンライン側から異議はありませんか」を明示確認。会議室にオンライン側のチャット画面を別途投影。</p>
+
+<div class="info-box-warn">
+  <strong>⚠️ アンチパターンは個人の問題ではなく構造の問題</strong>
+  これらの破綻は、個人の能力や責任感の不足ではなく、運用設計の不在が原因です。「もっと頑張る」では解決せず、構造を変えてはじめて解消します。失敗事例の体系的整理は<a href="../governance/antipatterns.html">失敗事例集</a>を参照してください。
+</div>
+
+</details>
+
+<!-- ========== 章10: 後任への引き継ぎ ========== -->
+<details id="handover">
+<summary><span class="chapter-num">10.</span> <span class="chapter-title">後任への引き継ぎ</span><span class="chapter-summary">会議運営マニュアル・議事録テンプレート・年間カレンダー・外部連絡先の4点。並行運用1ヶ月。</span></summary>
+
+<h3>10-1. 引き継ぎスケジュール</h3>
+
+<table class="comparison-table">
+<thead>
+<tr><th>時期</th><th>タスク</th></tr>
+</thead>
+<tbody>
+<tr><td>1月</td><td>後任候補との顔合わせ・引き継ぎ計画合意</td></tr>
+<tr><td>2月</td><td>後任に過去議事録・トラッキングシートの閲覧権限付与</td></tr>
+<tr><td>2月</td><td>後任が見学者として定例役員会に同席</td></tr>
+<tr><td>3月</td><td>後任が書記または副ファシリテーターとして実務参加</td></tr>
+<tr><td>3月末</td><td>会議運営マニュアル・テンプレート類の最終整理</td></tr>
+<tr><td>4月</td><td>後任が主担当・前任は確認役</td></tr>
+</tbody>
+</table>
+
+<h3>10-2. 後任に渡すべきドキュメント</h3>
+
+<ol>
+<li><strong>会議運営マニュアル</strong>: アジェンダ作成手順・議事録テンプレート・3役分担の運用</li>
+<li><strong>年間会議カレンダー</strong>: 月別の定例・委員会・対学校・連合の予定（Googleカレンダーへの招待権限）</li>
+<li><strong>議事録アーカイブ</strong>: 過去3年分のGoogleドキュメント（共通Driveの該当フォルダ）</li>
+<li><strong>決議・宿題トラッキングシート</strong>: 過去年度の累積記録</li>
+<li><strong>外部連絡先一覧</strong>: 校長・教頭・連合PTA担当者・地域団体窓口</li>
+<li><strong>「触らない方がいい」タブーリスト</strong>: 過去のトラブル経緯と現在の運用方針</li>
+<li><strong>改善ノート</strong>: 任期中に試行した改善策・断念した改善案</li>
+</ol>
+
+<h3>10-3. 並行運用期間の設計</h3>
+
+<p>3月の最後の定例役員会と、4月の最初の定例役員会の2回は、新旧担当が並行して運営します。これにより以下が担保されます。</p>
+
+<ul>
+<li>議事録テンプレートの実運用を後任が体感</li>
+<li>3役分担の進行を実地で観察</li>
+<li>不明点を即時に前任へ確認可能</li>
+<li>外部連絡先（校長・連合PTA等）への顔つなぎ</li>
+</ul>
+
+<div class="info-box-warn">
+  <strong>⚠️ 退任後の問い合わせ境界を明示</strong>
+  「いつでも聞いてね」という曖昧な約束は、退任者の生活を侵食します。「4月末まではいつでも、5〜6月は週1回まで、7月以降は緊急時のみメールで」のように、段階的に距離を取る境界を最初に合意してください。引き継ぎ設計の体系は<a href="../governance/handover-design.html">引き継ぎ設計ガイド</a>を参照。
+</div>
+
+</details>
+
+<!-- ========== 要点まとめ ========== -->
+<section class="summary-section">
+<h2>📌 本ガイドの要点</h2>
+<div class="summary-grid">
+  <div class="summary-card"><strong>1. 目的の3分類</strong><p>全議題を「決める／共有する／議論する」のいずれかに事前分類し、混在させない。共有のみならLINE WORKSで代替。</p></div>
+  <div class="summary-card"><strong>2. 議事録は会議中に</strong><p>Googleドキュメントでアジェンダと議事録を一体化。会議終了5分前に全員で確認し、終了時刻＝完成時刻にする。</p></div>
+  <div class="summary-card"><strong>3. 決議の口頭プロトコル</strong><p>議論終結の宣言→決議文の読み上げ→承認の取得。3ステップで「個人の記憶」を「組織の合意」に変換。</p></div>
+  <div class="summary-card"><strong>4. トラッキングの儀式化</strong><p>決議・宿題はSheetsで累積管理。次回冒頭5分で進捗確認を固定運用。3回持ち越しは廃案候補。</p></div>
+  <div class="summary-card"><strong>5. 削減判断は構造で</strong><p>議題なき定例・全員参加強制・口頭決議は構造の問題。個人の頑張りでは解決せず、運用設計で矯正する。</p></div>
+  <div class="summary-card"><strong>6. ハイブリッドの公平性</strong><p>採決はオンライン側から先に。チャット画面を会議室に投影。録画は事前同意必須。</p></div>
+</div>
+</section>
+
+<!-- ========== 関連リンク ========== -->
+<section class="related-links-section">
+<h2>🔗 関連リンク</h2>
+<div class="related-grid">
+  <a href="../tools/chouseisan.html" class="related-card"><h3>🗓️ 調整さんガイド</h3><p>日程調整の標準ツール。アカウント不要・URL共有で実施。</p></a>
+  <a href="../tools/calendar.html" class="related-card"><h3>📅 Googleカレンダーガイド</h3><p>確定日程の共有・Meet会議URLの自動発行。</p></a>
+  <a href="../tools/meet.html" class="related-card"><h3>📹 Google Meetガイド</h3><p>オンライン・ハイブリッド会議の実装。</p></a>
+  <a href="../tools/docs.html" class="related-card"><h3>📝 Googleドキュメントガイド</h3><p>アジェンダ・議事録の即時記録テンプレート。</p></a>
+  <a href="../tools/notebooklm.html" class="related-card"><h3>🤖 NotebookLMガイド</h3><p>長時間会議の論点整理・要約。</p></a>
+  <a href="../tools/lineworks.html" class="related-card"><h3>💬 LINE WORKSガイド</h3><p>会議リマインド・議事録共有・共有事項の代替手段。</p></a>
+  <a href="../tools/forms.html" class="related-card"><h3>📋 Google Formsガイド</h3><p>事前意見回収・欠席者対応。</p></a>
+  <a href="../governance/handover-design.html" class="related-card"><h3>🔄 引き継ぎ設計ガイド</h3><p>会議運営の年度引き継ぎを組織設計から考える。</p></a>
+  <a href="../governance/antipatterns.html" class="related-card"><h3>⚠️ 失敗事例集</h3><p>会議運営を含むPTA組織の破綻パターン総覧。</p></a>
+  <a href="../governance/security.html" class="related-card"><h3>🔒 セキュリティガイド</h3><p>議事録・録画の取り扱い、個人情報保護。</p></a>
+  <a href="./account.html" class="related-card"><h3>💴 会計の年間運用</h3><p>役員会で扱う予算承認・決算報告の実務。</p></a>
+  <a href="./handover.html" class="related-card"><h3>🔁 役員引き継ぎシナリオ</h3><p>会長・本部役員の引き継ぎ全体像。</p></a>
+</div>
+</section>
+
 </main>
-
-<div data-related></div>
+<div id="site-footer"></div>
 <script src="../assets/nav.js"></script>
 </body>
 </html>
